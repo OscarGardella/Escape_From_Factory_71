@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class pewPew : MonoBehaviour
 {
     public GameObject projectile;
-    public float launchVelocity = 3000;
+    public float launchVelocity = 3000f;
     private Vector3 mousePos;
     // Start is called before the first frame update
     void Start()
@@ -38,8 +38,8 @@ public class pewPew : MonoBehaviour
 
     private void shoot()
     {
-        GameObject ball = Instantiate(projectile, transform.position,transform.rotation);
-        ball.GetComponent<Rigidbody>().AddRelativeForce(new Vector3 (0, launchVelocity, 0));
+        GameObject ball = Instantiate(projectile, transform.position, transform.rotation);
+        ball.GetComponent<Rigidbody>().AddRelativeForce(new Vector3 (0, 0, -launchVelocity));
 
         Destroy(ball, 3f);
 
