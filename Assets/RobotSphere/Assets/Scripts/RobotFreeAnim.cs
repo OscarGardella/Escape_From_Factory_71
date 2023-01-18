@@ -22,12 +22,12 @@ public class Momentum {
   // Returns a value closer and closer to the target value in a linear fashion, depending on accelSpeed
   public float valueLinear() {
     float step = (Time.deltaTime * Math.Sign(target - curr) * accelSpeed);
-    /*if(Math.Abs(step) < Time.deltaTime * accelSpeed) { // TODO: It is a bug that this code doesn't work:
+    //if(Math.Abs(step) < Time.deltaTime * accelSpeed) { // TODO: It is a bug that this code doesn't work:
+    if(Math.Abs(target - curr) < Time.deltaTime * accelSpeed) {
     // Since rounding will not be perfect to move the value to 0, the character might creep ever so slowly in random directions.
     // Not significant problem. Fix later...
       step = 0;
-      curr = 0;
-    }*/
+    }
     curr = curr + step;
     return curr;
   }
@@ -53,9 +53,16 @@ public class RobotFreeAnim : MonoBehaviour {
   public float rollMomentumDrag; // How much to decrease rotation momentum in roll mode
   Animator anim;
   Rigidbody m_Rigidbody;
+  public int cameraRotation;
+  public int cameraHeight;
+  public float cameraFollowLag = 1;
+  
+  public Transform mainCamera = null;
 
   Momentum walkMom;
   Momentum rotMom;
+
+  //private GameObject topDownCamera; // The camera that follows the player
   // Use this for initialization
   void Awake() {
     anim = gameObject.GetComponent<Animator>();
@@ -65,6 +72,11 @@ public class RobotFreeAnim : MonoBehaviour {
     walkMom = new Momentum(walkMomentum);
     rotMom = new Momentum(rotationMomentum); // High (lower number) asymptotic Momentum in roll mode gives a starkingly fluid effect.
     moveSpeed = walkMoveSpeed;
+
+    // Get top-down camera
+    //topDownCamera = gameObject.GetComponent<Camera>();
+    //topDownCamera = gameObject.GetComponent<GameObject>();
+    //Debug.Log(gameObject.GetComponents<Camera>());
   }
 
   // Update is called once per frame
@@ -72,7 +84,19 @@ public class RobotFreeAnim : MonoBehaviour {
     CheckKey();
     rot[1] = rotMom.valueAsymptotic();
     gameObject.transform.eulerAngles = rot;
-    transform.position += transform.forward * walkMom.valueLinear();
+    Vector3 posChange = transform.forward * walkMom.valueLinear();
+    transform.position += posChange;
+    // Make main camera hover above player
+    if(mainCamera != null) {  
+      Vector3 cameraPos = transform.position;
+      cameraPos.y = cameraHeight;
+      mainCamera.position = cameraPos - posChange * cameraFollowLag;
+
+      Quaternion cameraLook = new Quaternion();
+      cameraLook.eulerAngles = new Vector3(90, cameraRotation, 0);
+
+      mainCamera.rotation = cameraLook;
+    }
   }
 
   void enterRollMode() {
