@@ -34,7 +34,7 @@ public class PowerBar : MonoBehaviour
         }
     }
 
-    bool ReducePower(int power_cost)
+    public bool ReducePower(int power_cost)
     {
         if(current_power - power_cost < 0) {
             return(false);
