@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
     void TakeDamage(int damage_taken)
     {
-        current_health -= damage_taken;
-        player_health_bar.SetHealth(current_health);
+            current_health -= damage_taken;
+            player_health_bar.SetHealth(current_health);
     }
 }
