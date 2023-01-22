@@ -53,14 +53,29 @@ public class RobotFreeAnim : MonoBehaviour {
   public float rollMomentumDrag; // How much to decrease rotation momentum in roll mode
   Animator anim;
   Rigidbody m_Rigidbody;
-  public int cameraRotation;
-  public int cameraHeight;
+  public float cameraRotation = 0; // Angle you look at the character
+  public float cameraHeight = 10; // How far away you look at the character
+  public float cameraVertOffset = 0; // Height offset from character
+
+  [Range(0.0F, 90.0F)]
+  public float cameraAngle = 90;
+  
   public float cameraFollowLag = 1;
   
   public Transform mainCamera = null;
 
   Momentum walkMom;
   Momentum rotMom;
+
+  // Calculates the sine of val, in degrees. Returns it as a float.
+  private float sinDegF(double val) {
+    return (float) (Math.Sin(val * (Math.PI / 180.0) ));
+  }
+
+  // Calculates the cosine of val, in degrees. Returns it as a float.
+  private float cosDegF(double val) {
+    return (float) (Math.Cos(val * (Math.PI / 180.0) ));
+  }
 
   //private GameObject topDownCamera; // The camera that follows the player
   // Use this for initialization
@@ -82,18 +97,29 @@ public class RobotFreeAnim : MonoBehaviour {
   // Update is called once per frame
   void Update() {
     CheckKey();
-    rot[1] = rotMom.valueAsymptotic();
+    rot[1] = rotMom.valueAsymptotic(); // Set rotation, with momentum
     gameObject.transform.eulerAngles = rot;
-    Vector3 posChange = transform.forward * walkMom.valueLinear();
+    Vector3 posChange = transform.forward * walkMom.valueLinear(); // This describes forward motion when pressing W.
     transform.position += posChange;
     // Make main camera hover above player
     if(mainCamera != null) {  
-      Vector3 cameraPos = transform.position;
-      cameraPos.y = cameraHeight;
+      Vector3 cameraPos = transform.position; //- transform.forward * cosDegF(cameraAngle);
+
+      // Calculate camera angle and height
+      // Any function with Sin/Cos is related to giving a specified amount of tilt to the camera.
+      // This can be used to give a slightly tilted, or even isometric view, for effect.
+      float sinAngle = sinDegF(cameraAngle);
+      float cosAngle = cosDegF(cameraAngle);
+
+      cameraPos.y += cameraHeight * sinAngle + cameraVertOffset;
+      cameraPos.x -= sinDegF(cameraRotation) * cameraHeight * cosAngle;
+      cameraPos.z -= cosDegF(cameraRotation) * cameraHeight * cosAngle;
+      //Vector3 posOffset = new Vector3(sinDegF(cameraRotation), 0, cosDegF(cameraRotation)) * cameraPos.y;
       mainCamera.position = cameraPos - posChange * cameraFollowLag;
 
+      // Set camera rotation
       Quaternion cameraLook = new Quaternion();
-      cameraLook.eulerAngles = new Vector3(90, cameraRotation, 0);
+      cameraLook.eulerAngles = new Vector3(cameraAngle, cameraRotation, 0);
 
       mainCamera.rotation = cameraLook;
     }
