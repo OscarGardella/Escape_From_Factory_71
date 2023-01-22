@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             TakeDamage(1);
         }
@@ -28,7 +28,10 @@ public class PlayerHealth : MonoBehaviour
 
     void TakeDamage(int damage_taken)
     {
-            current_health -= damage_taken;
-            player_health_bar.SetHealth(current_health);
+        current_health -= damage_taken;
+        player_health_bar.SetHealth(current_health);
+        if (current_health <= 0){
+            Destroy(gameObject);
+        }
     }
 }

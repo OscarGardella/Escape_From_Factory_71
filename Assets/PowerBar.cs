@@ -5,16 +5,15 @@ using UnityEngine.UI;
 
 public class PowerBar : MonoBehaviour
 {
-    public int max_power = 50;
-    public int current_power;
+    public float max_power = 50;
+    public float current_power;
     public Slider power_slider;
-    //public PowerBar player_power_bar;
 
-    public void SetPower(int power){
+    public void SetPower(float power){
         power_slider.value = power;
     }
 
-    public void SetMaxPower(int max_power){
+    public void SetMaxPower(float max_power){
         power_slider.maxValue = max_power;
         power_slider.value = max_power;
     }
@@ -32,9 +31,11 @@ public class PowerBar : MonoBehaviour
         {
             ReducePower(5); //depends on skill cost
         }
+        current_power += Time.deltaTime;
+        SetPower(current_power);
     }
 
-    bool ReducePower(int power_cost)
+    bool ReducePower(float power_cost)
     {
         if(current_power - power_cost < 0) {
             return(false);
