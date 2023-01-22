@@ -1,0 +1,537 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6624376233537825935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4242274499995729228}
+  m_Layer: 0
+  m_Name: Big_Floor_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4242274499995729228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624376233537825935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.4, y: 0, z: -20.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8134876727859635386}
+  - {fileID: 5495505088318167610}
+  - {fileID: 949519025374811877}
+  - {fileID: 8492384596427835474}
+  - {fileID: 3006152432010396170}
+  - {fileID: 8634894826100317754}
+  - {fileID: 6399768851286473484}
+  - {fileID: 5541620503300242630}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &309142031951449192
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4242274499995729228}
+    m_Modifications:
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692597925167695223, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_Name
+      value: Biibber Floor Tile 01 Variant (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+--- !u!4 &6399768851286473484 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+  m_PrefabInstance: {fileID: 309142031951449192}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1188117602177289122
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4242274499995729228}
+    m_Modifications:
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692597925167695223, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_Name
+      value: Biibber Floor Tile 01 Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+--- !u!4 &5541620503300242630 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+  m_PrefabInstance: {fileID: 1188117602177289122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1214058836342582622
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4242274499995729228}
+    m_Modifications:
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692597925167695223, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_Name
+      value: Biibber Floor Tile 01 Variant (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+--- !u!4 &5495505088318167610 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+  m_PrefabInstance: {fileID: 1214058836342582622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2972870659254091574
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4242274499995729228}
+    m_Modifications:
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692597925167695223, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_Name
+      value: Biibber Floor Tile 01 Variant (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+--- !u!4 &8492384596427835474 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+  m_PrefabInstance: {fileID: 2972870659254091574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3120871184275646814
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4242274499995729228}
+    m_Modifications:
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692597925167695223, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_Name
+      value: Biibber Floor Tile 01 Variant (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+--- !u!4 &8634894826100317754 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+  m_PrefabInstance: {fileID: 3120871184275646814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3206039147080553438
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4242274499995729228}
+    m_Modifications:
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692597925167695223, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_Name
+      value: Floor Tile 01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+--- !u!4 &8134876727859635386 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+  m_PrefabInstance: {fileID: 3206039147080553438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5888349119023489409
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4242274499995729228}
+    m_Modifications:
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692597925167695223, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_Name
+      value: Biibber Floor Tile 01 Variant (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+--- !u!4 &949519025374811877 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+  m_PrefabInstance: {fileID: 5888349119023489409}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8443474571037373806
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4242274499995729228}
+    m_Modifications:
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692597925167695223, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+      propertyPath: m_Name
+      value: Biibber Floor Tile 01 Variant (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+--- !u!4 &3006152432010396170 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672857826044540772, guid: 59c50f48ef45544ac935aad8655d3891, type: 3}
+  m_PrefabInstance: {fileID: 8443474571037373806}
+  m_PrefabAsset: {fileID: 0}
