@@ -8,7 +8,9 @@ public class pewPew : MonoBehaviour
 {
     public GameObject projectile;
     public float launchVelocity = 3000f;
+    public double fireDelay = 1.0;
     private Vector3 mousePos;
+    private double coolDown = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,12 @@ public class pewPew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   //Unity Forum Go Crazy
-
+        if (coolDown > 0){
+            coolDown -= Time.deltaTime;
+            if (coolDown < 0){
+                coolDown = 0;
+            }
+        }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         float distance;
@@ -30,7 +37,7 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0)&&coolDown==0)
         {
             shoot();
         }
@@ -38,10 +45,19 @@ public class pewPew : MonoBehaviour
 
     private void shoot()
     {
-        GameObject ball = Instantiate(projectile, transform.position, transform.rotation);
-        ball.GetComponent<Rigidbody>().AddRelativeForce(new Vector3 (0, 0, -launchVelocity));
 
-        Destroy(ball, 3f);
+        if (ReducePower(1) == true)
+        {
+            GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
+            laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, -launchVelocity));
 
+            Destroy(laser, 3f);
+            coolDown += fireDelay;
+        }
+    }
+
+    private bool ReducePower(int i)
+    {
+        return true;
     }
 }
