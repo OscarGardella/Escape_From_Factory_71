@@ -5,9 +5,14 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class pewPew : MonoBehaviour
+
 {
-    public GameObject projectile;
-    public float launchVelocity = 3000f;
+    [SerializeField]
+    private GameObject projectile;
+    [SerializeField]
+    private float launchVelocity = 3000f;
+    [SerializeField]
+    private AudioSource sfx;
     public double fireDelay = 1.0;
     private Vector3 mousePos;
     private double coolDown = 0;
@@ -50,7 +55,7 @@ public class pewPew : MonoBehaviour
         {
             GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, -launchVelocity));
-
+            sfx.Play();
             Destroy(laser, 3f);
             coolDown += fireDelay;
         }
