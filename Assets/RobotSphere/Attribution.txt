@@ -1,0 +1,7 @@
+"Robot Sphere"
+
+Downloaded from: https://assetstore.unity.com/packages/3d/characters/robots/robot-sphere-136226#reviews
+Author: Razgrizzz Demon
+
+License agreement: Standard Unity Asset Store EULA
+License type: Extension Asset

@@ -1,0 +1,18 @@
+"Cyber Soldier"
+
+Downloaded from: https://assetstore.unity.com/packages/3d/characters/robots/cyber-soldier-52064#reviews
+
+Author: Will Morillas
+
+License agreement: Standard Unity Asset Store EULA
+License type: Extension Asset
+
+
+Mixamo:
+Downloaded walking animation "Standard_Walk"
+from: https://www.mixamo.com/#/?page=1&query=Standard_Walk (no direct link)
+• License applies to all models on mixamo
+• I believe anything is fine as long as you don't sell a game with them?
+
+Downloaded idle animation "Unarmed Idle Looking Ver. 2"
+from: https://www.mixamo.com/#/?page=1&query=idle+looking (no direct link)
