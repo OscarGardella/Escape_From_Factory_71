@@ -12,6 +12,8 @@ Logs
 sysinfo.txt
 .hg
 .vs
+.vsconfig
+mono_crash*.json
 *.csproj
 *.unityproj
 *.sln
