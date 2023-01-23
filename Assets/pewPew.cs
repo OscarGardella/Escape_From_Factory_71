@@ -16,6 +16,9 @@ public class pewPew : MonoBehaviour
     public double fireDelay = 1.0;
     private Vector3 mousePos;
     private double coolDown = 0;
+    public PowerBar powerBar;
+    [SerializeField]
+    private double powerDrain = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +54,7 @@ public class pewPew : MonoBehaviour
     private void shoot()
     {
 
-        if (ReducePower(1) == true)
+        if (powerBar.ReducePower(powerDrain) == true)
         {
             GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, -launchVelocity));
