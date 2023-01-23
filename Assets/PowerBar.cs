@@ -36,7 +36,8 @@ public class PowerBar : MonoBehaviour
         {
             current_power += regen_rate * Time.deltaTime;
             SetPower(current_power);
-            if (current_power > max_power){
+            if (current_power > max_power)
+            {
                 current_power = max_power;
             }
         }
