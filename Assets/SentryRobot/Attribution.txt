@@ -1,0 +1,8 @@
+Downloaded from: https://assetstore.unity.com/packages/3d/characters/robots/sentry-robot-222899#reviews
+
+Auhor: Tvtig
+Group Light Hearted Tech (Inferred from initial parent folder name of assets.
+Note that I removed this intermediate folder for readability)
+
+License agreement: Standard Unity Asset Store EULA
+License type: Extension Asset

@@ -1,0 +1,5 @@
+"Sci-Fi Construction Kit (Modular)"
+Downloaded from: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-construction-kit-modular-159280#reviews
+
+License agreement: Standard Unity Asset Store EULA
+License type: Extension Asset
