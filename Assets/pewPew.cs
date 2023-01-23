@@ -16,9 +16,9 @@ public class pewPew : MonoBehaviour
     public double fireDelay = 1.0;
     private Vector3 mousePos;
     private double coolDown = 0;
-    public PowerBar powerBar;
     [SerializeField]
-    private double powerDrain = 1;
+    private PowerBar powerBar;
+    public double powerDrain = 1;
     // Start is called before the first frame update
     void Start()
     {
