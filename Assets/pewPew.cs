@@ -18,7 +18,9 @@ public class pewPew : MonoBehaviour
     private double coolDown = 0;
     [SerializeField]
     private PowerBar powerBar;
-    public double powerDrain = 1;
+    public float powerDrain = 1.0f;
+    [SerializeField]
+    private Camera camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,7 @@ public class pewPew : MonoBehaviour
                 coolDown = 0;
             }
         }
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         float distance;
         if (plane.Raycast(ray, out distance))
@@ -47,6 +49,7 @@ public class pewPew : MonoBehaviour
 
         if (Input.GetMouseButton(0)&&coolDown==0)
         {
+
             shoot();
         }
     }
@@ -56,16 +59,13 @@ public class pewPew : MonoBehaviour
 
         if (powerBar.ReducePower(powerDrain) == true)
         {
+            coolDown += fireDelay;
             GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, -launchVelocity));
             sfx.Play();
             Destroy(laser, 3f);
-            coolDown += fireDelay;
         }
+
     }
 
-    private bool ReducePower(int i)
-    {
-        return true;
-    }
 }
