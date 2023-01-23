@@ -18,7 +18,8 @@ public class pewPew : MonoBehaviour
     private double coolDown = 0;
     [SerializeField]
     private PowerBar powerBar;
-    public double powerDrain = 1;
+    public float powerDrain = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,8 +65,4 @@ public class pewPew : MonoBehaviour
         }
     }
 
-    private bool ReducePower(int i)
-    {
-        return true;
-    }
 }
