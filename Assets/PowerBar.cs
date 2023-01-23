@@ -31,8 +31,11 @@ public class PowerBar : MonoBehaviour
         {
             ReducePower(5); //depends on skill cost
         }
-        current_power += Time.deltaTime;
-        SetPower(current_power);
+        if (current_power < max_power)
+        {
+            current_power += Time.deltaTime;
+            SetPower(current_power);
+        }
     }
 
     public bool ReducePower(float power_cost)
