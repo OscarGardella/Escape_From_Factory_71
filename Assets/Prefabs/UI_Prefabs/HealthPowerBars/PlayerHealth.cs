@@ -31,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
         current_health -= damage_taken;
         player_health_bar.SetHealth(current_health);
         if (current_health <= 0){
+            //RevealGameOver(); //reveals the game over screen
             Destroy(gameObject);
         }
     }

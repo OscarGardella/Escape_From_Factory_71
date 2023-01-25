@@ -28,9 +28,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5042812390294703302}
   - {fileID: 2735019178502988600}
   - {fileID: 553550988451394624}
-  - {fileID: 5042812390294703302}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,11 +43,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6800051077773163755, guid: a308b230d8cef432fa78b0160ad139e4, type: 3}
       propertyPath: m_Name
-      value: Upgrade3
+      value: Upgrade1
       objectReference: {fileID: 0}
     - target: {fileID: 7495673912835477240, guid: a308b230d8cef432fa78b0160ad139e4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7495673912835477240, guid: a308b230d8cef432fa78b0160ad139e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -105,11 +105,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4729952685479717561, guid: 9dd5515965aca4deb9953727d168a9bb, type: 3}
       propertyPath: m_Name
-      value: Upgrade2
+      value: BackUpUpgrade2
       objectReference: {fileID: 0}
     - target: {fileID: 8646756463227345066, guid: 9dd5515965aca4deb9953727d168a9bb, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8646756463227345066, guid: 9dd5515965aca4deb9953727d168a9bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8646756463227345066, guid: 9dd5515965aca4deb9953727d168a9bb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.621338
+      value: -55.2
       objectReference: {fileID: 0}
     - target: {fileID: 8646756463227345066, guid: 9dd5515965aca4deb9953727d168a9bb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -184,7 +184,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6347032437509886866, guid: dec75cac3419c41a7918e7e19b727989, type: 3}
       propertyPath: m_Name
-      value: Upgrade1
+      value: BackUpUpgrade1
       objectReference: {fileID: 0}
     - target: {fileID: 6347032437509886866, guid: dec75cac3419c41a7918e7e19b727989, type: 3}
       propertyPath: m_TagString
@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347032437510311858, guid: dec75cac3419c41a7918e7e19b727989, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6347032437510311858, guid: dec75cac3419c41a7918e7e19b727989, type: 3}
       propertyPath: m_LocalPosition.x
