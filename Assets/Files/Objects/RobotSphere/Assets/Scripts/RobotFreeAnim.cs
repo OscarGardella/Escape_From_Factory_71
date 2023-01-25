@@ -18,7 +18,6 @@ public class Momentum {
     this.target = 0;
   }
 
-
   // Returns a value closer and closer to the target value in a linear fashion, depending on accelSpeed
   public float valueLinear() {
     float step = (Time.fixedDeltaTime * Math.Sign(target - curr) * accelSpeed);
@@ -37,6 +36,7 @@ public class Momentum {
     curr = curr + (Time.fixedDeltaTime * (target - curr) * accelSpeed);
     return curr;
   }
+  
 }
 
 // This is a class with the same name as that of the original script by Razgrizzz Demon.
@@ -68,12 +68,6 @@ public class RobotFreeAnim : MonoBehaviour {
   Momentum walkMom;
   Momentum rotMom;
 
-  public float angleDebug;
-  public float keyAngleDebug;
-  public float upperReferenceDebug;
-  public float lowerReferenceDebug;
-  public float correctedAngleDebug;
-
   // Calculates the sine of val, in degrees. Returns it as a float.
   private float sinDegF(double val) {
     return (float) (Math.Sin(val * (Math.PI / 180.0) ));
@@ -94,11 +88,6 @@ public class RobotFreeAnim : MonoBehaviour {
     walkMom = new Momentum(walkMomentum);
     rotMom = new Momentum(rotationMomentum); // High (lower number) asymptotic Momentum in roll mode gives a starkingly fluid effect.
     moveSpeed = walkMoveSpeed;
-
-    // Get top-down camera
-    //topDownCamera = gameObject.GetComponent<Camera>();
-    //topDownCamera = gameObject.GetComponent<GameObject>();
-    //Debug.Log(gameObject.GetComponents<Camera>());
   }
 
   void Update() {
@@ -142,7 +131,7 @@ public class RobotFreeAnim : MonoBehaviour {
     anim.SetBool("Walk_Anim", false);
     anim.SetBool("Roll_Anim", true);
     moveSpeed = rollMoveSpeed;
-    rotMom.accelSpeed -= rollMomentumDrag;
+    rotMom.accelSpeed -= rollMomentumDrag; // A crude way to reduce roll momentum (increase slideyness) while rolling
     rotSpeed -= 10;
   }
 
@@ -175,13 +164,12 @@ public class RobotFreeAnim : MonoBehaviour {
   // Returns the angle that the character would have to turn the shortest distance to face, given an arbitrary angle.
   // Finds the upper and lowermost multiples of 360 closest to currAngle. Then, decides if it is closer to move closer to the lower or upper reference.
   float getNearestAngle(float currAngle, float targetAngle) {
+    currAngle = currAngle - cameraRotation;
     float adjTarget = targetAngle % 360;
     int offset = 1;
     if(currAngle < 0) offset = 0;
     float upperReference = 360 * (offset + (int) (currAngle / 360)); // The uppermost multiple of 360 that currAngle is close to
     float lowerReference = upperReference - 360; // The lowermost multiple of 360
-    upperReferenceDebug = upperReference;
-    lowerReferenceDebug = lowerReference;
     
     // Edge case - if in first quadrant going to fourth.
     if(currAngle - lowerReference < 90 && adjTarget >= 270) return lowerReference - (360-adjTarget);
@@ -222,12 +210,9 @@ public class RobotFreeAnim : MonoBehaviour {
 
   void CheckKey() {
     // Update orientation when any movement key is pressed or released
-    angleDebug = rot[1];
     if(movementKeyPressed() || movementKeyReleased() && movementKeyHeld()) {
       
       float correctedAngle = getNearestAngle(rotMom.target, getKeypadAngle());
-      keyAngleDebug = getKeypadAngle();
-      correctedAngleDebug = correctedAngle;
       rotMom.target = cameraRotation + correctedAngle;
       //float correctedAngle = getNearestAngle(rot[1], getKeypadAngle());
       //rotMom.target = cameraRotation + correctedAngle;
@@ -236,7 +221,8 @@ public class RobotFreeAnim : MonoBehaviour {
     // Update the state machine only once per applicable keypress - handle WASD controls
     if(movementKeyPressed()) {
       anim.SetBool("Walk_Anim", true);
-      walkMom.target = walkMoveSpeed; // Walk
+      if(walkMom.target != rollMoveSpeed)
+        walkMom.target = walkMoveSpeed; // Walk
     }
 
     // Press left control while walking to enter roll mode
