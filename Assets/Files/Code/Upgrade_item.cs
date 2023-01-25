@@ -15,10 +15,10 @@ public class Upgrade_item : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Check if the item collides with an object named "Player"
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "MainCharacter")
         {
-            Destroy(gameObject);
             upgrading_abilities();
+            Destroy(gameObject);
         }
     }
 
