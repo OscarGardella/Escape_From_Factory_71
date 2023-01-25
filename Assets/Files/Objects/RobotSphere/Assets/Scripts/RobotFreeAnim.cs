@@ -21,9 +21,9 @@ public class Momentum {
 
   // Returns a value closer and closer to the target value in a linear fashion, depending on accelSpeed
   public float valueLinear() {
-    float step = (Time.deltaTime * Math.Sign(target - curr) * accelSpeed);
-    //if(Math.Abs(step) < Time.deltaTime * accelSpeed) { // TODO: It is a bug that this code doesn't work:
-    if(Math.Abs(target - curr) < Time.deltaTime * accelSpeed) {
+    float step = (Time.fixedDeltaTime * Math.Sign(target - curr) * accelSpeed);
+    //if(Math.Abs(step) < Time.fixedDeltaTime * accelSpeed) { // TODO: It is a bug that this code doesn't work:
+    if(Math.Abs(target - curr) < Time.fixedDeltaTime * accelSpeed) {
     // Since rounding will not be perfect to move the value to 0, the character might creep ever so slowly in random directions.
     // Not significant problem. Fix later...
       step = 0;
@@ -34,7 +34,7 @@ public class Momentum {
 
  // Returns a value closer and closer to the target value in an asymptotic fashion, depending on accelSpeed
   public float valueAsymptotic() {
-    curr = curr + (Time.deltaTime * (target - curr) * accelSpeed);
+    curr = curr + (Time.fixedDeltaTime * (target - curr) * accelSpeed);
     return curr;
   }
 }
@@ -63,9 +63,16 @@ public class RobotFreeAnim : MonoBehaviour {
   public float cameraFollowLag = 1;
   
   public Transform mainCamera = null;
+  public Vector3 angles;
 
   Momentum walkMom;
   Momentum rotMom;
+
+  public float angleDebug;
+  public float keyAngleDebug;
+  public float upperReferenceDebug;
+  public float lowerReferenceDebug;
+  public float correctedAngleDebug;
 
   // Calculates the sine of val, in degrees. Returns it as a float.
   private float sinDegF(double val) {
@@ -94,13 +101,18 @@ public class RobotFreeAnim : MonoBehaviour {
     //Debug.Log(gameObject.GetComponents<Camera>());
   }
 
-  // Update is called once per frame
   void Update() {
     CheckKey();
+  }
+
+  // Update is called once per frame
+  void FixedUpdate() {
+    
     rot[1] = rotMom.valueAsymptotic(); // Set rotation, with momentum
     gameObject.transform.eulerAngles = rot;
+    //m_Rigidbody.rotation.eulerAngles = rot; // TODO is this needed?
     Vector3 posChange = transform.forward * walkMom.valueLinear(); // This describes forward motion when pressing W.
-    transform.position += posChange;
+    m_Rigidbody.position += posChange;
     // Make main camera hover above player
     if(mainCamera != null) {  
       Vector3 cameraPos = transform.position; //- transform.forward * cosDegF(cameraAngle);
@@ -142,35 +154,102 @@ public class RobotFreeAnim : MonoBehaviour {
     rotSpeed += 10;
   }
 
-  void CheckKey() {
+  // Returns whether any key is pressed corresponding to character movement
+  bool movementKeyPressed() {
+    return Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S);
+  }
+  // Returns whether any key is held corresponding to character movement
+  bool movementKeyHeld() {
+    return Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S);
+  }
+  // Returns whether any movement key has been released
+  bool movementKeyReleased() {
+    return Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S);
+  }
+  // Returns whether all movement keys were released (the character should not be moving)
+  bool allMovementKeysReleased() {
+    return movementKeyReleased() && ! movementKeyHeld();
+  }
 
-    // Update the state machine only once per applicable keypress
-    if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W)) anim.SetBool("Walk_Anim", true);
-    else if((Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W)) && !(Input.GetKey(KeyCode.W))) anim.SetBool("Walk_Anim", false);
+
+  // Returns the angle that the character would have to turn the shortest distance to face, given an arbitrary angle.
+  // Finds the upper and lowermost multiples of 360 closest to currAngle. Then, decides if it is closer to move closer to the lower or upper reference.
+  float getNearestAngle(float currAngle, float targetAngle) {
+    float adjTarget = targetAngle % 360;
+    int offset = 1;
+    if(currAngle < 0) offset = 0;
+    float upperReference = 360 * (offset + (int) (currAngle / 360)); // The uppermost multiple of 360 that currAngle is close to
+    float lowerReference = upperReference - 360; // The lowermost multiple of 360
+    upperReferenceDebug = upperReference;
+    lowerReferenceDebug = lowerReference;
     
-    // Rotate left while key is currently held down
-    if (Input.GetKey(KeyCode.A)) {
-      // The variable "rot" is a Vector3, which is read upon every update frame to set the rotation direction.
-      // Incrementing or decrementing this variable around the y-axis, in effect, rotates it laterally, over a fixed time amount.
-      // Using my Momentum class also smooths this to make the movement look more fluid and natural.
-      rotMom.target = rotMom.target - rotSpeed * Time.deltaTime;
-    } 
+    // Edge case - if in first quadrant going to fourth.
+    if(currAngle - lowerReference < 90 && adjTarget >= 270) return lowerReference - (360-adjTarget);
+    // If it's closer to go to the upper reference, go there...
+    float otherHalf = lowerReference + 180 + adjTarget; // Draw a line straight through the circle, starting at target, and ending at the other side
+    if(currAngle < otherHalf && currAngle > adjTarget) { // If you are anywhere on the right side of that line
+      return lowerReference + adjTarget; // Go to the target on that side
+    } else {
+      return upperReference + adjTarget;
+    }
+
+
     
-    if (Input.GetKey(KeyCode.D)) { // Rotate Right
-      rotMom.target = rotMom.target + rotSpeed * Time.deltaTime;
-    } 
+  }
+
+  // Returns the angle the character should be facing given the WASD keys pressed, from 0-360.
+  float getKeypadAngle() {
+    float angle = 0;
+    if(Input.GetKey(KeyCode.W)) {
+      if(Input.GetKey(KeyCode.D)) angle = 45; // Handle diagonals - if other key is already pressed...
+      else if(Input.GetKey(KeyCode.A)) angle = 315;
+      else angle = 0; // Default
+    } else if (Input.GetKey(KeyCode.D)) {
+      if(Input.GetKey(KeyCode.W)) angle = 45;
+      else if(Input.GetKey(KeyCode.S)) angle = 135;
+      else angle = 90;
+    } else if (Input.GetKey(KeyCode.S)) {
+      if(Input.GetKey(KeyCode.D)) angle = 135;
+      else if(Input.GetKey(KeyCode.A)) angle = 225;
+      else angle = 180;
+    } else if (Input.GetKey(KeyCode.A)) {
+      if(Input.GetKey(KeyCode.W)) angle = 0;
+      else if(Input.GetKey(KeyCode.S)) angle = 225;
+      else angle = 270;
+    }
+    return angle;
+  }
+
+  void CheckKey() {
+    // Update orientation when any movement key is pressed or released
+    angleDebug = rot[1];
+    if(movementKeyPressed() || movementKeyReleased() && movementKeyHeld()) {
+      
+      float correctedAngle = getNearestAngle(rotMom.target, getKeypadAngle());
+      keyAngleDebug = getKeypadAngle();
+      correctedAngleDebug = correctedAngle;
+      rotMom.target = cameraRotation + correctedAngle;
+      //float correctedAngle = getNearestAngle(rot[1], getKeypadAngle());
+      //rotMom.target = cameraRotation + correctedAngle;
+    }
     
+    // Update the state machine only once per applicable keypress - handle WASD controls
+    if(movementKeyPressed()) {
+      anim.SetBool("Walk_Anim", true);
+      walkMom.target = walkMoveSpeed; // Walk
+    }
+
     // Press left control while walking to enter roll mode
-    if(Input.GetKey(KeyCode.LeftControl)) {
-      // If W and space are pressed at once
-      if(Input.GetKey(KeyCode.W)) {
+    if(Input.GetKeyDown(KeyCode.LeftControl)) {
+      if(movementKeyHeld()) {
         walkMom.target = rollMoveSpeed;
         enterRollMode();
       }
-    } else if(Input.GetKeyDown(KeyCode.W)) { // Walk
-      walkMom.target = walkMoveSpeed;
-    } else if (Input.GetKeyUp(KeyCode.W)) {
+    }
+
+    if(allMovementKeysReleased()) {
       exitRollMode();
+      anim.SetBool("Walk_Anim", false);
       walkMom.target = 0;
     }
       
