@@ -86,6 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7742542878765720811}
   - component: {fileID: 7742542878765720808}
+  - component: {fileID: 2532302364011680115}
   m_Layer: 5
   m_Name: Abilities
   m_TagString: Untagged
@@ -165,3 +166,15 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2532302364011680115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742542878765720810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4148c2958753b4bc7bc8fd3bdc8cb1dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

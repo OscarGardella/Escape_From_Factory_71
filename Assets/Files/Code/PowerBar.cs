@@ -28,10 +28,12 @@ public class PowerBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+    //added to the player abilities script
+    /*  if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ReducePower(5); //depends on skill cost
         }
+    */
         if (current_power < max_power)
         {
             current_power += regen_rate * Time.deltaTime;
