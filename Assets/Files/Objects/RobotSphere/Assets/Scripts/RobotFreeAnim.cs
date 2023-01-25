@@ -83,7 +83,7 @@ public class RobotFreeAnim : MonoBehaviour {
   void Awake() {
     anim = gameObject.GetComponent<Animator>();
     //anim.SetFloat("Roll_Anim", 2.0F); // Increase roll start/end animation speed
-    gameObject.transform.eulerAngles = rot;
+    gameObject.transform.eulerAngles = new Vector3(0, cameraRotation, 0);
     m_Rigidbody = gameObject.GetComponent<Rigidbody>();
     walkMom = new Momentum(walkMomentum);
     rotMom = new Momentum(rotationMomentum); // High (lower number) asymptotic Momentum in roll mode gives a starkingly fluid effect.
@@ -101,7 +101,8 @@ public class RobotFreeAnim : MonoBehaviour {
     gameObject.transform.eulerAngles = rot;
     //m_Rigidbody.rotation.eulerAngles = rot; // TODO is this needed?
     Vector3 posChange = transform.forward * walkMom.valueLinear(); // This describes forward motion when pressing W.
-    m_Rigidbody.position += posChange;
+    //m_Rigidbody.position += posChange;
+    m_Rigidbody.AddForce(posChange, ForceMode.VelocityChange);
     // Make main camera hover above player
     if(mainCamera != null) {  
       Vector3 cameraPos = transform.position; //- transform.forward * cosDegF(cameraAngle);
