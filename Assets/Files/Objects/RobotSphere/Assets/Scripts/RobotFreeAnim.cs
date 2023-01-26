@@ -13,7 +13,7 @@ public class Momentum {
   public float target;
   private float curr = 0;
 
-  public Momentum(float accelSpeed) {
+  public Momentum(float accelSpeed, float start = 0) {
     this.accelSpeed = accelSpeed;
     this.target = 0;
   }
@@ -67,6 +67,17 @@ public class RobotFreeAnim : MonoBehaviour {
 
   Momentum walkMom;
   Momentum rotMom;
+  
+  public float rotMomTargetDebug;
+  public float rotDebug;
+  public float lowerReferenceDebug;
+  public float upperReferenceDebug;
+  public float otherHalfDebug;
+
+  // Returns true if the player is currently rolling
+  public bool isRolling() {
+    return anim.GetBool("Roll_Anim");
+  }
 
   // Calculates the sine of val, in degrees. Returns it as a float.
   private float sinDegF(double val) {
@@ -83,10 +94,10 @@ public class RobotFreeAnim : MonoBehaviour {
   void Awake() {
     anim = gameObject.GetComponent<Animator>();
     //anim.SetFloat("Roll_Anim", 2.0F); // Increase roll start/end animation speed
-    gameObject.transform.eulerAngles = new Vector3(0, cameraRotation, 0);
     m_Rigidbody = gameObject.GetComponent<Rigidbody>();
     walkMom = new Momentum(walkMomentum);
-    rotMom = new Momentum(rotationMomentum); // High (lower number) asymptotic Momentum in roll mode gives a starkingly fluid effect.
+    rot = new Vector3(0, cameraRotation, 0);
+    rotMom = new Momentum(rotationMomentum, cameraRotation); // High (lower number) asymptotic Momentum in roll mode gives a starkingly fluid effect.
     moveSpeed = walkMoveSpeed;
   }
 
@@ -98,6 +109,8 @@ public class RobotFreeAnim : MonoBehaviour {
   void FixedUpdate() {
     
     rot[1] = rotMom.valueAsymptotic(); // Set rotation, with momentum
+    rotDebug = rot[1];
+    rotMomTargetDebug = rotMom.target;
     gameObject.transform.eulerAngles = rot;
     //m_Rigidbody.rotation.eulerAngles = rot; // TODO is this needed?
     Vector3 posChange = transform.forward * walkMom.valueLinear(); // This describes forward motion when pressing W.
@@ -171,19 +184,21 @@ public class RobotFreeAnim : MonoBehaviour {
     if(currAngle < 0) offset = 0;
     float upperReference = 360 * (offset + (int) (currAngle / 360)); // The uppermost multiple of 360 that currAngle is close to
     float lowerReference = upperReference - 360; // The lowermost multiple of 360
-    
+    lowerReferenceDebug = lowerReference;
+    upperReferenceDebug = upperReference;
+
     // Edge case - if in first quadrant going to fourth.
-    if(currAngle - lowerReference < 90 && adjTarget >= 270) return lowerReference - (360-adjTarget);
+    if(currAngle - lowerReference < 90 && adjTarget >= 270) {
+      return lowerReference - (360-adjTarget);
+    }
     // If it's closer to go to the upper reference, go there...
     float otherHalf = lowerReference + 180 + adjTarget; // Draw a line straight through the circle, starting at target, and ending at the other side
-    if(currAngle < otherHalf && currAngle > adjTarget) { // If you are anywhere on the right side of that line
+    otherHalfDebug = otherHalf;
+    if(currAngle < otherHalf) { // If you are anywhere on the right side of that line
       return lowerReference + adjTarget; // Go to the target on that side
     } else {
       return upperReference + adjTarget;
     }
-
-
-    
   }
 
   // Returns the angle the character should be facing given the WASD keys pressed, from 0-360.
