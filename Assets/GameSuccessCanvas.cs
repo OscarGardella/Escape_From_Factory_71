@@ -2,28 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class game_over_text : MonoBehaviour
-{
 
+public class GameSuccessCanvas : MonoBehaviour
+{
     [SerializeField] Text message;
 
 
     public GameObject player;
-    private PlayerHealth health_left;
+    public GameObject ExitSign;
+
+    //private PlayerHealth health_left;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(false);
-        health_left = player.GetComponent<PlayerHealth>();
-
     }
 
-    public void RevealGameOver()
+    public void RevealSuccess()
     {
-        if (health_left.current_health <= 0){
-            gameObject.SetActive(true);// show the screen
-        }
+        gameObject.SetActive(true);// show the screen
     }
-
 }

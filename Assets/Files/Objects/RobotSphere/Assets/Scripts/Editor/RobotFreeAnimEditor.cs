@@ -29,14 +29,14 @@ public class RobotFreeAnimEditor : Editor
 
 			style.border = new RectOffset(10, 10, 10, 10);
 			defaultBgColor = GUI.backgroundColor;
-			testImage = Resources.Load<Texture2D>("Notifications/Banners/test");
+			//testImage = Resources.Load<Texture2D>("Notifications/Banners/test");
 			isInit = true;
 		}
 	}
 
 	public override void OnInspectorGUI()
     {
-		GUI.DrawTexture(rect, testImage);
+		//GUI.DrawTexture(rect, testImage);
 		style.wordWrap = true;
 		DrawText("*Upgrades*\n", 35, new Color(1f, 0.2373f, 0f, 1f));
 		GUILayout.Space(10);

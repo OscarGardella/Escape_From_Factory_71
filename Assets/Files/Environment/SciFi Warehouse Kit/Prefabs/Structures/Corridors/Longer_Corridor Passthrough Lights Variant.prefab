@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -45.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2553481404179805100, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.09
+      objectReference: {fileID: 0}
     - target: {fileID: 2553481404179836802, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
       propertyPath: m_Name
       value: Longer_Corridor Passthrough Lights Variant
