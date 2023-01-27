@@ -5773,6 +5773,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall Corridor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3815888047148569626, guid: cd25cf3d7c6ff0e4cb4a7056c87c3ba9, type: 3}
+      propertyPath: m_Size.y
+      value: 10.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815888047148569626, guid: cd25cf3d7c6ff0e4cb4a7056c87c3ba9, type: 3}
+      propertyPath: m_Center.y
+      value: 4.42
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd25cf3d7c6ff0e4cb4a7056c87c3ba9, type: 3}
 --- !u!4 &4893324311802022445 stripped
