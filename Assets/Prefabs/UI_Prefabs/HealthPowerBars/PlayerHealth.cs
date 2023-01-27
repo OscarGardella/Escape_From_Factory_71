@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int current_health;
 
     public HealthBar player_health_bar;
+    public game_over_text game_over;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
         current_health -= damage_taken;
         player_health_bar.SetHealth(current_health);
         if (current_health <= 0){
-            RevealGameOver(); //reveals the game over screen
+            game_over.RevealGameOver(); //reveals the game over screen
             Destroy(gameObject);
         }
     }
