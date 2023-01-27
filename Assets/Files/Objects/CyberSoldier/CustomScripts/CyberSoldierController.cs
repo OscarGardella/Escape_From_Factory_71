@@ -20,7 +20,7 @@ public class CyberSoldierController : MonoBehaviour
     agent = this.gameObject.GetComponent<NavMeshAgent>();
     animator = this.gameObject.GetComponent<Animator>();
     lastAttackCooldown = DateTime.Now;
-    if(target == null) target = GameObject.Find(targetSearchName); // Attempt to find the MainCharacter if target is not set
+    target = GameObject.FindGameObjectWithTag("Player"); // Attempt to find the MainCharacter if target is not set
     if(target == null) {
       Debug.Log("Error: Enemy \"" + this.name + "\" is not set to follow any target");
       //Debug.Log("Error: Enemy \"" + this.name + "\" was unable to find the target \"" + target.name + "\". Navigation script will be disabled.");

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PowerBar : MonoBehaviour
 {
+    
     public float max_power = 50;
     public float current_power;
     public float regen_rate = 1;
@@ -23,6 +24,7 @@ public class PowerBar : MonoBehaviour
     {
         current_power = max_power;
         SetMaxPower(max_power);
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame

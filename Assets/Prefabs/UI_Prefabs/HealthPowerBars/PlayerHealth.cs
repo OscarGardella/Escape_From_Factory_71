@@ -35,7 +35,16 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void TakeDamage(int damage_taken)
+    void OnCollisionEnter(Collision collision)
+    {
+        //Check if the item collides with an object tagged as "enemy"
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage(1);
+        }
+    }
+
+    public void TakeDamage(int damage_taken)
     {
         current_health -= damage_taken;
         player_health_bar.SetHealth(current_health);
