@@ -43,7 +43,7 @@ namespace VolumetricLines
 		/// Set to true in order to *initially* leave the material's properties as they are in the template material.
 		/// </summary>
 		[SerializeField] 
-		private bool m_doNotOverwriteTemplateMaterialProperties;
+		private bool m_doNotOverwriteTemplateMaterialProperties=false;
 
 		/// <summary>
 		/// The start position relative to the GameObject's origin
