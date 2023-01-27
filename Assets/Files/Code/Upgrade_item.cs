@@ -6,6 +6,8 @@ using System;
 public class Upgrade_item : MonoBehaviour
 {
     public AbilityTracking abilityTracker;
+    public AbilityHider abilityRevealer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,7 @@ public class Upgrade_item : MonoBehaviour
         if (gameObject.name == "Upgrade1")
         {
             abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Roll); //at somepoint will add ability based on id
+            abilityRevealer.Reveal();
         }
     }
 }
