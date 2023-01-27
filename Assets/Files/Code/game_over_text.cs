@@ -15,15 +15,12 @@ public class game_over_text : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(false);
-        health_left = player.GetComponent<PlayerHealth>();
 
     }
 
     public void RevealGameOver()
     {
-        if (health_left.current_health <= 0){
-            gameObject.SetActive(true);// show the screen
-        }
+        gameObject.SetActive(true);// show the screen
     }
 
 }

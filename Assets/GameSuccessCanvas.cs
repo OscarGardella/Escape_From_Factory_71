@@ -19,8 +19,11 @@ public class GameSuccessCanvas : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void RevealSuccess()
+    public void update()
     {
-        gameObject.SetActive(true);// show the screen
+        if ((ExitSign.transform.position - player.transform.position).magnitude < 30.0f)
+        {
+            gameObject.SetActive(true);// show the screen
+        }
     }
 }
