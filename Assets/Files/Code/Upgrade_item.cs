@@ -38,13 +38,6 @@ public class Upgrade_item : MonoBehaviour
         return num;
     }
 
-    //public static void Main()
-    //{
-        // Instantiate random number generator
-    //    Random rand = new Random();
-     //   int num = rand.Next(0, 10);
-    //}
-
     void upgrading_abilities()
     {
         int num = randomNum(); //random number
