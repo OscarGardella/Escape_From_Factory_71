@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 // This is a modified version of a free controller script included with this Sphere Robot free asset from the Unity Assets Store.
 // Its original author is Razgrizzz Demon, and the download link for this project was at
@@ -44,6 +45,7 @@ public class RobotFreeAnim : MonoBehaviour {
 
   // Please note that certain variables may not be updatable in the inspector while playing, as they may be checked as needed.
   Vector3 rot = Vector3.zero;
+  private bool rollingEnabled = true;
   public float rotSpeed = 40f;
   private float moveSpeed;
   public float rollMoveSpeed;
@@ -68,12 +70,6 @@ public class RobotFreeAnim : MonoBehaviour {
   Momentum walkMom;
   Momentum rotMom;
   
-  public float rotMomTargetDebug;
-  public float rotDebug;
-  public float lowerReferenceDebug;
-  public float upperReferenceDebug;
-  public float otherHalfDebug;
-
   // Returns true if the player is currently rolling
   public bool isRolling() {
     return anim.GetBool("Roll_Anim");
@@ -109,8 +105,6 @@ public class RobotFreeAnim : MonoBehaviour {
   void FixedUpdate() {
     
     rot[1] = rotMom.valueAsymptotic(); // Set rotation, with momentum
-    rotDebug = rot[1];
-    rotMomTargetDebug = rotMom.target;
     gameObject.transform.eulerAngles = rot;
     //m_Rigidbody.rotation.eulerAngles = rot; // TODO is this needed?
     Vector3 posChange = transform.forward * walkMom.valueLinear(); // This describes forward motion when pressing W.
@@ -140,21 +134,45 @@ public class RobotFreeAnim : MonoBehaviour {
     }
   }
 
-  void enterRollMode() {
-    if(anim.GetBool("Roll_Anim")) return; // Already in roll mode
+  
+
+  public async void enterRollMode() {
+    if(isRolling()) return; // Already in roll mode
     anim.SetBool("Walk_Anim", false);
     anim.SetBool("Roll_Anim", true);
-    moveSpeed = rollMoveSpeed;
+    float oldRollMoveSpeed = rollMoveSpeed; // Save old roll move speed to temporarily reduce it
+    moveSpeed = walkMoveSpeed / 2; // Walk twice as slow before the roll, while the starting roll animation is playing
+    walkMom.target = moveSpeed;
+    await Task.Delay(900);
     rotMom.accelSpeed -= rollMomentumDrag; // A crude way to reduce roll momentum (increase slideyness) while rolling
     rotSpeed -= 10;
+    if(isRolling()) {
+      // Check if rolling hasn't ended by now, which would leave the speed at incorrect values. Very very small potential for a race condition,
+      // but this race condition has been tested without this check to be self-correcting and non-hindering.
+      walkMom.target = rollMoveSpeed;
+      moveSpeed = rollMoveSpeed; // Increase to full roll move speed
+    }
   }
 
-  void exitRollMode() {
-    if(! anim.GetBool("Roll_Anim")) return; // Not in roll mode 
+  public void exitRollMode() {
+    if(! isRolling()) return; // Not in roll mode 
+    walkMom.target = walkMoveSpeed;
     anim.SetBool("Roll_Anim", false);
     moveSpeed = walkMoveSpeed;
     rotMom.accelSpeed += rollMomentumDrag;
     rotSpeed += 10;
+  }
+  
+  public void setRollingEnabled(bool enabled) {
+    rollingEnabled = enabled;
+  }
+
+  // Rolls for the specified seconds
+  public async void rollFor(float seconds) {
+    if(isRolling()) return;
+    enterRollMode();
+    await Task.Delay((int) (1000 * seconds + 900));
+    exitRollMode();
   }
 
   // Returns whether any key is pressed corresponding to character movement
@@ -184,8 +202,6 @@ public class RobotFreeAnim : MonoBehaviour {
     if(currAngle < 0) offset = 0;
     float upperReference = 360 * (offset + (int) (currAngle / 360)); // The uppermost multiple of 360 that currAngle is close to
     float lowerReference = upperReference - 360; // The lowermost multiple of 360
-    lowerReferenceDebug = lowerReference;
-    upperReferenceDebug = upperReference;
 
     // Edge case - if in first quadrant going to fourth.
     if(currAngle - lowerReference < 90 && adjTarget >= 270) {
@@ -193,7 +209,6 @@ public class RobotFreeAnim : MonoBehaviour {
     }
     // If it's closer to go to the upper reference, go there...
     float otherHalf = lowerReference + 180 + adjTarget; // Draw a line straight through the circle, starting at target, and ending at the other side
-    otherHalfDebug = otherHalf;
     if(currAngle < otherHalf) { // If you are anywhere on the right side of that line
       return lowerReference + adjTarget; // Go to the target on that side
     } else {
@@ -242,9 +257,10 @@ public class RobotFreeAnim : MonoBehaviour {
     }
 
     // Press left control while walking to enter roll mode
-    if(Input.GetKeyDown(KeyCode.LeftControl)) {
+    if(Input.GetKeyDown(KeyCode.LeftControl) && rollingEnabled) {
+      //rollFor(2.0F);
       if(movementKeyHeld()) {
-        walkMom.target = rollMoveSpeed;
+        //walkMom.target = rollMoveSpeed;
         enterRollMode();
       }
     }
@@ -254,6 +270,7 @@ public class RobotFreeAnim : MonoBehaviour {
       anim.SetBool("Walk_Anim", false);
       walkMom.target = 0;
     }
+
       
       
     
