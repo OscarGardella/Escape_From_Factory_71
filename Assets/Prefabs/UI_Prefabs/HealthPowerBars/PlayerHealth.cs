@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int current_health;
 
     public HealthBar player_health_bar;
+    public game_over_text game_over;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +27,21 @@ public class PlayerHealth : MonoBehaviour
         }
     } 
 
-    void TakeDamage(int damage_taken)
+    void OnCollisionEnter(Collision collision)
+    {
+        //Check if the item collides with an object tagged as "enemy"
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage(1);
+        }
+    }
+
+    public void TakeDamage(int damage_taken)
     {
         current_health -= damage_taken;
         player_health_bar.SetHealth(current_health);
         if (current_health <= 0){
+            game_over.RevealGameOver(); //reveals the game over screen
             Destroy(gameObject);
         }
     }
