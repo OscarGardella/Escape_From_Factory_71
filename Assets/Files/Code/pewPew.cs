@@ -19,35 +19,39 @@ public class pewPew : MonoBehaviour
     [SerializeField]
     private PowerBar powerBar;
     public float powerDrain = 1.0f;
-
+    [SerializeField]
+    private Camera camera;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {   //Unity Forum Go Crazy
-        if (coolDown > 0){
+        if (coolDown > 0)
+        {
             coolDown -= Time.deltaTime;
-            if (coolDown < 0){
+            if (coolDown < 0)
+            {
                 coolDown = 0;
             }
         }
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         float distance;
         if (plane.Raycast(ray, out distance))
         {
             Vector3 target = ray.GetPoint(distance);
             Vector3 direction = target - transform.position;
-            float rotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg-180;
+            float rotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg - 180;
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButton(0)&&coolDown==0)
+        if (Input.GetMouseButton(0) && coolDown == 0)
         {
+
             shoot();
         }
     }
@@ -57,12 +61,13 @@ public class pewPew : MonoBehaviour
 
         if (powerBar.ReducePower(powerDrain) == true)
         {
+            coolDown += fireDelay;
             GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, -launchVelocity));
             sfx.Play();
             Destroy(laser, 3f);
-            coolDown += fireDelay;
         }
+
     }
 
 }
