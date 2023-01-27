@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 937052024181481450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,10 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8f788febafda34eb398f66ebfc02ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 7327317447127632273, guid: c7a15b5b56ab66849b9319d54a6f9967, type: 3}
+  projectile: {fileID: 2669293004302056413, guid: 0f743a4a96d987c48a8dd7670d0167fe, type: 3}
   launchVelocity: 3000
   sfx: {fileID: 937052024181481451}
-  fireDelay: 0.5
+  fireDelay: 0.25
+  powerBar: {fileID: 0}
+  powerDrain: 1
+  camera: {fileID: 0}
 --- !u!82 &937052024181481451
 AudioSource:
   m_ObjectHideFlags: 0
