@@ -34,6 +34,11 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(1);
         }
+        if (collision.gameObject.tag == "Projectile")
+        {
+            TakeDamage(1);
+            Destroy(collision.gameObject);
+        }
     }
 
     public void TakeDamage(int damage_taken)
