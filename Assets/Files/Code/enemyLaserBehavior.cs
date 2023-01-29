@@ -20,22 +20,18 @@ public class enemyLaserBehavior : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player"&& collision.gameObject.tag != "Enemy")
         {
             Explode();
         }
-        else
+        else if (collision.gameObject.tag=="Player)")
         {
-            Destroy(gameObject);
-
+            Destroy(gameObject, 3f);
+           }
+           else{
+            Explode();
            }
     }
 

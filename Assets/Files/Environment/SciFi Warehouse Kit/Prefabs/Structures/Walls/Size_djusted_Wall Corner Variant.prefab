@@ -74,7 +74,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1851013419894056381, guid: 32467b8dc355cd04da356b17dbac4f29, type: 3}
   m_PrefabInstance: {fileID: 5613004473618666978}
   m_PrefabAsset: {fileID: 0}
---- !u!208 &1252048287299432894
+--- !u!208 &8918010377328069307
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

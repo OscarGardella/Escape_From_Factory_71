@@ -15,9 +15,10 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1)) //roll ability key
             {
-                player_power_bar.ReducePower(5); //depends on skill cost
-                player_character.rollFor(3.0);
-                Debug.Log("Autobots roll out!");
+                if (player_power_bar.ReducePower(5) == true)
+                {
+                    player_character.rollFor(2.0f);
+                }
             }
         }
     }
