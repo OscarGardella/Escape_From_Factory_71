@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 575355967116409589, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638674767522565381, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871714977930938597, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8508690697080748130, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
       propertyPath: m_Name
       value: Bigger_Corridor 4-Way Lights Variant
@@ -74,6 +86,10 @@ PrefabInstance:
     - target: {fileID: 8508690697080841284, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 87.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136242415222426238, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
+      propertyPath: m_Carve
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
