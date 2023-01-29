@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 2669293004302056413, guid: 631d83c07f522ee42b8d0cdf17558b8a, type: 3}
-  launchVelocity: 1000
+  launchVelocity: 2000
   sfx: {fileID: 300206362163127744}
   fireDelay: 1
   range: 20
