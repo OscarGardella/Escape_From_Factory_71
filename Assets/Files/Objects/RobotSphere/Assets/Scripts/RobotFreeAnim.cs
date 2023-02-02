@@ -55,17 +55,19 @@ public class RobotFreeAnim : MonoBehaviour {
   public float rollMomentumDrag; // How much to decrease rotation momentum in roll mode
   Animator anim;
   Rigidbody m_Rigidbody;
-  public float cameraRotation = 0; // Angle you look at the character
+  public float cameraRotation = 0; // Angle the camera looks at the player. Also changes the direction of the controls.
   public float cameraHeight = 10; // How far away you look at the character
   public float cameraVertOffset = 0; // Height offset from character
 
   [Range(0.0F, 90.0F)]
   public float cameraAngle = 90;
-  
   public float cameraFollowLag = 1;
+
+  private InputControls controls;
   
   public Transform mainCamera = null;
   public Vector3 angles;
+  public PlayerHealth healthBar;
 
   Momentum walkMom;
   Momentum rotMom;
@@ -95,6 +97,38 @@ public class RobotFreeAnim : MonoBehaviour {
     rot = new Vector3(0, cameraRotation, 0);
     rotMom = new Momentum(rotationMomentum, cameraRotation); // High (lower number) asymptotic Momentum in roll mode gives a starkingly fluid effect.
     moveSpeed = walkMoveSpeed;
+    controls = new InputControls();
+  }
+
+  // Runs the opening animation visual
+  public void playOpeningAnimation() {
+
+  }
+
+  // Sets the camera position relative to the player
+  private void setCameraPos(float angle, float height, float vertOffset, Vector3 offset) {
+    if(mainCamera != null) {  
+      Vector3 cameraPos = transform.position; //- transform.forward * cosDegF(cameraAngle);
+
+      // Calculate camera angle and height
+      // Any function with Sin/Cos is related to giving a specified amount of tilt to the camera.
+      // This can be used to give a slightly tilted, or even isometric view, for effect.
+      float sinAngle = sinDegF(angle);
+      float cosAngle = cosDegF(angle);
+
+      cameraPos.y += height * sinAngle + vertOffset;
+      // instance var cameraRotation will always make this relative to the player
+      cameraPos.x -= sinDegF(cameraRotation) * height * cosAngle;
+      cameraPos.z -= cosDegF(cameraRotation) * height * cosAngle;
+      //Vector3 posOffset = new Vector3(sinDegF(cameraRotation), 0, cosDegF(cameraRotation)) * cameraPos.y;
+      mainCamera.position = cameraPos - offset;
+
+      // Set camera rotation
+      Quaternion cameraLook = new Quaternion();
+      cameraLook.eulerAngles = new Vector3(angle, cameraRotation, 0);
+
+      mainCamera.rotation = cameraLook;
+    }
   }
 
   void Update() {
@@ -103,55 +137,37 @@ public class RobotFreeAnim : MonoBehaviour {
 
   // Update is called once per frame
   void FixedUpdate() {
-    
+    controls.globalOrientation = cameraRotation;
     rot[1] = rotMom.valueAsymptotic(); // Set rotation, with momentum
     gameObject.transform.eulerAngles = rot;
-    //m_Rigidbody.rotation.eulerAngles = rot; // TODO is this needed?
     Vector3 posChange = transform.forward * walkMom.valueLinear(); // This describes forward motion when pressing W.
-    //m_Rigidbody.position += posChange;
     m_Rigidbody.AddForce(posChange, ForceMode.VelocityChange);
+    
     // Make main camera hover above player
-    if(mainCamera != null) {  
-      Vector3 cameraPos = transform.position; //- transform.forward * cosDegF(cameraAngle);
-
-      // Calculate camera angle and height
-      // Any function with Sin/Cos is related to giving a specified amount of tilt to the camera.
-      // This can be used to give a slightly tilted, or even isometric view, for effect.
-      float sinAngle = sinDegF(cameraAngle);
-      float cosAngle = cosDegF(cameraAngle);
-
-      cameraPos.y += cameraHeight * sinAngle + cameraVertOffset;
-      cameraPos.x -= sinDegF(cameraRotation) * cameraHeight * cosAngle;
-      cameraPos.z -= cosDegF(cameraRotation) * cameraHeight * cosAngle;
-      //Vector3 posOffset = new Vector3(sinDegF(cameraRotation), 0, cosDegF(cameraRotation)) * cameraPos.y;
-      mainCamera.position = cameraPos - posChange * cameraFollowLag;
-
-      // Set camera rotation
-      Quaternion cameraLook = new Quaternion();
-      cameraLook.eulerAngles = new Vector3(cameraAngle, cameraRotation, 0);
-
-      mainCamera.rotation = cameraLook;
-    }
+    setCameraPos(cameraAngle, cameraHeight, cameraVertOffset, posChange * cameraFollowLag);
   }
 
   
-
-  public async void enterRollMode() {
+  // TODO: Async doesn't work on WebGL???
+  // This asthetics enhancement will be disabled for now...
+  // https://forum.unity.com/threads/async-await-and-webgl-builds.472994/
+  // async
+  public void enterRollMode() {
     if(isRolling()) return; // Already in roll mode
     anim.SetBool("Walk_Anim", false);
     anim.SetBool("Roll_Anim", true);
     float oldRollMoveSpeed = rollMoveSpeed; // Save old roll move speed to temporarily reduce it
     moveSpeed = walkMoveSpeed / 2; // Walk twice as slow before the roll, while the starting roll animation is playing
     walkMom.target = moveSpeed;
-    await Task.Delay(900);
+    //await Task.Delay(900); // Temporarily disabled...
     rotMom.accelSpeed -= rollMomentumDrag; // A crude way to reduce roll momentum (increase slideyness) while rolling
     rotSpeed -= 10;
-    if(isRolling()) {
+    //if(isRolling()) {
       // Check if rolling hasn't ended by now, which would leave the speed at incorrect values. Very very small potential for a race condition,
       // but this race condition has been tested without this check to be self-correcting and non-hindering.
       walkMom.target = rollMoveSpeed;
       moveSpeed = rollMoveSpeed; // Increase to full roll move speed
-    }
+    //}
   }
 
   public void exitRollMode() {
@@ -175,97 +191,30 @@ public class RobotFreeAnim : MonoBehaviour {
     exitRollMode();
   }
 
-  // Returns whether any key is pressed corresponding to character movement
-  bool movementKeyPressed() {
-    return Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S);
-  }
-  // Returns whether any key is held corresponding to character movement
-  bool movementKeyHeld() {
-    return Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S);
-  }
-  // Returns whether any movement key has been released
-  bool movementKeyReleased() {
-    return Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S);
-  }
-  // Returns whether all movement keys were released (the character should not be moving)
-  bool allMovementKeysReleased() {
-    return movementKeyReleased() && ! movementKeyHeld();
-  }
-
-
-  // Returns the angle that the character would have to turn the shortest distance to face, given an arbitrary angle.
-  // Finds the upper and lowermost multiples of 360 closest to currAngle. Then, decides if it is closer to move closer to the lower or upper reference.
-  float getNearestAngle(float currAngle, float targetAngle) {
-    currAngle = currAngle - cameraRotation;
-    float adjTarget = targetAngle % 360;
-    int offset = 1;
-    if(currAngle < 0) offset = 0;
-    float upperReference = 360 * (offset + (int) (currAngle / 360)); // The uppermost multiple of 360 that currAngle is close to
-    float lowerReference = upperReference - 360; // The lowermost multiple of 360
-
-    // Edge case - if in first quadrant going to fourth.
-    if(currAngle - lowerReference < 90 && adjTarget >= 270) {
-      return lowerReference - (360-adjTarget);
-    }
-    // If it's closer to go to the upper reference, go there...
-    float otherHalf = lowerReference + 180 + adjTarget; // Draw a line straight through the circle, starting at target, and ending at the other side
-    if(currAngle < otherHalf) { // If you are anywhere on the right side of that line
-      return lowerReference + adjTarget; // Go to the target on that side
-    } else {
-      return upperReference + adjTarget;
-    }
-  }
-
-  // Returns the angle the character should be facing given the WASD keys pressed, from 0-360.
-  float getKeypadAngle() {
-    float angle = 0;
-    if(Input.GetKey(KeyCode.W)) {
-      if(Input.GetKey(KeyCode.D)) angle = 45; // Handle diagonals - if other key is already pressed...
-      else if(Input.GetKey(KeyCode.A)) angle = 315;
-      else angle = 0; // Default
-    } else if (Input.GetKey(KeyCode.D)) {
-      if(Input.GetKey(KeyCode.W)) angle = 45;
-      else if(Input.GetKey(KeyCode.S)) angle = 135;
-      else angle = 90;
-    } else if (Input.GetKey(KeyCode.S)) {
-      if(Input.GetKey(KeyCode.D)) angle = 135;
-      else if(Input.GetKey(KeyCode.A)) angle = 225;
-      else angle = 180;
-    } else if (Input.GetKey(KeyCode.A)) {
-      if(Input.GetKey(KeyCode.W)) angle = 0;
-      else if(Input.GetKey(KeyCode.S)) angle = 225;
-      else angle = 270;
-    }
-    return angle;
-  }
+  
 
   void CheckKey() {
     // Update orientation when any movement key is pressed or released
-    if(movementKeyPressed() || movementKeyReleased() && movementKeyHeld()) {
-      
-      float correctedAngle = getNearestAngle(rotMom.target, getKeypadAngle());
-      rotMom.target = cameraRotation + correctedAngle;
-      //float correctedAngle = getNearestAngle(rot[1], getKeypadAngle());
-      //rotMom.target = cameraRotation + correctedAngle;
-    }
+    rotMom.target = controls.getFacing(); // Where do the controls indicate I should face? Let me just slowly face there...
     
     // Update the state machine only once per applicable keypress - handle WASD controls
-    if(movementKeyPressed()) {
+    if(controls.startedMoving()) {
       anim.SetBool("Walk_Anim", true);
       if(walkMom.target != rollMoveSpeed)
-        walkMom.target = walkMoveSpeed; // Walk
+        walkMom.target = walkMoveSpeed; // Walk -- TODO: Why doesn't this hold?
     }
 
     // Press left control while walking to enter roll mode
+    // deprecated
     if(Input.GetKeyDown(KeyCode.LeftControl) && rollingEnabled) {
       //rollFor(2.0F);
-      if(movementKeyHeld()) {
+      if(controls.isMoving()) {
         //walkMom.target = rollMoveSpeed;
         enterRollMode();
       }
     }
 
-    if(allMovementKeysReleased()) {
+    if(controls.stoppedMoving()) {
       exitRollMode();
       anim.SetBool("Walk_Anim", false);
       walkMom.target = 0;
