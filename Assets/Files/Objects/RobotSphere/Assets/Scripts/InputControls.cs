@@ -11,7 +11,8 @@ public class InputControls //: MonoBehaviour
   // Start is called before the first frame update
 
   public float globalOrientation = 0; // Which way the controls should act as if the player was facing
-  private float playerRotation; // What angle the player should currently be facing
+  public bool currMoving = false;
+
   void Start() {
     
   }
@@ -37,31 +38,38 @@ public class InputControls //: MonoBehaviour
 
   // These are the public-facing API functions. These can return alternate values based on specified control modes, or whatever specified!
   public bool startedMoving() { // If input is given that the character should start moving. This should return true only on that first frame.
-    return movementKeyPressed() && !movementKeyHeld();
+    if(! currMoving) {
+      currMoving = movementKeyPressed();
+    }
+    return currMoving;   
   }
 
   public bool stoppedMoving() { // Returns true only on the first frame that signals that the character should stop moving
-    return allMovementKeysReleased();
+    if(currMoving && allMovementKeysReleased()) {
+      currMoving = false;
+      return true;
+    }
+    return false;
   }
 
   public bool isMoving() { // Returns true while the character should be moving
-    return movementKeyHeld();
+    return currMoving; //movementKeyHeld();
   }
 
-  // Gets the angle the player should currently be facing, based on the controls alone
-  public float getFacing() {
-    if(! isMoving()) return playerRotation; // If no input given, hold current angle
+  // Gets the angle the player should currently be facing, based on the direction it is currently facing, and the controls alone
+  public float getFacing(float playerRot) {
+    if(! isMoving()) return playerRot; // If no input given, hold current angle
     float target = getKeypadAngle();
-    return getNearestAngle(playerRotation, target, globalOrientation);
+    return getNearestAngle(playerRot, target, globalOrientation);
   }
 
   // Returns the angle that the character would have to turn the shortest distance to face, given an arbitrary angle.
   // Finds the upper and lowermost multiples of 360 closest to currAngle. Then, decides if it is closer to move closer to the lower or upper reference.
   // <param name="currAngle">the current angle something is facing</param>
   // <param name="targetAngle">the angle something wants to face</param>
-  // <param name="direction">a global rotation offset (ex: if up for your character really means 270 degrees instead of 0)</param>
-  public static float getNearestAngle(float currAngle, float targetAngle, float direction) {
-    currAngle = currAngle - direction;
+  // <param name="orientation">a global rotation offset (ex: if up for your character really means 270 degrees instead of 0)</param>
+  public static float getNearestAngle(float currAngle, float targetAngle, float orientation) {
+    currAngle = currAngle - orientation;
     float adjTarget = targetAngle % 360;
     int offset = 1;
     if(currAngle < 0) offset = 0;

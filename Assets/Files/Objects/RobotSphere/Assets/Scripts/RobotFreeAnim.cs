@@ -46,7 +46,6 @@ public class RobotFreeAnim : MonoBehaviour {
   // Please note that certain variables may not be updatable in the inspector while playing, as they may be checked as needed.
   Vector3 rot = Vector3.zero;
   private bool rollingEnabled = true;
-  public float rotSpeed = 40f;
   private float moveSpeed;
   public float rollMoveSpeed;
   public float walkMoveSpeed;
@@ -71,6 +70,8 @@ public class RobotFreeAnim : MonoBehaviour {
 
   Momentum walkMom;
   Momentum rotMom;
+
+  public float facingDebug;
   
   // Returns true if the player is currently rolling
   public bool isRolling() {
@@ -161,7 +162,6 @@ public class RobotFreeAnim : MonoBehaviour {
     walkMom.target = moveSpeed;
     //await Task.Delay(900); // Temporarily disabled...
     rotMom.accelSpeed -= rollMomentumDrag; // A crude way to reduce roll momentum (increase slideyness) while rolling
-    rotSpeed -= 10;
     //if(isRolling()) {
       // Check if rolling hasn't ended by now, which would leave the speed at incorrect values. Very very small potential for a race condition,
       // but this race condition has been tested without this check to be self-correcting and non-hindering.
@@ -176,7 +176,6 @@ public class RobotFreeAnim : MonoBehaviour {
     anim.SetBool("Roll_Anim", false);
     moveSpeed = walkMoveSpeed;
     rotMom.accelSpeed += rollMomentumDrag;
-    rotSpeed += 10;
   }
   
   public void setRollingEnabled(bool enabled) {
@@ -194,15 +193,16 @@ public class RobotFreeAnim : MonoBehaviour {
   
 
   void CheckKey() {
-    // Update orientation when any movement key is pressed or released
-    rotMom.target = controls.getFacing(); // Where do the controls indicate I should face? Let me just slowly face there...
-    
+    //facingDebug = controls.getFacing(rot[1]);
     // Update the state machine only once per applicable keypress - handle WASD controls
     if(controls.startedMoving()) {
       anim.SetBool("Walk_Anim", true);
       if(walkMom.target != rollMoveSpeed)
         walkMom.target = walkMoveSpeed; // Walk -- TODO: Why doesn't this hold?
     }
+
+    // Update orientation when any movement key is pressed or released. Note that this should be placed after the startedMoving check.
+    rotMom.target = controls.getFacing(rot[1]); // Based on where I am currently facing, where do the controls indicate I should face? Let me just slowly face there...
 
     // Press left control while walking to enter roll mode
     // deprecated
