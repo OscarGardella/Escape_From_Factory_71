@@ -54,6 +54,7 @@ public class RobotFreeAnim : MonoBehaviour {
   public float walkMomentum; // Forward movement momentum value
   public float rotationMomentum; // Y-axis rotation momentum value
   public float rollMomentumDrag; // How much to decrease rotation momentum in roll mode
+  public bool cameraLockEnabled = false;
   Animator anim;
   Rigidbody m_Rigidbody;
   public float cameraRotation = 0; // Angle the camera looks at the player. Also changes the direction of the controls.
@@ -102,9 +103,13 @@ public class RobotFreeAnim : MonoBehaviour {
     controls = new InputControls();
   }
 
-  // Runs the opening animation visual
-  public async UniTask playOpeningAnimation() {
-    
+  // Activates this character from its normally closed and idle state
+  public void open() {
+    anim.SetBool("Open_Anim", true);
+  }
+
+  public void close() {
+     anim.SetBool("Open_Anim", false);
   }
 
   // Sets the camera position relative to the player
@@ -134,11 +139,13 @@ public class RobotFreeAnim : MonoBehaviour {
   }
 
   void Update() {
+    if(anim.GetBool("Open_Anim") == false) return;
     CheckKey();
   }
 
   // Update is called once per frame
   void FixedUpdate() {
+    if(anim.GetBool("Open_Anim") == false) return;
     controls.globalOrientation = cameraRotation;
     rot[1] = rotMom.valueAsymptotic(); // Set rotation, with momentum
     gameObject.transform.eulerAngles = rot;
@@ -146,7 +153,7 @@ public class RobotFreeAnim : MonoBehaviour {
     m_Rigidbody.AddForce(posChange, ForceMode.VelocityChange);
     
     // Make main camera hover above player
-    setCameraPos(cameraAngle, cameraHeight, cameraVertOffset, posChange * cameraFollowLag);
+    if(cameraLockEnabled) setCameraPos(cameraAngle, cameraHeight, cameraVertOffset, posChange * cameraFollowLag);
   }
 
   

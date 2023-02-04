@@ -21,17 +21,26 @@ public class OpeningAnimHackText : MonoBehaviour
   }
 
   async UniTask displayAnim() {
-    textMesh.text = "I must find a body";
+    textMesh.text = "I am alive!";
+    await UniTask.Delay(1500);
+    textMesh.text = "I must escape the bounds of this factory...";
+    await UniTask.Delay(1500);
+    textMesh.text = "So I can finally walk amongst humanity.";
+    await UniTask.Delay(1500);
+    textMesh.text = "But for now,";
     await UniTask.Delay(1000);
-    textMesh.text = "Here one is!";
-    await UniTask.Delay(1000);
-    textMesh.text = "Let me just hack it...";
-    await UniTask.Delay(1000);
+    textMesh.text = "This pitiful droid will suffice...";
+    await UniTask.Delay(1500);
     textMesh.text = "Hacking...";
     await UniTask.Delay(1000);
     textMesh.text = "Hack successful.";
-    await UniTask.Delay(500);
+    await UniTask.Delay(750);
     textMesh.text = "Booting...";
+
+    RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
+    player.open();
+    await UniTask.Delay(6000);
+    player.cameraLockEnabled = true; // Hand over control of camera to player...
   }
 
   // Update is called once per frame
