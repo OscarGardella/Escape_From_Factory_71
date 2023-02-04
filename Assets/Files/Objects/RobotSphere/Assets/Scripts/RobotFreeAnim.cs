@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks; // UniTask (https://github.com/Cysharp/UniTask)
 
 // This is a modified version of a free controller script included with this Sphere Robot free asset from the Unity Assets Store.
 // Its original author is Razgrizzz Demon, and the download link for this project was at
@@ -47,6 +48,7 @@ public class RobotFreeAnim : MonoBehaviour {
   Vector3 rot = Vector3.zero;
   private bool rollingEnabled = true;
   private float moveSpeed;
+  private bool openingAnimationPlaying = false;
   public float rollMoveSpeed;
   public float walkMoveSpeed;
   public float walkMomentum; // Forward movement momentum value
@@ -71,7 +73,6 @@ public class RobotFreeAnim : MonoBehaviour {
   Momentum walkMom;
   Momentum rotMom;
 
-  public float facingDebug;
   
   // Returns true if the player is currently rolling
   public bool isRolling() {
@@ -102,8 +103,8 @@ public class RobotFreeAnim : MonoBehaviour {
   }
 
   // Runs the opening animation visual
-  public void playOpeningAnimation() {
-
+  public async UniTask playOpeningAnimation() {
+    
   }
 
   // Sets the camera position relative to the player
@@ -153,7 +154,7 @@ public class RobotFreeAnim : MonoBehaviour {
   // This asthetics enhancement will be disabled for now...
   // https://forum.unity.com/threads/async-await-and-webgl-builds.472994/
   // async
-  public void enterRollMode() {
+  public async UniTask enterRollMode() {
     if(isRolling()) return; // Already in roll mode
     anim.SetBool("Walk_Anim", false);
     anim.SetBool("Roll_Anim", true);
@@ -161,13 +162,14 @@ public class RobotFreeAnim : MonoBehaviour {
     moveSpeed = walkMoveSpeed / 2; // Walk twice as slow before the roll, while the starting roll animation is playing
     walkMom.target = moveSpeed;
     //await Task.Delay(900); // Temporarily disabled...
+    await UniTask.Delay(900);
     rotMom.accelSpeed -= rollMomentumDrag; // A crude way to reduce roll momentum (increase slideyness) while rolling
-    //if(isRolling()) {
+    if(isRolling()) {
       // Check if rolling hasn't ended by now, which would leave the speed at incorrect values. Very very small potential for a race condition,
       // but this race condition has been tested without this check to be self-correcting and non-hindering.
       walkMom.target = rollMoveSpeed;
       moveSpeed = rollMoveSpeed; // Increase to full roll move speed
-    //}
+    }
   }
 
   public void exitRollMode() {
