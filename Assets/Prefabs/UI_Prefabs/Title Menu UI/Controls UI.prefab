@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 9205041467076117584}
   - component: {fileID: 6785079977757966536}
   m_Layer: 5
-  m_Name: Credits Back Arrow
+  m_Name: Controls Back Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 402073362270237213, guid: 7e64700b312804ea097249bd2afe63a4, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -240,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7323680760472512759
 RectTransform:
   m_ObjectHideFlags: 0
