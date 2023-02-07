@@ -965,6 +965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagSearchName: 
   attackDelayMS: 500
+  healthBar: {fileID: 0}
+  activationDistance: 65
 --- !u!1 &1283405590046697806
 GameObject:
   m_ObjectHideFlags: 0

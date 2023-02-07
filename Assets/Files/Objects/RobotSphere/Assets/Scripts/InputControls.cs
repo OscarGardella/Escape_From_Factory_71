@@ -12,23 +12,47 @@ public class InputControls //: MonoBehaviour
 
   public float globalOrientation = 0; // Which way the controls should act as if the player was facing
   public bool currMoving = false;
+  public ControlMode controlMode = ControlMode.WASD;
 
   void Start() {
     
   }
   
+  public enum ControlMode { WASD, ArrowKeys };
 
   // Returns whether any key is pressed corresponding to character movement
   private bool movementKeyPressed() {
-    return Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S);
+    switch(controlMode) {
+      case ControlMode.WASD:
+        return Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S);
+      case ControlMode.ArrowKeys:
+        return Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow);
+      default:
+        return false;
+    }
+
   }
   // Returns whether any key is held corresponding to character movement
   private bool movementKeyHeld() {
-    return Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S);
+    switch(controlMode) {
+      case ControlMode.WASD:
+        return Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S);
+      case ControlMode.ArrowKeys:
+        return Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow);
+      default:
+        return false;  
+    }
   }
   // Returns whether any movement key has been released
   private bool movementKeyReleased() {
-    return Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S);
+    switch(controlMode) {
+      case ControlMode.WASD:
+        return Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S);
+      case ControlMode.ArrowKeys:
+        return Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow);
+      default:
+        return false;
+    }
   }
   // Returns whether all movement keys were released (the character should not be moving)
   private bool allMovementKeysReleased() {

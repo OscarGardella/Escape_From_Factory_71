@@ -67,18 +67,23 @@ public class RobotFreeAnim : MonoBehaviour {
 
   private InputControls controls;
   
-  public Transform mainCamera = null;
+  public Camera mainCamera = null;
   public Vector3 angles;
   public PlayerHealth healthBar;
 
   Momentum walkMom;
   Momentum rotMom;
 
-  
   // Returns true if the player is currently rolling
   public bool isRolling() {
     return anim.GetBool("Roll_Anim");
   }
+
+  public bool isOpen() {
+    return anim.GetBool("Open_Anim");
+  }
+
+  
 
   // Calculates the sine of val, in degrees. Returns it as a float.
   private float sinDegF(double val) {
@@ -128,13 +133,13 @@ public class RobotFreeAnim : MonoBehaviour {
       cameraPos.x -= sinDegF(cameraRotation) * height * cosAngle;
       cameraPos.z -= cosDegF(cameraRotation) * height * cosAngle;
       //Vector3 posOffset = new Vector3(sinDegF(cameraRotation), 0, cosDegF(cameraRotation)) * cameraPos.y;
-      mainCamera.position = cameraPos - offset;
+      mainCamera.transform.position = cameraPos - offset;
 
       // Set camera rotation
       Quaternion cameraLook = new Quaternion();
       cameraLook.eulerAngles = new Vector3(angle, cameraRotation, 0);
 
-      mainCamera.rotation = cameraLook;
+      mainCamera.transform.rotation = cameraLook;
     }
   }
 
@@ -162,6 +167,7 @@ public class RobotFreeAnim : MonoBehaviour {
   // https://forum.unity.com/threads/async-await-and-webgl-builds.472994/
   // async
   public async UniTask enterRollMode() {
+    // TODO: in condition: || pauseGame.paused
     if(isRolling()) return; // Already in roll mode
     anim.SetBool("Walk_Anim", false);
     anim.SetBool("Roll_Anim", true);
@@ -194,7 +200,7 @@ public class RobotFreeAnim : MonoBehaviour {
   // Rolls for the specified seconds
   public async void rollFor(float seconds) {
     if(isRolling()) return;
-    enterRollMode();
+    _ = enterRollMode();
     await Task.Delay((int) (1000 * seconds + 900));
     exitRollMode();
   }
@@ -219,11 +225,11 @@ public class RobotFreeAnim : MonoBehaviour {
       //rollFor(2.0F);
       if(controls.isMoving()) {
         //walkMom.target = rollMoveSpeed;
-        enterRollMode();
+        _ = enterRollMode();
       }
     }
 
-    if(controls.stoppedMoving()) {
+    if(controls.stoppedMoving()) { // && !pauseGame.paused
       exitRollMode();
       anim.SetBool("Walk_Anim", false);
       walkMom.target = 0;
