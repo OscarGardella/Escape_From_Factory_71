@@ -5,39 +5,23 @@ using System;
 
 public class Upgrade_item : MonoBehaviour
 {
-    public AbilityTracking abilityTracker;
-    public AbilityHider abilityRevealer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //write code to instantiate ability ID for each upgrade pickup
-    }
+    public Upgrade_Choice upgradeChooser;
 
     void OnCollisionEnter(Collision collision)
     {
         //Check if the item collides with an object named "Player"
         if (collision.gameObject.name == "MainCharacter")
         {
-            upgrading_abilities();
+            upgradeChooser.selectUpgrade();
             Destroy(gameObject);
         }
     }
 
-    int randomNum() //makes random number from 0-10
+    void Update()
     {
-        System.Random rd = new System.Random();
-        int num = rd.Next(0, 10);
-        Console.WriteLine(num);
-        return num;
-    }
-
-    void upgrading_abilities()
-    {
-        if (gameObject.name == "Upgrade1")
+        if (Input.GetKeyDown(KeyCode.Alpha0)) //roll ability key
         {
-            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Roll); //at somepoint will add ability based on id
-            abilityRevealer.Reveal();
+            upgradeChooser.selectUpgrade();
         }
     }
 }

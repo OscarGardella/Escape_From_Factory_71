@@ -8,7 +8,7 @@ public class AbilityTracking : MonoBehaviour
 {
     public enum AbilityName //names of all abilites
     {
-        Roll, EMP, Explode
+        Beam, Blackhole, Roll, Rock, Heal
     }
 
     private List<AbilityName> unlockedAbilityList;
