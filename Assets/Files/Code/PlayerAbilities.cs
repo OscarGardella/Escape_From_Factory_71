@@ -6,6 +6,7 @@ public class PlayerAbilities : MonoBehaviour
 {
     public PowerBar player_power_bar;
     public AbilityTracking abilityTracker;
+    public RobotFreeAnim player_character;
 
     // Update is called once per frame
     void Update()
@@ -14,8 +15,10 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1)) //roll ability key
             {
-                player_power_bar.ReducePower(5); //depends on skill cost
-                Debug.Log("Autobots roll out!");
+                if (player_power_bar.ReducePower(5) == true)
+                {
+                    player_character.rollFor(2.0f);
+                }
             }
         }
     }

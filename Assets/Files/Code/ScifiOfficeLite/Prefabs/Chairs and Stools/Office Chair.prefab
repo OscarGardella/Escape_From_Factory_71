@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6508558999477478068}
   - component: {fileID: 679905582258134605}
   - component: {fileID: 5050814332989911827}
+  - component: {fileID: 3272489540230133300}
   m_Layer: 0
   m_Name: Office Chair
   m_TagString: Untagged
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1877679932956541760, guid: d466e2eae95ed804f85f00b0924ee018, type: 3}
+--- !u!208 &3272489540230133300
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248434477200255633}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.49300003, y: 0.758, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.022000002, y: 0.758, z: 0}
+  m_TimeToStationary: 0.5
