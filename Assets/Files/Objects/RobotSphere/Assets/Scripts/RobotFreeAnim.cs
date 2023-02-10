@@ -144,6 +144,7 @@ public class RobotFreeAnim : MonoBehaviour {
   }
 
   void Update() {
+
     if(anim.GetBool("Open_Anim") == false) return;
     CheckKey();
   }
@@ -162,10 +163,7 @@ public class RobotFreeAnim : MonoBehaviour {
   }
 
   
-  // TODO: Async doesn't work on WebGL???
-  // This asthetics enhancement will be disabled for now...
-  // https://forum.unity.com/threads/async-await-and-webgl-builds.472994/
-  // async
+
   public async UniTask enterRollMode() {
     // TODO: in condition: || pauseGame.paused
     if(isRolling()) return; // Already in roll mode
@@ -174,7 +172,7 @@ public class RobotFreeAnim : MonoBehaviour {
     float oldRollMoveSpeed = rollMoveSpeed; // Save old roll move speed to temporarily reduce it
     moveSpeed = walkMoveSpeed / 2; // Walk twice as slow before the roll, while the starting roll animation is playing
     walkMom.target = moveSpeed;
-    //await Task.Delay(900); // Temporarily disabled...
+    
     await UniTask.Delay(900);
     rotMom.accelSpeed -= rollMomentumDrag; // A crude way to reduce roll momentum (increase slideyness) while rolling
     if(isRolling()) {
@@ -208,7 +206,6 @@ public class RobotFreeAnim : MonoBehaviour {
   
 
   void CheckKey() {
-    //facingDebug = controls.getFacing(rot[1]);
     // Update the state machine only once per applicable keypress - handle WASD controls
     if(controls.startedMoving()) {
       anim.SetBool("Walk_Anim", true);
