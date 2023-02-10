@@ -5,23 +5,27 @@ using System;
 
 public class Upgrade_item : MonoBehaviour
 {
-    public Upgrade_Choice upgradeChooser;
+    public Upgrade_Choice upgradePanel1;
+    public Upgrade_Choice upgradePanel2;
 
     void OnCollisionEnter(Collision collision)
     {
         //Check if the item collides with an object named "Player"
         if (collision.gameObject.name == "MainCharacter")
         {
-            upgradeChooser.selectUpgrade();
+            upgradePanel1.revealUpgrade();
+            upgradePanel2.revealUpgrade();
             Destroy(gameObject);
         }
     }
 
+    //this fucntion is only used for testing, remove before release
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0)) //roll ability key
         {
-            upgradeChooser.selectUpgrade();
+            upgradePanel1.revealUpgrade();
+            upgradePanel2.revealUpgrade();
         }
     }
 }

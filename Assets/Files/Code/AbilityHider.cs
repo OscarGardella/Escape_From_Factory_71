@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//script is obsolete 
+
 public class AbilityHider : MonoBehaviour
 {
     // Start is called before the first frame update

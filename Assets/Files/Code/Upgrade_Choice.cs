@@ -12,85 +12,112 @@ public class Upgrade_Choice : MonoBehaviour
     public Sprite[] spriteArray;
     public AbilityTracking abilityTracker;
     public AbilityHider abilityRevealer;
+    public Upgrade_Choice otherUpgrade;
 
     public string[] nameArray = {"Beam", "Black Hole", "Roll", "Rock", "Heal"};
-    public string[] descriptionArray = {"Description 1","Description 2","Description 3","Description 4","Description 5"};
+    public string[] desArray = {"Fire a large beam out of the front of your robot obliterating anything in your way ","??? #2","Curl into a ball and roll at high speeds to evade enemies","??? #4","Double your health allowing you to survive longer"};
     public int[] costArray = {5,10,5,5,10};
 
-    public class upgradePanel 
+    public class upgradePanel
     {
         string name;
         string description;
         int cost;
         Sprite icon;
 
-        public upgradePanel(string myName, string myDescription, int myCost, Sprite myIcon)
-        {
+        public upgradePanel(string myName, string myDescription, int myCost, Sprite myIcon){
             name = myName;
             description = myDescription;
             cost = myCost;
             icon = myIcon;
         }
 
-        public Sprite getIcon()
-        {
+        public Sprite getIcon(){
             return icon;
         }
 
-        public int getCost()
-        {
+        public int getCost(){
             return cost;
         }
 
-        public string getDescription()
-        {
+        public string getDescription(){
             return description;
         }
 
-        public string getName()
-        {
+        public string getName(){
             return name;
         }
     }
 
-    public void generatePanelChoice()
-    {
+    public void generatePanelChoice(){
         upgradePanel[] tempPanelArray = makePanelArray(); //makes an array of all the panels
         int r = randomNum(0, tempPanelArray.Length); //generates a random index of the panel array
         abilityIcon.sprite = tempPanelArray[r].getIcon(); //sets ability icon to current panel from the array
-        nameText.text = tempPanelArray[r].getName() + "\n Cost: " + tempPanelArray[r].getCost();
+        nameText.text = tempPanelArray[r].getName() + "\nCost: " + tempPanelArray[r].getCost();
         descriptionText.text = tempPanelArray[r].getDescription();
     }
 
-    public void selectUpgrade()
-    {
+    public void revealUpgrade(){
         generatePanelChoice();
         gameObject.SetActive(true); //reveals ability selection screen
-        //finds way to determine what upgrade is selected
-        abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Roll);
-        abilityRevealer.Reveal();
+        pauseGame();
     }
 
-    public upgradePanel[] makePanelArray() //returns an array of all the upgrade panel data
-    {
+    void selectUpgrade(){
+        unlockUpgrade(nameText.text);
+        otherUpgrade.deactivate();
+        gameObject.SetActive(false);
+        resumeGame();
+    }
+
+    void unlockUpgrade(string name){ //takes in a name and unlocks the corresponding abililty
+        if (name == "Beam\nCost: 5"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Beam);
+            Debug.Log("Beam unlocked");
+        } else if (name == "Black Hole\nCost: 10"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Blackhole);
+            Debug.Log("Black Hole unlocked");
+        } else if (name == "Roll\nCost: 5"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Roll);
+            Debug.Log("Roll unlocked");
+        } else if (name == "Rock\nCost: 5"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Rock);
+            Debug.Log("Rock unlocked");
+        } else if (name == "Heal\nCost: 10"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Heal);
+            Debug.Log("Heal unlocked");
+        }
+    }
+
+    upgradePanel[] makePanelArray(){ //returns an array of all the upgrade panel data
         upgradePanel[] tempPanelArray = new upgradePanel[spriteArray.Length]; //makes an upgrade panel array of size equal to the num sprites
         for (int i = 0; i < tempPanelArray.Length; i++)
         {
-            upgradePanel tempPanel = new upgradePanel(nameArray[i], descriptionArray[i], costArray[i], spriteArray[i]);
+            upgradePanel tempPanel = new upgradePanel(nameArray[i], desArray[i], costArray[i], spriteArray[i]);
             tempPanelArray[i] = tempPanel;
         }
         return tempPanelArray;
     }
 
-    int randomNum(int low, int high) //makes random number from low to high
-    {
+    int randomNum(int low, int high){ //makes random number from low to high
         System.Random rd = new System.Random();
         int num = rd.Next(low, high);
         return num;
     }
 
-    void Start()
-    {
+    void deactivate(){
         gameObject.SetActive(false);
+    }
+
+    void pauseGame(){
+        Time.timeScale = 0;
+    }
+
+    void resumeGame(){
+        Time.timeScale = 1;
+    }
+
+    void Start(){
+        deactivate();
     }
 }
