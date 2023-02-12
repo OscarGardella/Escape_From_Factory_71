@@ -55,4 +55,8 @@ public class AbilityTracking : MonoBehaviour
         return unlockedAbilityList.Contains(ability);
     }
 
+    void Start(){
+        activeIcon1.gameObject.SetActive(false);
+        activeIcon2.gameObject.SetActive(false);
+    }
 }

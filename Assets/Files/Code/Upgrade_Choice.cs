@@ -11,12 +11,12 @@ public class Upgrade_Choice : MonoBehaviour
     public TMP_Text descriptionText;
     public Sprite[] spriteArray;
     public AbilityTracking abilityTracker;
-    public AbilityHider abilityRevealer;
     public Upgrade_Choice otherUpgrade;
+    public AbilityTracking abilityTracker;
 
     public string[] nameArray = {"Beam", "Black Hole", "Roll", "Rock", "Heal"};
-    public string[] desArray = {"Fire a large beam out of the front of your robot obliterating anything in your way ","??? #2","Curl into a ball and roll at high speeds to evade enemies","??? #4","Double your health allowing you to survive longer"};
-    public int[] costArray = {5,10,5,5,10};
+    public string[] desArray = {"Fire a large beam out of the front of your robot obliterating anything in your way ","??? #2","Curl into a ball and roll at high speeds to evade enemies","??? #4","Double your health and heal to full, allowing you to survive longer"};
+    public int[] costArray = {5,10,5,5,0};
 
     public class upgradePanel
     {
@@ -24,6 +24,9 @@ public class Upgrade_Choice : MonoBehaviour
         string description;
         int cost;
         Sprite icon;
+        enum AbilityName{ //names of all abilites
+            Beam, Blackhole, Roll, Rock, Heal
+        }
 
         public upgradePanel(string myName, string myDescription, int myCost, Sprite myIcon){
             name = myName;
@@ -52,9 +55,11 @@ public class Upgrade_Choice : MonoBehaviour
     public void generatePanelChoice(){
         upgradePanel[] tempPanelArray = makePanelArray(); //makes an array of all the panels
         int r = randomNum(0, tempPanelArray.Length); //generates a random index of the panel array
-        abilityIcon.sprite = tempPanelArray[r].getIcon(); //sets ability icon to current panel from the array
-        nameText.text = tempPanelArray[r].getName() + "\nCost: " + tempPanelArray[r].getCost();
-        descriptionText.text = tempPanelArray[r].getDescription();
+        //if (!abilityTracker.IsAbilityUnlocked(AbilityTracking.AbilityName.Roll)){
+            abilityIcon.sprite = tempPanelArray[r].getIcon(); //sets ability icon to current panel from the array
+            nameText.text = tempPanelArray[r].getName() + "\nCost: " + tempPanelArray[r].getCost();
+            descriptionText.text = tempPanelArray[r].getDescription();
+        //}
     }
 
     public void revealUpgrade(){
