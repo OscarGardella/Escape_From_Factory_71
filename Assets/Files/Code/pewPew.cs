@@ -65,7 +65,7 @@ public class pewPew : MonoBehaviour
             GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
             laser.transform.Rotate(90, 0, 0);
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(90, 0, -launchVelocity));
-            AudioManager.Instance.PlaySX("Player Shooting");
+            AudioManager.Instance.PlaySFX("Player Shooting");
             Destroy(laser, 3f);
         }
 
