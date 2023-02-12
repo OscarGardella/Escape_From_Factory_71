@@ -59,7 +59,7 @@ public class enemyPewPew : MonoBehaviour
         GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
         laser.transform.Rotate(90, 0, 0);
         laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, launchVelocity));
-        sfx.Play();
+        AudioManager.Instance.PlaySFX("Enemy Shooting");
         Destroy(laser, 3f);
     }
 

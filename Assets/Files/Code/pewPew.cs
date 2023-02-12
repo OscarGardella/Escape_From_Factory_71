@@ -49,7 +49,7 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButton(0) && coolDown == 0)
+        if (Input.GetMouseButton(0) && coolDown == 0&& pauseGame.paused==false)
         {
 
             shoot();
@@ -65,7 +65,7 @@ public class pewPew : MonoBehaviour
             GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
             laser.transform.Rotate(90, 0, 0);
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(90, 0, -launchVelocity));
-            sfx.Play();
+            AudioManager.Instance.PlaySFX("Player Shooting");
             Destroy(laser, 3f);
         }
 
