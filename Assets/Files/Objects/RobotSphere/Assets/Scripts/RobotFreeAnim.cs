@@ -48,7 +48,6 @@ public class RobotFreeAnim : MonoBehaviour {
   Vector3 rot = Vector3.zero;
   private bool rollingEnabled = true;
   private float moveSpeed;
-  private bool openingAnimationPlaying = false;
   public float rollMoveSpeed;
   public float walkMoveSpeed;
   public float walkMomentum; // Forward movement momentum value

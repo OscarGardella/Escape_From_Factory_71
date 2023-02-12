@@ -10,7 +10,6 @@ public class SpiderController : MonoBehaviour
 {
   private NavMeshAgent agent;
   private Animator animator;
-  public string tagSearchName; // This will only be used if target is not set.
   private GameObject target = null;
   private DateTime lastAttackCooldown;
   public int attackDelayMS; // Attack delay, in milliseconds
@@ -34,12 +33,11 @@ public class SpiderController : MonoBehaviour
     }
 
     lastAttackCooldown = DateTime.Now.AddMilliseconds(attackDelayMS);
-    agent.enabled = false; // Disabled until within activation distance
   }
 
   // Update is called once per frame
   void Update() {
-    
+    if(target == null) return;
     // Wait until the player is within activationDistance range of the player
     if(agent.enabled == false) {
       if(Vector3.Distance(gameObject.transform.position, target.transform.position) <= activationDistance) {

@@ -966,7 +966,7 @@ MonoBehaviour:
   tagSearchName: 
   attackDelayMS: 500
   healthBar: {fileID: 0}
-  activationDistance: 65
+  activationDistance: 50
 --- !u!1 &1283405590046697806
 GameObject:
   m_ObjectHideFlags: 0
