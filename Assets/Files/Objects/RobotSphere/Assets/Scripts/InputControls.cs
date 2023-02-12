@@ -62,10 +62,11 @@ public class InputControls //: MonoBehaviour
 
   // These are the public-facing API functions. These can return alternate values based on specified control modes, or whatever specified!
   public bool startedMoving() { // If input is given that the character should start moving. This should return true only on that first frame.
-    if(! currMoving) {
+    if(currMoving == false) {
       currMoving = movementKeyPressed();
+      return currMoving;
     }
-    return currMoving;   
+    return false;   
   }
 
   public bool stoppedMoving() { // Returns true only on the first frame that signals that the character should stop moving

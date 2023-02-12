@@ -46,7 +46,7 @@ public class RobotFreeAnim : MonoBehaviour {
 
   // Please note that certain variables may not be updatable in the inspector while playing, as they may be checked as needed.
   Vector3 rot = Vector3.zero;
-  private bool rollingEnabled = true;
+  public bool rollingEnabled = true;
   private float moveSpeed;
   public float rollMoveSpeed;
   public float walkMoveSpeed;
@@ -143,7 +143,6 @@ public class RobotFreeAnim : MonoBehaviour {
   }
 
   void Update() {
-
     if(anim.GetBool("Open_Anim") == false) return;
     CheckKey();
   }
@@ -190,9 +189,6 @@ public class RobotFreeAnim : MonoBehaviour {
     rotMom.accelSpeed += rollMomentumDrag;
   }
   
-  public void setRollingEnabled(bool enabled) {
-    rollingEnabled = enabled;
-  }
 
   // Rolls for the specified seconds
   public async void rollFor(float seconds) {
@@ -207,9 +203,10 @@ public class RobotFreeAnim : MonoBehaviour {
   void CheckKey() {
     // Update the state machine only once per applicable keypress - handle WASD controls
     if(controls.startedMoving()) {
-      anim.SetBool("Walk_Anim", true);
-      if(walkMom.target != rollMoveSpeed)
+      if(walkMom.target != rollMoveSpeed) {
         walkMom.target = walkMoveSpeed; // Walk -- TODO: Why doesn't this hold?
+        anim.SetBool("Walk_Anim", true);
+      }
     }
 
     // Update orientation when any movement key is pressed or released. Note that this should be placed after the startedMoving check.
@@ -227,8 +224,8 @@ public class RobotFreeAnim : MonoBehaviour {
 
     if(controls.stoppedMoving()) { // && !pauseGame.paused
       exitRollMode();
-      anim.SetBool("Walk_Anim", false);
       walkMom.target = 0;
+      anim.SetBool("Walk_Anim", false);
     }
 
       
