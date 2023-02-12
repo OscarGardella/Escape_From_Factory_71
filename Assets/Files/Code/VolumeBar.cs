@@ -6,35 +6,36 @@ using UnityEngine.UI;
 
 public class VolumeBar : MonoBehaviour
 {
-    [SerializeField] Slider slide;
-
+    //[SerializeField] Slider slide;
+    
+    /// </summary>
     // Start is called before the first frame update
-    void Start()
-    {
-        if (!PlayerPrefs.HasKey("musicVolume"))
-        {
-            PlayerPrefs.SetFloat("musicVolume", 1);
-            Load();
-        }
-        else
-        {
-            Load();
-        }
-    }
+    //void Start()
+    //{
+     //   if (!PlayerPrefs.HasKey("musicVolume"))
+     //   {
+      //      PlayerPrefs.SetFloat("musicVolume", 1);
+      //      Load();
+     //   }
+      //  else
+     //   {
+     //       Load();
+    //    }
+    //}
 
-    public void ChangeVolme()
-    {
-        AudioListener.volume = slide.value;
-        Save();
-    }
+    //public void ChangeVolme()
+    //{
+    //    AudioListener.volume = slide.value;
+     //   Save();
+    //}
 
-    private void Load()
-    {
-        slide.value = PlayerPrefs.GetFloat("musicVolume");
-    }
+    //private void Load()
+    //{
+    //    slide.value = PlayerPrefs.GetFloat("musicVolume");
+   // }
 
-    private void Save()
-    {
-        PlayerPrefs.SetFloat("musicVolume", slide.value);
-    }
+   // private void Save()
+    //{
+     //   PlayerPrefs.SetFloat("musicVolume", slide.value);
+    //}
 }

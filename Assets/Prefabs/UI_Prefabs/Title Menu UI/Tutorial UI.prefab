@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8723779655193476056}
   - component: {fileID: 1705860022388118746}
   m_Layer: 5
-  m_Name: Controls Board
+  m_Name: Tutorial Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 9205041467076117584}
   - component: {fileID: 6785079977757966536}
   m_Layer: 5
-  m_Name: Controls Back Arrow
+  m_Name: Tutorial Back Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 2375505972591747746}
   - component: {fileID: 3504825535006558700}
   m_Layer: 5
-  m_Name: Controls UI
+  m_Name: Tutorial UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

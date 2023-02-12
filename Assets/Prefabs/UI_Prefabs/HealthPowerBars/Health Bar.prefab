@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 6976595115578325067}
   m_Layer: 5
   m_Name: Health Bar
-  m_TagString: Untagged
+  m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,3 +349,4 @@ MonoBehaviour:
   max_health: 5
   current_health: 0
   player_health_bar: {fileID: 6976595115578325069}
+  game_over: {fileID: 0}
