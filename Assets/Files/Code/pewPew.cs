@@ -49,7 +49,7 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButton(0) && coolDown == 0)
+        if (Input.GetMouseButton(0) && coolDown == 0&& pauseGame.paused==false)
         {
 
             shoot();
