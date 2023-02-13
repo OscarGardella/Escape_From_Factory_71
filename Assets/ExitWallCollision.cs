@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class ExitWallCollision : MonoBehaviour
 {
-    //private bool isCollided;
-
-    //public bool IsCollided
-    //{
-    //    get { return isCollided; }
-    //}
     public GameSuccessCanvas SuccessScreen;
 
     void OnCollisionEnter(Collision other)
@@ -17,7 +11,6 @@ public class ExitWallCollision : MonoBehaviour
         if (other.gameObject.tag== "Player")
         {
             SuccessScreen.showUI();
-            //isCollided = true;
         }
     }
 }
