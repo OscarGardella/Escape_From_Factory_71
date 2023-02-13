@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 8083632366522792055}
   - component: {fileID: 6319899640381459835}
   - component: {fileID: 4951156129410293903}
+  - component: {fileID: 6287515685861323695}
   m_Layer: 0
   m_Name: GameSuccessUI
   m_TagString: Untagged
@@ -193,8 +194,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: {fileID: 1692136234251778077}
-  player: {fileID: 4419678839158634749, guid: bba2d1342d32f45659ba234a06f30f07, type: 3}
-  ExitSign: {fileID: 864674128125767932, guid: 4da7cd4243bfe9f44b3bc9ac63b3cd1d, type: 3}
+  myUIGroup: {fileID: 6287515685861323695}
+  fadeIn: 0
+--- !u!225 &6287515685861323695
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2638445299213096294}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4089525328018599547
 GameObject:
   m_ObjectHideFlags: 0

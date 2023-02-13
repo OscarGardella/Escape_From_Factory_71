@@ -6,24 +6,33 @@ using UnityEngine.UI;
 public class GameSuccessCanvas : MonoBehaviour
 {
     [SerializeField] Text message;
-
-
-    public GameObject player;
-    public GameObject ExitSign;
-
-    //private PlayerHealth health_left;
+    [SerializeField] private CanvasGroup myUIGroup;
+    [SerializeField] private bool fadeIn = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
-    public void update()
+    public void showUI()
     {
-        if ((ExitSign.transform.position - player.transform.position).magnitude < 30.0f)
+        fadeIn = true;
+        //gameObject.SetActive(true);
+    }
+    
+    private void Update()
+    {
+        if (fadeIn)
         {
-            gameObject.SetActive(true);// show the screen
+            if(myUIGroup.alpha < 1)
+            {
+                myUIGroup.alpha += Time.deltaTime;
+                if(myUIGroup.alpha >= 1)
+                {
+                    fadeIn = false;
+                }
+            }
         }
     }
 }
