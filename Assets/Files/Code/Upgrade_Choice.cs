@@ -54,11 +54,9 @@ public class Upgrade_Choice : MonoBehaviour
     public void generatePanelChoice(){
         upgradePanel[] tempPanelArray = makePanelArray(); //makes an array of all the panels
         int r = randomNum(0, tempPanelArray.Length); //generates a random index of the panel array
-        //if (!abilityTracker.IsAbilityUnlocked(AbilityTracking.AbilityName.Roll)){
             abilityIcon.sprite = tempPanelArray[r].getIcon(); //sets ability icon to current panel from the array
             nameText.text = tempPanelArray[r].getName() + "\nCost: " + tempPanelArray[r].getCost();
             descriptionText.text = tempPanelArray[r].getDescription();
-        //}
     }
 
     public void revealUpgrade(){
