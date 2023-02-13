@@ -13,7 +13,7 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (abilityTracker.IsAbilityUnlocked(AbilityTracking.AbilityName.Roll))
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) //roll ability key
+            if (Input.GetKeyDown(KeyCode.Q)) //roll ability key
             {
                 if (player_power_bar.ReducePower(5) == true)
                 {

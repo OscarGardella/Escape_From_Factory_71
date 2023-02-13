@@ -1,0 +1,6 @@
+Note:
+  For future reference,
+
+https://copyprogramming.com/howto/convert-the-animation-inside-fbx-into-unity
+
+was very useful for finding out how to convert a .fbx animation file in to a .anim animation file
