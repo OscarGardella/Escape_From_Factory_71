@@ -68,7 +68,6 @@ public class RobotFreeAnim : MonoBehaviour {
   
   public Camera mainCamera = null;
   public Vector3 angles;
-  public PlayerHealth healthBar;
 
   Momentum walkMom;
   Momentum rotMom;
@@ -98,13 +97,16 @@ public class RobotFreeAnim : MonoBehaviour {
   // Use this for initialization
   void Awake() {
     anim = gameObject.GetComponent<Animator>();
+    if(! anim) Debug.Log("RobotFreeAnim.cs: Error: failed to get animator component of player");
     //anim.SetFloat("Roll_Anim", 2.0F); // Increase roll start/end animation speed
     m_Rigidbody = gameObject.GetComponent<Rigidbody>();
+    if(! m_Rigidbody) Debug.Log("RobotFreeAnim.cs: Error: failed to get RigitBody component of player");
     walkMom = new Momentum(walkMomentum);
     rot = new Vector3(0, cameraRotation, 0);
     rotMom = new Momentum(rotationMomentum, cameraRotation); // High (lower number) asymptotic Momentum in roll mode gives a starkingly fluid effect.
     moveSpeed = walkMoveSpeed;
     controls = new InputControls();
+    if(! mainCamera) Debug.Log("RobotFreeAnim.cs: Error: No camera specified. This script requires a connection target to the main camera in the scene.");
   }
 
   // Activates this character from its normally closed and idle state

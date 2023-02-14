@@ -19,15 +19,17 @@ public class SpiderController : MonoBehaviour
   // Start is called before the first frame update
   void Start() {
     agent = this.gameObject.GetComponent<NavMeshAgent>();
+    if(!agent) Debug.Log("SpiderController.cs: Error: Failed to get NavMeshAgent component. Ensure the spider objects have a NavMeshAgent component.");
     animator = this.gameObject.GetComponent<Animator>();
+    if(!animator) Debug.Log("SpiderController.cs: Error: Failed to get Animator component. Ensure the spider objects have an Animator component.");
     healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<PlayerHealth>();
     if(! healthBar) {
-      Debug.Log("SpiderController.cs: Error: unable to find HealthBar via tag \"Health\"");
+      Debug.Log("SpiderController.cs: Error: unable to find HealthBar via tag \"Health\". Please ensure that the HealthBar has a Health tag.");
     }
     lastAttackCooldown = DateTime.Now;
     target = GameObject.FindGameObjectWithTag("Player"); // Attempt to find the MainCharacter if target is not set
     if(target == null) {
-      Debug.Log("Error: Enemy \"" + this.name + "\" is not set to follow any target");
+      Debug.Log("Error: Enemy \"" + this.name + "\" is not set to follow any target searched by tag \"Player\".");
       //Debug.Log("Error: Enemy \"" + this.name + "\" was unable to find the target \"" + target.name + "\". Navigation script will be disabled.");
       agent.enabled = false; // Disable navmesh agent
     }
