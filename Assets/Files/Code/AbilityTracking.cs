@@ -10,6 +10,9 @@ public class AbilityTracking : MonoBehaviour
     public Image activeIcon2;
     public TMP_Text tutorial;
     public Sprite[] spriteArray;
+    public AbilityName QAbility;
+    public AbilityName EAbility;
+    public PlayerHealth player_health_bar;
 
     public enum AbilityName //names of all abilites
     {
@@ -35,11 +38,16 @@ public class AbilityTracking : MonoBehaviour
     }
 
     public void RevealAbility (AbilityName unlockedAbility, Image icon){
+        if (icon == activeIcon1){ //sets key bindings
+            QAbility = unlockedAbility;
+        } else {
+            EAbility = unlockedAbility;
+        }
         if (Equals(unlockedAbility, AbilityName.Beam)){
             icon.sprite = spriteArray[0];
             icon.gameObject.SetActive(true);
             Tutorial(icon);
-        } else if (Equals(unlockedAbility,AbilityName.Blackhole)){
+        } else if (Equals(unlockedAbility, AbilityName.Blackhole)){
             icon.sprite = spriteArray[1];
             icon.gameObject.SetActive(true);
             Tutorial(icon);
@@ -47,13 +55,19 @@ public class AbilityTracking : MonoBehaviour
             icon.sprite = spriteArray[2];
             icon.gameObject.SetActive(true);
             Tutorial(icon);
-        } else if (Equals(unlockedAbility,AbilityName.Rock)){
-            icon.sprite = spriteArray[3];
-            icon.gameObject.SetActive(true);
-            Tutorial(icon);
-        } else if (Equals(unlockedAbility,AbilityName.Heal)){
-            icon.sprite = spriteArray[4];
-            icon.gameObject.SetActive(true);
+        } else if (Equals(unlockedAbility, AbilityName.Rock)){
+            //icon.sprite = spriteArray[3];
+            //icon.gameObject.SetActive(true);
+        } else if (Equals(unlockedAbility, AbilityName.Heal)){
+            //icon.sprite = spriteArray[4];
+            //icon.gameObject.SetActive(true);
+
+        }
+    }
+
+    public void PassiveAbility(AbilityName ability){
+        if(ability == AbilityTracking.AbilityName.Heal){
+            player_health_bar.UpgradeHealth(5);
         }
     }
 
@@ -70,12 +84,20 @@ public class AbilityTracking : MonoBehaviour
 
     IEnumerator RevealTutorial(){ //code based from stack overflow
         tutorial.gameObject.SetActive(true);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         tutorial.gameObject.SetActive(false);
     }
 
-    public bool IsAbilityUnlocked (AbilityName ability){ //returns true if ability is in set 
+    public bool IsAbilityUnlocked (AbilityName ability){ //returns true if ability is in set
         return unlockedAbilityList.Contains(ability);
+    }
+
+    public AbilityName GetQAbility(){
+        return QAbility;
+    }
+
+    public AbilityName GetEAbility(){
+        return EAbility;
     }
 
     void Start(){

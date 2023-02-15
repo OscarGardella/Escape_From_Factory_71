@@ -12,24 +12,20 @@ public class PlayerHealth : MonoBehaviour
     public game_over_text game_over;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         current_health = max_health;
         player_health_bar.SetMaxHealth(max_health);
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             TakeDamage(1);
         }
     } 
 
-    void OnCollisionEnter(Collision collision)
-    {
-        //Check if the item collides with an object tagged as "enemy"
+    void OnCollisionEnter(Collision collision){ //Check if the item collides with an object tagged as "enemy"
         if (collision.gameObject.tag == "Enemy")
         {
             TakeDamage(1);
@@ -41,13 +37,18 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage_taken)
-    {
+    public void TakeDamage(int damage_taken){
         current_health -= damage_taken;
         player_health_bar.SetHealth(current_health);
         if (current_health <= 0){
             game_over.RevealGameOver(); //reveals the game over screen
             Destroy(gameObject);
         }
+    }
+
+    public void UpgradeHealth(int bonus_health){
+        max_health += bonus_health;
+        current_health = max_health;
+        player_health_bar.SetMaxHealth(max_health);
     }
 }
