@@ -583,7 +583,6 @@ MonoBehaviour:
   walk1: {fileID: 6643641617737779272}
   walk2: {fileID: 7430489469877239076}
   walk3: {fileID: 5100363024759835208}
-  revUp: {fileID: 0}
   roll: {fileID: 7516471404108924131}
 --- !u!114 &3278054545319509018
 MonoBehaviour:
