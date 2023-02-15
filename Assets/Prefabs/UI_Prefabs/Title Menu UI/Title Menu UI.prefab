@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2139530735361734959}
   - component: {fileID: 2245241934879457231}
   - component: {fileID: 5762242112030526779}
+  - component: {fileID: 5646020766067085578}
   m_Layer: 5
   m_Name: Title Menu UI
   m_TagString: Untagged
@@ -104,6 +105,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5646020766067085578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402073362270237213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68c591c8604a4c8c8f3f05904f64d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1053272570429732991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1253,6 @@ GameObject:
   - component: {fileID: 126416644291241321}
   - component: {fileID: 5307771819360119865}
   - component: {fileID: 2398307741439538833}
-  - component: {fileID: 3205565787374880963}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -1351,10 +1363,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3205565787374880963}
-        m_TargetAssemblyTypeName: PlayButton, Assembly-CSharp
-        m_MethodName: startScene
-        m_Mode: 1
+      - m_Target: {fileID: 402073362270237213}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1363,18 +1375,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3205565787374880963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6873723363761085891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2617591f4e4b8439d977991eb8935600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7991483253354322051
 GameObject:
   m_ObjectHideFlags: 0
