@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AbilityTracking : MonoBehaviour
 {
     public Image activeIcon1;
     public Image activeIcon2;
+    public TMP_Text tutorial;
     public Sprite[] spriteArray;
 
     public enum AbilityName //names of all abilites
@@ -36,19 +38,40 @@ public class AbilityTracking : MonoBehaviour
         if (Equals(unlockedAbility, AbilityName.Beam)){
             icon.sprite = spriteArray[0];
             icon.gameObject.SetActive(true);
+            Tutorial(icon);
         } else if (Equals(unlockedAbility,AbilityName.Blackhole)){
             icon.sprite = spriteArray[1];
             icon.gameObject.SetActive(true);
+            Tutorial(icon);
         } else if (Equals(unlockedAbility, AbilityName.Roll)){
             icon.sprite = spriteArray[2];
             icon.gameObject.SetActive(true);
+            Tutorial(icon);
         } else if (Equals(unlockedAbility,AbilityName.Rock)){
             icon.sprite = spriteArray[3];
             icon.gameObject.SetActive(true);
+            Tutorial(icon);
         } else if (Equals(unlockedAbility,AbilityName.Heal)){
             icon.sprite = spriteArray[4];
             icon.gameObject.SetActive(true);
         }
+    }
+
+    //may want to add ability name to tutorial in the future
+    public void Tutorial(Image icon ){ //reveals text explaining what button to click to activate your ability
+        if(icon == activeIcon1){
+            tutorial.text = "Click Q to activate your new ability!";
+            StartCoroutine(RevealTutorial());
+        } else {
+            tutorial.text = "Click E to activate your new ability!";
+            StartCoroutine(RevealTutorial());
+        }
+    }
+
+    IEnumerator RevealTutorial(){ //code based from stack overflow
+        tutorial.gameObject.SetActive(true);
+        yield return new WaitForSeconds(5);
+        tutorial.gameObject.SetActive(false);
     }
 
     public bool IsAbilityUnlocked (AbilityName ability){ //returns true if ability is in set 
@@ -58,5 +81,6 @@ public class AbilityTracking : MonoBehaviour
     void Start(){
         activeIcon1.gameObject.SetActive(false);
         activeIcon2.gameObject.SetActive(false);
+        tutorial.gameObject.SetActive(false);
     }
 }
