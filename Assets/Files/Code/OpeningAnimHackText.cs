@@ -56,7 +56,7 @@ public class OpeningAnimHackText : MonoBehaviour
       Debug.Log("OpeningAnimHackText.cs: Error: player does not have a camera");
       return;
     } else {
-      Debug.Log("OpeningAnimHackText.cs: Warning: player camera does not have an animation controller. Unable to activate camera flyup animation.");
+      Debug.Log("OpeningAnimHackText.cs: Error: player camera does not have an animation controller. Unable to activate camera flyup animation.");
     }
 
     player.open(); // Turn on the player
@@ -68,11 +68,18 @@ public class OpeningAnimHackText : MonoBehaviour
     if(playerCamAnim == true) {
       playerCamAnim.SetBool("PlayFlyup", true);
     }
-
-
     
     await UniTask.Delay(4000);
     player.cameraLockEnabled = true; // Hand over control of camera to player...
+    
+    // Now attempt to retrieve and start the score timer
+    ScoreKeeper score = GameObject.FindGameObjectWithTag("ScoreDisplay").GetComponent<ScoreKeeper>();
+    if(! score) {
+      Debug.Log("OpeningAnimHackText.cs: Error: unable to find ScoreKeeper object via tag \"ScoreDisplay\". Cannot start timer");
+    }
+    score.enabled = true;
+    score.resetTimer();
+    score.timerEnabled = true;
   }
 
   // Update is called once per frame
