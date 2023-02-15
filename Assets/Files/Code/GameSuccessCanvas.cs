@@ -7,23 +7,15 @@ public class GameSuccessCanvas : MonoBehaviour
 {
     [SerializeField] Text message;
 
-
-    public GameObject player;
-    public GameObject ExitSign;
-
-    //private PlayerHealth health_left;
-
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(false);
     }
 
-    public void update()
+    public void showUI()
     {
-        if ((ExitSign.transform.position - player.transform.position).magnitude < 30.0f)
-        {
-            gameObject.SetActive(true);// show the screen
-        }
+        gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 }
