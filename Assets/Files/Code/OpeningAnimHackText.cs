@@ -58,7 +58,8 @@ public class OpeningAnimHackText : MonoBehaviour
     } else {
       Debug.Log("OpeningAnimHackText.cs: Warning: player camera does not have an animation controller. Unable to activate camera flyup animation.");
     }
-
+    
+    player.controls.controlsEnabled = false; // Disable player controls while opening animation is playing
     player.open(); // Turn on the player
 
     await UniTask.Delay(1000);
@@ -73,6 +74,7 @@ public class OpeningAnimHackText : MonoBehaviour
     
     await UniTask.Delay(4000);
     player.cameraLockEnabled = true; // Hand over control of camera to player...
+    player.controls.controlsEnabled = true; // reenable player controls
   }
 
   // Update is called once per frame
