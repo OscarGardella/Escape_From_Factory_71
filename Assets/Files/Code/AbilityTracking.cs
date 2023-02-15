@@ -12,7 +12,7 @@ public class AbilityTracking : MonoBehaviour
     public Sprite[] spriteArray;
     public AbilityName QAbility;
     public AbilityName EAbility;
-    public PlayerHealth player_health_bar;
+    public PlayerAbilities player;
 
     public enum AbilityName //names of all abilites
     {
@@ -38,6 +38,7 @@ public class AbilityTracking : MonoBehaviour
     }
 
     public void RevealAbility (AbilityName unlockedAbility, Image icon){
+        GainPassive(unlockedAbility); //call for all passive abilities
         if (icon == activeIcon1){ //sets key bindings
             QAbility = unlockedAbility;
         } else {
@@ -58,17 +59,11 @@ public class AbilityTracking : MonoBehaviour
         } else if (Equals(unlockedAbility, AbilityName.Rock)){
             //icon.sprite = spriteArray[3];
             //icon.gameObject.SetActive(true);
-        } else if (Equals(unlockedAbility, AbilityName.Heal)){
-            //icon.sprite = spriteArray[4];
-            //icon.gameObject.SetActive(true);
-
         }
     }
 
-    public void PassiveAbility(AbilityName ability){
-        if(ability == AbilityTracking.AbilityName.Heal){
-            player_health_bar.UpgradeHealth(5);
-        }
+    public void GainPassive(AbilityName ability){
+        player.PassiveAbility(ability);
     }
 
     //may want to add ability name to tutorial in the future

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAbilities : MonoBehaviour
 {
     public PowerBar player_power_bar;
+    public PlayerHealth player_health_bar;
     public AbilityTracking abilityTracker;
     public RobotFreeAnim player_character;
 
@@ -18,12 +19,20 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
+    public void PassiveAbility(AbilityTracking.AbilityName ability){
+        if(ability == AbilityTracking.AbilityName.Heal){ //gain heal ability
+            player_health_bar.UpgradeHealth(5);
+        } else if(ability == AbilityTracking.AbilityName.Rock){
+            
+        }
+    }
+
     void ActivateAbility(AbilityTracking.AbilityName ability){ 
         if(ability == AbilityTracking.AbilityName.Beam){ //use beam ability
             if(player_power_bar.ReducePower(7) == true){
                 //beam method call
             }
-        } if(ability == AbilityTracking.AbilityName.Blackhole){ //use blackhole ability
+        } else if(ability == AbilityTracking.AbilityName.Blackhole){ //use blackhole ability
             if(player_power_bar.ReducePower(10) == true){
                 //blackhole method call
             }
