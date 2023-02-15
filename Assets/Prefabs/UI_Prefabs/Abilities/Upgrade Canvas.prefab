@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 5364128613474192491, guid: f50b86256f49b46a98ed731050d12d5c, type: 3}
       propertyPath: abilityTracker
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6359319947367016011}
     - target: {fileID: 5364128613474192491, guid: f50b86256f49b46a98ed731050d12d5c, type: 3}
       propertyPath: abilityRevealer
       value: 
@@ -404,7 +404,7 @@ PrefabInstance:
     - target: {fileID: 5364128613474192491, guid: f50b86256f49b46a98ed731050d12d5c, type: 3}
       propertyPath: abilityTracker
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6359319947367016011}
     - target: {fileID: 5364128613474192491, guid: f50b86256f49b46a98ed731050d12d5c, type: 3}
       propertyPath: abilityRevealer
       value: 

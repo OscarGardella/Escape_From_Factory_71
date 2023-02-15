@@ -936,7 +936,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283313700805596524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.1
   m_Speed: 14
@@ -963,7 +963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd1416d2d14d4886be4e07ba0b948c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagSearchName: 
   attackDelayMS: 500
   healthBar: {fileID: 0}
   activationDistance: 50
