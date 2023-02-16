@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameSuccessCanvas : MonoBehaviour
+public class TitleMenuUI : MonoBehaviour
 {
-    [SerializeField] Text message;
-
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        
     }
 
-    public void showUI()
+    // Update is called once per frame
+    void RevealMenu()
     {
         gameObject.SetActive(true);
-        Time.timeScale = 0;
+    }
+
+    void HideMenu()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -64,7 +64,7 @@ public class RobotFreeAnim : MonoBehaviour {
   public float cameraAngle = 90;
   public float cameraFollowLag = 1;
 
-  private InputControls controls;
+  public InputControls controls;
   
   public Camera mainCamera = null;
   public Vector3 angles;
@@ -123,6 +123,16 @@ public class RobotFreeAnim : MonoBehaviour {
     if(mainCamera != null) {  
       Vector3 cameraPos = transform.position; //- transform.forward * cosDegF(cameraAngle);
 
+      // Set camera rotation based on provided parameters and global camera rotation (global camera rotation basically makes angles "transparent" to the orientation of the player).
+      Quaternion cameraLook = new Quaternion();
+      cameraLook.eulerAngles = new Vector3(angle, cameraRotation, 0); // Apply local angle and global camera rotation
+      mainCamera.transform.rotation = cameraLook;
+
+      if(angle == 90) { // Optimization - avoid expensive sin/cos calculations for a "normal" top-down camera orientation.
+        cameraPos.y += height + vertOffset;
+        mainCamera.transform.position = cameraPos - offset;
+        return;
+      }
       // Calculate camera angle and height
       // Any function with Sin/Cos is related to giving a specified amount of tilt to the camera.
       // This can be used to give a slightly tilted, or even isometric view, for effect.
@@ -136,11 +146,6 @@ public class RobotFreeAnim : MonoBehaviour {
       //Vector3 posOffset = new Vector3(sinDegF(cameraRotation), 0, cosDegF(cameraRotation)) * cameraPos.y;
       mainCamera.transform.position = cameraPos - offset;
 
-      // Set camera rotation
-      Quaternion cameraLook = new Quaternion();
-      cameraLook.eulerAngles = new Vector3(angle, cameraRotation, 0);
-
-      mainCamera.transform.rotation = cameraLook;
     }
   }
 

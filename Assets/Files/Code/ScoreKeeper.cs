@@ -20,9 +20,13 @@ public class ScoreKeeper : MonoBehaviour {
     textMesh.text = "Elapsed Time: 0 seconds";
   }
 
+  public float getTime() {
+    return (Time.realtimeSinceStartup - timerOffset);
+  }
+
   // Update is called once per frame
   void Update() {
     if(! timerEnabled) return;
-    textMesh.text = "Elapsed Time: " + (Time.realtimeSinceStartup - timerOffset).ToString("0.00") + " seconds";
+    textMesh.text = "Elapsed Time: " + getTime().ToString("0.00") + " seconds";
   }
 }

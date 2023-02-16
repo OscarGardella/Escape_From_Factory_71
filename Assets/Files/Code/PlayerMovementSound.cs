@@ -18,9 +18,11 @@ public class PlayerMovementSound : MonoBehaviour
     if(! walk3) {AudioSource walk3 = GetComponents<AudioSource>()[2];}
     //if(! revUp) {AudioSource revUp = GetComponents<AudioSource>()[3];}
     if(! roll) {AudioSource roll = GetComponents<AudioSource>()[4];}
-    if(! walk1 || !walk2 || !walk3 || !roll) {
-      Debug.Log("PlayerWalkSound.cs: Failure getting audio component from player");
-    }
+    
+    if(! walk1) Debug.Log("PlayerWalkSound.cs: Failure getting audio component walk1 sound from player");
+    else if(! walk2) Debug.Log("PlayerWalkSound.cs: Failure getting audio component walk2 sound from player");
+    else if(! walk3) Debug.Log("PlayerWalkSound.cs: Failure getting audio component walk2 sound from player");
+    else if(! roll) Debug.Log("PlayerWalkSound.cs: Failure getting audio component roll sound from player");
   }
 
   // Update is called once per frame
