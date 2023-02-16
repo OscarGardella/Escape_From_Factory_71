@@ -80,8 +80,6 @@ public class OpeningAnimHackText : MonoBehaviour
       Debug.Log("OpeningAnimHackText.cs: Error: unable to find ScoreKeeper object via tag \"ScoreDisplay\". Cannot start timer");
     }
     score.enabled = true;
-    score.resetTimer();
-    score.timerEnabled = true;
     player.controls.controlsEnabled = true; // reenable player controls
     
   }
