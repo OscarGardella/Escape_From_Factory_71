@@ -13,6 +13,7 @@ public class InputControls //: MonoBehaviour
   public float globalOrientation = 0; // Which way the controls should act as if the player was facing
   public bool currMoving = false;
   public ControlMode controlMode = ControlMode.WASD;
+  public bool controlsEnabled = true;
 
   void Start() {
     
@@ -62,6 +63,7 @@ public class InputControls //: MonoBehaviour
 
   // These are the public-facing API functions. These can return alternate values based on specified control modes, or whatever specified!
   public bool startedMoving() { // If input is given that the character should start moving. This should return true only on that first frame.
+    if(! controlsEnabled) return false;
     if(currMoving == false) {
       currMoving = movementKeyPressed();
       return currMoving;
@@ -70,6 +72,7 @@ public class InputControls //: MonoBehaviour
   }
 
   public bool stoppedMoving() { // Returns true only on the first frame that signals that the character should stop moving
+    if(! controlsEnabled) return false;
     if(currMoving && allMovementKeysReleased()) {
       currMoving = false;
       return true;
@@ -78,12 +81,12 @@ public class InputControls //: MonoBehaviour
   }
 
   public bool isMoving() { // Returns true while the character should be moving
-    return currMoving; //movementKeyHeld();
+    return currMoving && controlsEnabled; //movementKeyHeld();
   }
 
   // Gets the angle the player should currently be facing, based on the direction it is currently facing, and the controls alone
   public float getFacing(float playerRot) {
-    if(! isMoving()) return playerRot; // If no input given, hold current angle
+    if(!controlsEnabled || ! isMoving()) return playerRot; // If no input given, hold current angle
     float target = getKeypadAngle();
     return getNearestAngle(playerRot, target, globalOrientation);
   }
@@ -95,7 +98,8 @@ public class InputControls //: MonoBehaviour
   // <param name="orientation">a global rotation offset (ex: if up for your character really means 270 degrees instead of 0)</param>
   public static float getNearestAngle(float currAngle, float targetAngle, float orientation) {
     currAngle = currAngle - orientation;
-    float adjTarget = targetAngle % 360;
+    Debug.Log(orientation);
+    float adjTarget = (targetAngle + orientation) % 360;
     int offset = 1;
     if(currAngle < 0) offset = 0;
     float upperReference = 360 * (offset + (int) (currAngle / 360)); // The uppermost multiple of 360 that currAngle is close to
