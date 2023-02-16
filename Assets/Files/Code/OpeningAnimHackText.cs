@@ -55,8 +55,6 @@ public class OpeningAnimHackText : MonoBehaviour
     if(playerCam == null) {
       Debug.Log("OpeningAnimHackText.cs: Error: player does not have a camera");
       return;
-    } else {
-      Debug.Log("OpeningAnimHackText.cs: Error: player camera does not have an animation controller. Unable to activate camera flyup animation.");
     }
     
     player.controls.controlsEnabled = false; // Disable player controls while opening animation is playing
@@ -66,22 +64,26 @@ public class OpeningAnimHackText : MonoBehaviour
 
     // Activate camera flyout animation, if the animation controller is attached.
     Animator playerCamAnim = playerCam.GetComponent<Animator>();
-    if(playerCamAnim == true) {
+    if(playerCamAnim) {
       playerCamAnim.SetBool("PlayFlyup", true);
+    } else {
+      Debug.Log("OpeningAnimHackText.cs: Error: player camera does not have an animation controller. Unable to activate camera flyup animation.");
     }
     
     await UniTask.Delay(4000);
     player.cameraLockEnabled = true; // Hand over control of camera to player...
-    
     // Now attempt to retrieve and start the score timer
-    ScoreKeeper score = GameObject.FindGameObjectWithTag("ScoreDisplay").GetComponent<ScoreKeeper>();
-    if(! score) {
+    GameObject scoreDisplay = GameObject.FindGameObjectWithTag("ScoreDisplay");
+    if(! scoreDisplay) Debug.Log("OpeningAnimHackText.cs: Error: Failed to find Score Display text box by tag \"ScoreDisplay\"");
+    ScoreKeeper score = scoreDisplay.GetComponent<ScoreKeeper>();
+    if(!score) {
       Debug.Log("OpeningAnimHackText.cs: Error: unable to find ScoreKeeper object via tag \"ScoreDisplay\". Cannot start timer");
     }
     score.enabled = true;
     score.resetTimer();
     score.timerEnabled = true;
     player.controls.controlsEnabled = true; // reenable player controls
+    
   }
 
   // Update is called once per frame
