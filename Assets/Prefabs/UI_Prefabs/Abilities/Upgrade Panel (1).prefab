@@ -429,10 +429,12 @@ MonoBehaviour:
   otherUpgrade: {fileID: 0}
   spriteArray:
   - {fileID: 21300000, guid: b450d0b398880cb458f83d1a01b399ca, type: 3}
-  - {fileID: 21300000, guid: eed44235dcbd621438f7c0c4f05e2356, type: 3}
+  - {fileID: 21300000, guid: f6b8b85cbdc82ce439a41ae3d56d57ee, type: 3}
   - {fileID: 21300000, guid: c67fbf9375ad5c34399c2849430ca7f7, type: 3}
-  - {fileID: 21300000, guid: 300abdf8cbdd5c742a05b6506767fd64, type: 3}
+  - {fileID: 21300000, guid: 37de44bcb59b8174497def1957cc490b, type: 3}
   - {fileID: 21300000, guid: bb67b03c2969d104caba950c446f8c8d, type: 3}
+  - {fileID: 21300000, guid: bbe833a9207e7fa41bbd3ce71ad09605, type: 3}
+  - {fileID: 21300000, guid: ee40d72ece864764f9d17d015aedb524, type: 3}
   nameArray:
   - Beam
   - Black Hole

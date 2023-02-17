@@ -20,11 +20,15 @@ public class PlayerAbilities : MonoBehaviour
     }
 
     public void PassiveAbility(AbilityTracking.AbilityName ability){
-        if(ability == AbilityTracking.AbilityName.Heal){ //gain heal ability
+        if(ability == AbilityTracking.AbilityName.Target){ //gain targeting laser ability
+            //doubles fire rate
+        } else if(ability == AbilityTracking.AbilityName.Heal){ //gain heal ability
             player_health_bar.UpgradeHealth(5);
-        } else if(ability == AbilityTracking.AbilityName.Rock){
-            
-        }
+        } else if(ability == AbilityTracking.AbilityName.Energy){ //gain energy ability
+            player_power_bar.regen_rate = 2; //doubles power regen
+        } else if(ability == AbilityTracking.AbilityName.Speed){ //gain energy ability
+            //doubles move speed
+        } 
     }
 
     void ActivateAbility(AbilityTracking.AbilityName ability){ 
@@ -32,9 +36,9 @@ public class PlayerAbilities : MonoBehaviour
             if(player_power_bar.ReducePower(7) == true){
                 //beam method call
             }
-        } else if(ability == AbilityTracking.AbilityName.Blackhole){ //use blackhole ability
+        } else if(ability == AbilityTracking.AbilityName.Shield){ //use blackhole ability
             if(player_power_bar.ReducePower(10) == true){
-                //blackhole method call
+                //shield method call
             }
         } else if(ability == AbilityTracking.AbilityName.Roll){ //use roll ability
             if(player_power_bar.ReducePower(4) == true){
