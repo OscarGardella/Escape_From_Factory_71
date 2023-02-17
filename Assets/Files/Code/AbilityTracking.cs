@@ -16,7 +16,7 @@ public class AbilityTracking : MonoBehaviour
 
     public enum AbilityName //names of all abilites
     {
-        Beam, Blackhole, Roll, Rock, Heal
+        Beam, Shield, Roll, Target, Heal, Energy, Speed
     }
 
     private List<AbilityName> unlockedAbilityList;
@@ -48,7 +48,7 @@ public class AbilityTracking : MonoBehaviour
             icon.sprite = spriteArray[0];
             icon.gameObject.SetActive(true);
             Tutorial(icon);
-        } else if (Equals(unlockedAbility, AbilityName.Blackhole)){
+        } else if (Equals(unlockedAbility, AbilityName.Shield)){
             icon.sprite = spriteArray[1];
             icon.gameObject.SetActive(true);
             Tutorial(icon);
@@ -56,20 +56,16 @@ public class AbilityTracking : MonoBehaviour
             icon.sprite = spriteArray[2];
             icon.gameObject.SetActive(true);
             Tutorial(icon);
-        } else if (Equals(unlockedAbility, AbilityName.Rock)){
-            //icon.sprite = spriteArray[3];
-            //icon.gameObject.SetActive(true);
         }
     }
 
-    public void GainPassive(AbilityName ability){
+    public void GainPassive(AbilityName ability){ //if it is a passive ability it unlocks it, otherwise does nothing
         player.PassiveAbility(ability);
     }
 
-    //may want to add ability name to tutorial in the future
     public void Tutorial(Image icon ){ //reveals text explaining what button to click to activate your ability
         if(icon == activeIcon1){
-            tutorial.text = "Click Q to activate your new ability!";
+            tutorial.text = "Click Q to activate your new ability!"; //may want to add ability name to tutorial in the future
             StartCoroutine(RevealTutorial());
         } else {
             tutorial.text = "Click E to activate your new ability!";
@@ -77,7 +73,8 @@ public class AbilityTracking : MonoBehaviour
         }
     }
 
-    IEnumerator RevealTutorial(){ //code based from stack overflow
+    IEnumerator RevealTutorial(){ //reveals tutorial for a few seconds
+        //code based from stack overflow
         tutorial.gameObject.SetActive(true);
         yield return new WaitForSeconds(4);
         tutorial.gameObject.SetActive(false);

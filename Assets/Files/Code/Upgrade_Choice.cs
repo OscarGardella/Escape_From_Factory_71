@@ -14,9 +14,9 @@ public class Upgrade_Choice : MonoBehaviour
     public Upgrade_Choice otherUpgrade;
     
     public Sprite[] spriteArray;
-    public string[] nameArray = {"Beam", "Black Hole", "Roll", "Rock", "Heal"};
-    public string[] desArray = {"Fire a large beam out of the front of your robot obliterating anything in your way ","??? #2","Curl into a ball and roll at high speeds to evade enemies","??? #4","Double your health and heal to full, allowing you to survive longer"};
-    public int[] costArray = {5,10,5,5,0};
+    public string[] nameArray = {"Ion Beam", "Laser Shield", "Speed Roll", "Quick Target", "Nano Bot Armor", "Nuclear Battery", "Scuttler Legs"};
+    public string[] desArray = {"Fire a large beam out of the front of your robot obliterating anything in your way","Generate a glowing shield around you to fend off enemies and lasers alike","Curl into a ball and roll at high speeds to evade enemies and travel faster","Gain powerful targeting software allowing you to fire lasers at twice the usual pace","Double your health and heal to full, allowing you to survive longer", "Install a new super powerful battery allowing you to regen power at an increased rate", "Install new legs on your robot allowing you to consistently move at a faster pace"};
+    public int[] costArray = {8,5,4,0,0,0,0};
 
     public class upgradePanel
     {
@@ -24,15 +24,21 @@ public class Upgrade_Choice : MonoBehaviour
         string description;
         int cost;
         Sprite icon;
+        AbilityName code;
         enum AbilityName{ //names of all abilites
-            Beam, Blackhole, Roll, Rock, Heal
+            Beam, Shield, Roll, Target, Heal, Energy, Speed
         }
 
-        public upgradePanel(string myName, string myDescription, int myCost, Sprite myIcon){
+        public upgradePanel(AbilityName myCode, string myName, string myDescription, int myCost, Sprite myIcon){
+            code = myCode;
             name = myName;
             description = myDescription;
             cost = myCost;
             icon = myIcon;
+        }
+
+        public AbilityName getIcon(){
+            return code;
         }
 
         public Sprite getIcon(){
@@ -59,6 +65,7 @@ public class Upgrade_Choice : MonoBehaviour
             nameText.text = tempPanelArray[r].getName();
             costText.text = "Cost: " + tempPanelArray[r].getCost();
             descriptionText.text = tempPanelArray[r].getDescription();
+            //maybe revamp to use "code" field 
     }
 
     public void revealUpgrade(){
@@ -76,21 +83,20 @@ public class Upgrade_Choice : MonoBehaviour
 
     void unlockUpgrade(string name){ //takes in a name and unlocks the corresponding abililty
         int index = getIndex(nameArray, name);
-        if (name == "Beam"){
+        if (name == "Ion Beam"){
             abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Beam);
-            Debug.Log("Beam unlocked");
-        } else if (name == "Black Hole"){
-            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Blackhole);
-            Debug.Log("Black Hole unlocked");
-        } else if (name == "Roll"){
+        } else if (name == "Laser Shield"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Shield);
+        } else if (name == "Speed Roll"){
             abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Roll);
-            Debug.Log("Roll unlocked");
-        } else if (name == "Rock"){
-            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Rock);
-            Debug.Log("Rock unlocked");
-        } else if (name == "Heal"){
+        } else if (name == "Quick Target"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Target);
+        } else if (name == "Nano Bot Armor"){
             abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Heal);
-            Debug.Log("Heal unlocked");
+        } else if (name == "Nano Bot Armor"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Heal);
+        } else if (name == "Nano Bot Armor"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Heal);
         }
         nameArray = removeIndex(nameArray, index);
         desArray = removeIndex(desArray, index);
