@@ -8,23 +8,25 @@ public class Upgrade_Choice : MonoBehaviour
 {
     public Image abilityIcon;
     public TMP_Text nameText;
+    public TMP_Text costText;
     public TMP_Text descriptionText;
-    public Sprite[] spriteArray;
     public AbilityTracking abilityTracker;
     public Upgrade_Choice otherUpgrade;
     
-    public string[] nameArray = {"Beam", "Black Hole", "Roll", "Rock", "Heal"};
-    public string[] desArray = {"Fire a large beam out of the front of your robot obliterating anything in your way ","??? #2","Curl into a ball and roll at high speeds to evade enemies","??? #4","Double your health and heal to full, allowing you to survive longer"};
-    public int[] costArray = {5,10,5,5,0};
+    public Sprite[] spriteArray;
+    public string[] nameArray = {"Laser Shield", "Speed Roll", "Quick Target", "Nano Bot Armor", "Nuclear Battery", "Scuttler Legs"}; //"Ion Beam",
+    public string[] desArray = {"Generate a glowing shield around you to fend off enemies lasers for a short period of time","Curl into a ball and roll at high speeds to evade enemies and travel faster","Gain powerful targeting software allowing you to fire lasers at twice the usual pace","Double your health and heal to full, allowing you to survive longer", "Install a new super powerful battery allowing you to regen power at an increased rate", "Install new legs on your robot allowing you to consistently move at a faster pace"}; //"Fire a large beam out of the front of your robot obliterating anything in your way"
+    public int[] costArray = {8,6,4,0,0,0,0};
 
     public class upgradePanel
     {
+        //add enum code at some point?
         string name;
         string description;
         int cost;
         Sprite icon;
         enum AbilityName{ //names of all abilites
-            Beam, Blackhole, Roll, Rock, Heal
+            Shield, Roll, Target, Heal, Energy, Speed //add beam later
         }
 
         public upgradePanel(string myName, string myDescription, int myCost, Sprite myIcon){
@@ -55,7 +57,8 @@ public class Upgrade_Choice : MonoBehaviour
         upgradePanel[] tempPanelArray = makePanelArray(); //makes an array of all the panels
         int r = randomNum(0, tempPanelArray.Length); //generates a random index of the panel array
             abilityIcon.sprite = tempPanelArray[r].getIcon(); //sets ability icon to current panel from the array
-            nameText.text = tempPanelArray[r].getName() + "\nCost: " + tempPanelArray[r].getCost();
+            nameText.text = tempPanelArray[r].getName();
+            costText.text = "Cost: " + tempPanelArray[r].getCost();
             descriptionText.text = tempPanelArray[r].getDescription();
     }
 
@@ -73,22 +76,30 @@ public class Upgrade_Choice : MonoBehaviour
     }
 
     void unlockUpgrade(string name){ //takes in a name and unlocks the corresponding abililty
-        if (name == "Beam\nCost: 5"){
+        int index = getIndex(nameArray, name);
+        if (name == "Ion Beam"){
             abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Beam);
-            Debug.Log("Beam unlocked");
-        } else if (name == "Black Hole\nCost: 10"){
-            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Blackhole);
-            Debug.Log("Black Hole unlocked");
-        } else if (name == "Roll\nCost: 5"){
+        } else if (name == "Laser Shield"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Shield);
+        } else if (name == "Speed Roll"){
             abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Roll);
-            Debug.Log("Roll unlocked");
-        } else if (name == "Rock\nCost: 5"){
-            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Rock);
-            Debug.Log("Rock unlocked");
-        } else if (name == "Heal\nCost: 10"){
+        } else if (name == "Quick Target"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Target);
+        } else if (name == "Nano Bot Armor"){
             abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Heal);
-            Debug.Log("Heal unlocked");
+        } else if (name == "Nano Bot Armor"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Heal);
+        } else if (name == "Nano Bot Armor"){
+            abilityTracker.UnlockAbility(AbilityTracking.AbilityName.Heal);
         }
+        nameArray = removeIndex(nameArray, index);
+        desArray = removeIndex(desArray, index);
+        costArray = removeIndex(costArray, index);
+        spriteArray = removeIndex(spriteArray, index);
+        otherUpgrade.nameArray = nameArray;
+        otherUpgrade.desArray = desArray;
+        otherUpgrade.costArray = costArray;
+        otherUpgrade.spriteArray = spriteArray;
     }
 
     upgradePanel[] makePanelArray(){ //returns an array of all the upgrade panel data
@@ -105,6 +116,27 @@ public class Upgrade_Choice : MonoBehaviour
         System.Random rd = new System.Random();
         int num = rd.Next(low, high);
         return num;
+    }
+
+    T[] removeIndex<T>(T[] array, int index){ //returns a version of the array minus the given index
+        T[] newArray = new T[array.Length-1];
+        int newIndex = 0;
+        for (int i=0; i<array.Length; i++){
+            if (i != index){
+                newArray[newIndex] = array[i];
+                newIndex++;
+            }
+        }
+        return newArray;
+    }
+
+    int getIndex(string[] array, string name){
+        for (int i=0; i<array.Length; i++){
+            if (array[i] == name){
+                return i;
+            }
+        }
+        return -1;
     }
 
     void deactivate(){
