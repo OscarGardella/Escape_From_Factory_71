@@ -85,8 +85,9 @@ public class OpeningAnimHackText : MonoBehaviour
     ScoreKeeper score = scoreDisplay.GetComponent<ScoreKeeper>();
     if(!score) {
       Debug.Log("OpeningAnimHackText.cs: Error: unable to find ScoreKeeper object via tag \"ScoreDisplay\". Cannot start timer");
+    } else {
+      score.enabled = true;
     }
-    score.enabled = true;
     player.controls.controlsEnabled = true; // reenable player controls
     textMesh.text = ""; // Hide text
     playing = false;
