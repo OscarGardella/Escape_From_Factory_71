@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class laserBehavior : MonoBehaviour
+public class laserBehavior : MonoBehaviour { 
 
     private ScoreKeeper score;
     void Start()
