@@ -156,12 +156,15 @@ public class RobotFreeAnim : MonoBehaviour {
 
   // Update is called once per frame
   void FixedUpdate() {
-    if(anim.GetBool("Open_Anim") == false) return;
+    if(anim.GetBool("Open_Anim") == false) {
+      m_Rigidbody.AddForce(new Vector3(0,-0.05f,0), ForceMode.VelocityChange); // Keeps it from floating off the ground
+      return;
+    }
     controls.globalOrientation = cameraRotation;
     rot[1] = rotMom.valueAsymptotic(); // Set rotation, with momentum
     gameObject.transform.eulerAngles = rot;
     Vector3 posChange = transform.forward * walkMom.valueLinear(); // This describes forward motion when pressing W.
-    m_Rigidbody.AddForce(posChange, ForceMode.VelocityChange);
+    m_Rigidbody.AddForce(posChange, ForceMode.VelocityChange); 
     
     // Make main camera hover above player
     if(cameraLockEnabled) setCameraPos(cameraAngle, cameraHeight, cameraVertOffset, posChange * cameraFollowLag);

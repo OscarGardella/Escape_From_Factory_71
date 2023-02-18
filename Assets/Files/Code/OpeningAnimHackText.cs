@@ -81,7 +81,7 @@ public class OpeningAnimHackText : MonoBehaviour
     }
     score.enabled = true;
     player.controls.controlsEnabled = true; // reenable player controls
-    
+    textMesh.text = ""; // Hide text
   }
 
   // Update is called once per frame
