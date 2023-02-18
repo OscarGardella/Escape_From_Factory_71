@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 public class pewPew : MonoBehaviour
 
 {
+    private GameObject hack;
+
     [SerializeField]
     private GameObject projectile;
     [SerializeField]
@@ -25,6 +27,7 @@ public class pewPew : MonoBehaviour
     void Start()
     {
 
+        hack = GameObject.FindGameObjectWithTag("Hack");
     }
 
     // Update is called once per frame
@@ -49,7 +52,7 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButton(0) && coolDown == 0&& pauseGame.paused==false)
+        if (Input.GetMouseButton(0) && coolDown == 0&& pauseGame.paused==false&&hack.isPlaying()==false)
         {
 
             shoot();
@@ -63,8 +66,12 @@ public class pewPew : MonoBehaviour
         {
             coolDown += fireDelay;
             GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
+
             laser.transform.Rotate(90, 0, 0);
+
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(90, 0, -launchVelocity));
+
+            laser.transform.Translate(0, Time.deltaTime * -200, 0);
             AudioManager.Instance.PlaySFX("Player Shooting");
             Destroy(laser, 3f);
         }
