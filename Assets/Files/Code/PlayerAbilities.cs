@@ -8,6 +8,7 @@ public class PlayerAbilities : MonoBehaviour
     public PlayerHealth player_health_bar;
     public AbilityTracking abilityTracker;
     public RobotFreeAnim player_character;
+    public Shield player_shield;
 
     // Update is called once per frame
     void Update(){
@@ -37,8 +38,8 @@ public class PlayerAbilities : MonoBehaviour
                 //beam method call
             }
         } else if(ability == AbilityTracking.AbilityName.Shield){ //use blackhole ability
-            if(player_power_bar.ReducePower(10) == true){
-                //shield method call
+            if(player_power_bar.ReducePower(6) == true){
+                player_shield.ActivateShield(4.0f);
             }
         } else if(ability == AbilityTracking.AbilityName.Roll){ //use roll ability
             if(player_power_bar.ReducePower(4) == true){

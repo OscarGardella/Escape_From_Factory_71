@@ -107,7 +107,17 @@ MonoBehaviour:
   activeIcon1: {fileID: 67434921256342996}
   activeIcon2: {fileID: 6662273866202571579}
   tutorial: {fileID: 2144283018528050269}
-  spriteArray: []
+  spriteArray:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: f6b8b85cbdc82ce439a41ae3d56d57ee, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 37de44bcb59b8174497def1957cc490b, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: bbe833a9207e7fa41bbd3ce71ad09605, type: 3}
+  - {fileID: 21300000, guid: ee40d72ece864764f9d17d015aedb524, type: 3}
+  QAbility: 0
+  EAbility: 0
+  player: {fileID: 0}
 --- !u!1 &67434921256342994
 GameObject:
   m_ObjectHideFlags: 0

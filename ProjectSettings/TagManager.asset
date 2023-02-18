@@ -7,14 +7,15 @@ TagManager:
   - Enemy
   - Projectile
   - Health
+  - Laser
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Shield
   - Water
   - UI
-  - 
+  - Enemy Laser
   - 
   - 
   - 

@@ -16,29 +16,24 @@ public class Upgrade_Choice : MonoBehaviour
     public Sprite[] spriteArray;
     public string[] nameArray = {"Ion Beam", "Laser Shield", "Speed Roll", "Quick Target", "Nano Bot Armor", "Nuclear Battery", "Scuttler Legs"};
     public string[] desArray = {"Fire a large beam out of the front of your robot obliterating anything in your way","Generate a glowing shield around you to fend off enemies and lasers alike","Curl into a ball and roll at high speeds to evade enemies and travel faster","Gain powerful targeting software allowing you to fire lasers at twice the usual pace","Double your health and heal to full, allowing you to survive longer", "Install a new super powerful battery allowing you to regen power at an increased rate", "Install new legs on your robot allowing you to consistently move at a faster pace"};
-    public int[] costArray = {8,5,4,0,0,0,0};
+    public int[] costArray = {8,6,4,0,0,0,0};
 
     public class upgradePanel
     {
+        //add enum code at some point?
         string name;
         string description;
         int cost;
         Sprite icon;
-        AbilityName code;
         enum AbilityName{ //names of all abilites
             Beam, Shield, Roll, Target, Heal, Energy, Speed
         }
 
-        public upgradePanel(AbilityName myCode, string myName, string myDescription, int myCost, Sprite myIcon){
-            code = myCode;
+        public upgradePanel(string myName, string myDescription, int myCost, Sprite myIcon){
             name = myName;
             description = myDescription;
             cost = myCost;
             icon = myIcon;
-        }
-
-        public AbilityName getIcon(){
-            return code;
         }
 
         public Sprite getIcon(){
@@ -65,7 +60,6 @@ public class Upgrade_Choice : MonoBehaviour
             nameText.text = tempPanelArray[r].getName();
             costText.text = "Cost: " + tempPanelArray[r].getCost();
             descriptionText.text = tempPanelArray[r].getDescription();
-            //maybe revamp to use "code" field 
     }
 
     public void revealUpgrade(){

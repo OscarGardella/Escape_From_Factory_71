@@ -436,19 +436,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bbe833a9207e7fa41bbd3ce71ad09605, type: 3}
   - {fileID: 21300000, guid: ee40d72ece864764f9d17d015aedb524, type: 3}
   nameArray:
-  - Beam
-  - Black Hole
-  - Roll
-  - Rock
-  - Heal
+  - Ion Beam
+  - Laser Shield
+  - Speed Roll
+  - Quick Target
+  - Nano Bot Armor
+  - Nuclear Battery
+  - Scuttler Legs
   desArray:
-  - 'Fire a large beam out of the front of your robot obliterating anything in your
-    way '
-  - ??? #2
-  - Curl into a ball and roll at high speeds to evade enemies
-  - ??? #4
-  - Double your health allowing you to survive longer
-  costArray: 050000000a00000005000000050000000a000000
+  - Fire a large beam out of the front of your robot obliterating anything in your
+    way
+  - Generate a glowing shield around you to fend off enemies and lasers alike
+  - Curl into a ball and roll at high speeds to evade enemies and travel faster
+  - Gain powerful targeting software allowing you to fire lasers at twice the usual
+    pace
+  - Double your health and heal to full, allowing you to survive longer
+  - Install a new super powerful battery allowing you to regen power at an increased
+    rate
+  - Install new legs on your robot allowing you to consistently move at a faster
+    pace
+  costArray: 08000000050000000400000000000000000000000000000000000000
 --- !u!1 &5364128613775479557
 GameObject:
   m_ObjectHideFlags: 0
