@@ -8,6 +8,7 @@ public class PlayerAbilities : MonoBehaviour
     public PlayerHealth player_health_bar;
     public AbilityTracking abilityTracker;
     public RobotFreeAnim player_character;
+    public pewPew player_shooter;
     public Shield player_shield;
 
     // Update is called once per frame
@@ -22,14 +23,14 @@ public class PlayerAbilities : MonoBehaviour
 
     public void PassiveAbility(AbilityTracking.AbilityName ability){
         if(ability == AbilityTracking.AbilityName.Target){ //gain targeting laser ability
-            //doubles fire rate
+            player_shooter.fireDelay = 0.1;
         } else if(ability == AbilityTracking.AbilityName.Heal){ //gain heal ability
             player_health_bar.UpgradeHealth(5);
         } else if(ability == AbilityTracking.AbilityName.Energy){ //gain energy ability
             player_power_bar.regen_rate = 2; //doubles power regen
         } else if(ability == AbilityTracking.AbilityName.Speed){ //gain energy ability
-            //doubles move speed
-        } 
+            player_character.walkMoveSpeed += player_character.walkMoveSpeed * 2.5f;
+        }
     }
 
     void ActivateAbility(AbilityTracking.AbilityName ability){ 

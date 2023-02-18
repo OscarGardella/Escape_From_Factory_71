@@ -14,8 +14,8 @@ public class Upgrade_Choice : MonoBehaviour
     public Upgrade_Choice otherUpgrade;
     
     public Sprite[] spriteArray;
-    public string[] nameArray = {"Ion Beam", "Laser Shield", "Speed Roll", "Quick Target", "Nano Bot Armor", "Nuclear Battery", "Scuttler Legs"};
-    public string[] desArray = {"Fire a large beam out of the front of your robot obliterating anything in your way","Generate a glowing shield around you to fend off enemies and lasers alike","Curl into a ball and roll at high speeds to evade enemies and travel faster","Gain powerful targeting software allowing you to fire lasers at twice the usual pace","Double your health and heal to full, allowing you to survive longer", "Install a new super powerful battery allowing you to regen power at an increased rate", "Install new legs on your robot allowing you to consistently move at a faster pace"};
+    public string[] nameArray = {"Laser Shield", "Speed Roll", "Quick Target", "Nano Bot Armor", "Nuclear Battery", "Scuttler Legs"}; //"Ion Beam",
+    public string[] desArray = {"Generate a glowing shield around you to fend off enemies lasers for a short period of time","Curl into a ball and roll at high speeds to evade enemies and travel faster","Gain powerful targeting software allowing you to fire lasers at twice the usual pace","Double your health and heal to full, allowing you to survive longer", "Install a new super powerful battery allowing you to regen power at an increased rate", "Install new legs on your robot allowing you to consistently move at a faster pace"}; //"Fire a large beam out of the front of your robot obliterating anything in your way"
     public int[] costArray = {8,6,4,0,0,0,0};
 
     public class upgradePanel
@@ -26,7 +26,7 @@ public class Upgrade_Choice : MonoBehaviour
         int cost;
         Sprite icon;
         enum AbilityName{ //names of all abilites
-            Beam, Shield, Roll, Target, Heal, Energy, Speed
+            Shield, Roll, Target, Heal, Energy, Speed //add beam later
         }
 
         public upgradePanel(string myName, string myDescription, int myCost, Sprite myIcon){

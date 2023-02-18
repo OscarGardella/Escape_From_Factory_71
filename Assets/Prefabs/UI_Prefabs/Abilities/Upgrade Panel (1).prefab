@@ -428,7 +428,6 @@ MonoBehaviour:
   abilityTracker: {fileID: 0}
   otherUpgrade: {fileID: 0}
   spriteArray:
-  - {fileID: 21300000, guid: b450d0b398880cb458f83d1a01b399ca, type: 3}
   - {fileID: 21300000, guid: f6b8b85cbdc82ce439a41ae3d56d57ee, type: 3}
   - {fileID: 21300000, guid: c67fbf9375ad5c34399c2849430ca7f7, type: 3}
   - {fileID: 21300000, guid: 37de44bcb59b8174497def1957cc490b, type: 3}
@@ -436,7 +435,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bbe833a9207e7fa41bbd3ce71ad09605, type: 3}
   - {fileID: 21300000, guid: ee40d72ece864764f9d17d015aedb524, type: 3}
   nameArray:
-  - Ion Beam
   - Laser Shield
   - Speed Roll
   - Quick Target
@@ -444,8 +442,6 @@ MonoBehaviour:
   - Nuclear Battery
   - Scuttler Legs
   desArray:
-  - Fire a large beam out of the front of your robot obliterating anything in your
-    way
   - Generate a glowing shield around you to fend off enemies and lasers alike
   - Curl into a ball and roll at high speeds to evade enemies and travel faster
   - Gain powerful targeting software allowing you to fire lasers at twice the usual
@@ -455,7 +451,7 @@ MonoBehaviour:
     rate
   - Install new legs on your robot allowing you to consistently move at a faster
     pace
-  costArray: 08000000050000000400000000000000000000000000000000000000
+  costArray: 060000000400000000000000000000000000000000000000
 --- !u!1 &5364128613775479557
 GameObject:
   m_ObjectHideFlags: 0
