@@ -7,7 +7,7 @@ using Cysharp.Threading.Tasks;
 public class OpeningAnimHackText : MonoBehaviour
 {
   TMP_Text textMesh;
-  private bool playing; // True when the opening animation is currently playing
+  private bool played; // True when the opening animation is currently playing
 
   // Start is called before the first frame update
   void Start() {
@@ -19,19 +19,43 @@ public class OpeningAnimHackText : MonoBehaviour
       throw new UnassignedReferenceException("Unable to find TextMesh for Hacking TV");
     }
     _ = displayAnim();
-    playing = false;
+    played = false;
   }
 
   private async UniTask waitForMouseClick() {
     await UniTask.WaitUntil( () => Input.GetMouseButtonDown(0) == true);
   }
   
-  public bool isPlaying() {
-    return playing;
+  public bool hasPlayed() {
+    return played;
   }
 
   async UniTask displayAnim() {
-    playing = true;
+    played = true; // Note: this stat should not be relied upon after an immediate call to displayAnim, as it is async!!!
+
+    RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
+    if(! player) {
+      Debug.Log("OpeningAnimHackText.cs: Error: unable to find RobotFreeAnim Player object via tag \"Player\"");
+      return;
+    }
+    
+    player.controls.controlsEnabled = false; // Disable player controls while opening animation is playing
+
+    Camera playerCam = player.mainCamera;
+    if(playerCam == null) {
+      Debug.Log("OpeningAnimHackText.cs: Error: player does not have a camera");
+      return;
+    }
+
+
+    // Activate camera flyout animation, if the animation controller is attached.
+    Animator playerCamAnim = playerCam.GetComponent<Animator>();
+    if(! playerCamAnim) {
+      Debug.Log("OpeningAnimHackText.cs: Error: player camera does not have an animation controller. Unable to activate camera animations. >>> This script will probably crash. <<<");
+    }
+
+    playerCamAnim.SetBool("Start", true); // Begin opening animation
+
     textMesh.text = "I am alive! (Click to continue)";
     //await UniTask.Delay(1500);
     await waitForMouseClick();
@@ -52,30 +76,10 @@ public class OpeningAnimHackText : MonoBehaviour
     textMesh.text = "Hack successful.";
     await UniTask.Delay(750);
     textMesh.text = "Booting...";
-
-    RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
-    if(! player) {
-      Debug.Log("OpeningAnimHackText.cs: Error: unable to find RobotFreeAnim Player object via tag \"Player\"");
-      return;
-    }
-    Camera playerCam = player.mainCamera;
-    if(playerCam == null) {
-      Debug.Log("OpeningAnimHackText.cs: Error: player does not have a camera");
-      return;
-    }
-    
-    player.controls.controlsEnabled = false; // Disable player controls while opening animation is playing
     player.open(); // Turn on the player
 
     await UniTask.Delay(1000);
-
-    // Activate camera flyout animation, if the animation controller is attached.
-    Animator playerCamAnim = playerCam.GetComponent<Animator>();
-    if(playerCamAnim) {
-      playerCamAnim.SetBool("PlayFlyup", true);
-    } else {
-      Debug.Log("OpeningAnimHackText.cs: Error: player camera does not have an animation controller. Unable to activate camera flyup animation.");
-    }
+    playerCamAnim.SetBool("PlayFlyup", true); // Camera flys up above player
     
     await UniTask.Delay(4000);
     player.cameraLockEnabled = true; // Hand over control of camera to player...
@@ -90,7 +94,6 @@ public class OpeningAnimHackText : MonoBehaviour
     }
     player.controls.controlsEnabled = true; // reenable player controls
     textMesh.text = ""; // Hide text
-    playing = false;
   }
 
   // Update is called once per frame
