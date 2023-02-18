@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 public class OpeningAnimHackText : MonoBehaviour
 {
   TMP_Text textMesh;
+  private bool playing; // True when the opening animation is currently playing
 
   // Start is called before the first frame update
   void Start() {
@@ -18,13 +19,19 @@ public class OpeningAnimHackText : MonoBehaviour
       throw new UnassignedReferenceException("Unable to find TextMesh for Hacking TV");
     }
     _ = displayAnim();
+    playing = false;
   }
 
   private async UniTask waitForMouseClick() {
     await UniTask.WaitUntil( () => Input.GetMouseButtonDown(0) == true);
   }
+  
+  public bool isPlaying() {
+    return playing;
+  }
 
   async UniTask displayAnim() {
+    playing = true;
     textMesh.text = "I am alive! (Click to continue)";
     //await UniTask.Delay(1500);
     await waitForMouseClick();
@@ -82,6 +89,7 @@ public class OpeningAnimHackText : MonoBehaviour
     score.enabled = true;
     player.controls.controlsEnabled = true; // reenable player controls
     textMesh.text = ""; // Hide text
+    playing = false;
   }
 
   // Update is called once per frame
