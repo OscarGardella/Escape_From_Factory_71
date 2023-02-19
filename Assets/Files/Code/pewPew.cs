@@ -36,8 +36,7 @@ public class pewPew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   //Unity Forum Go Crazy
-        if (canPlay == true)
-        {
+        if (canPlay == true){
         }
         else if (hacktext.hasPlayed() == true)
         {
@@ -63,7 +62,7 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButton(0) && coolDown == 0 && pauseGame.paused == false && hacktext.hasPlayed() == true)
+        if (Input.GetMouseButton(0) && coolDown == 0 && pauseGame.paused == false && canPlay == true)
         {
 
             shoot();

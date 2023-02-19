@@ -93,6 +93,7 @@ public class OpeningAnimHackText : MonoBehaviour
       score.enabled = true;
     }
     player.controls.controlsEnabled = true; // reenable player controls
+        played = true;
     textMesh.text = ""; // Hide text
   }
 

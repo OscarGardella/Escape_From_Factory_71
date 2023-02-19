@@ -23,6 +23,7 @@ public class enemyPewPew : MonoBehaviour
     private OpeningAnimHackText hacktext;
     private bool canPlay = false;
     RaycastHit hit;
+    private LayerMask hitboxLayer;
 
     void Start()
     {
@@ -33,11 +34,14 @@ public class enemyPewPew : MonoBehaviour
         }
         hack = GameObject.FindGameObjectWithTag("Hack");
         hacktext = hack.GetComponent<OpeningAnimHackText>();
+
+        GameObject hitbox = GameObject.FindGameObjectWithTag("Hitbox");
+        hitboxLayer = hitbox.layer;
     }
     void Update()
     {
-        if (canPlay == true)
-        {
+
+        if (canPlay == true){
         }
         else if (hacktext.hasPlayed() == true)
         {
@@ -61,16 +65,12 @@ public class enemyPewPew : MonoBehaviour
                 coolDown = 0;
             }
         }
-        if (Physics.Raycast(transform.position, player.transform.position, out hit))
+        if (Physics.Raycast(transform.position, transform.position-player.transform.position, hitboxLayer))
         {
-            print(hit.collider.name);
-            if (hit.collider == player.GetComponent<Collider>())
-            {
-                if (inRange == true && coolDown == 0 && canPlay == true)
-                {
-                    Shoot();
-                }
+            if (inRange == true && coolDown == 0 && canPlay == true) {
+                Shoot();
             }
+          
         }
         if (coolDown > 0)
         {
