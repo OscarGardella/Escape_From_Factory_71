@@ -58,7 +58,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -109,6 +109,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2044172829411189669}
     m_Modifications:
+    - target: {fileID: 5288369064585479043, guid: 0d3ac1842ff44433dbf27ce5cab0b99b, type: 3}
+      propertyPath: m_text
+      value: '  Power'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288369064585479043, guid: 0d3ac1842ff44433dbf27ce5cab0b99b, type: 3}
+      propertyPath: m_fontSize
+      value: 19.55
+      objectReference: {fileID: 0}
     - target: {fileID: 8021321435090081420, guid: 0d3ac1842ff44433dbf27ce5cab0b99b, type: 3}
       propertyPath: m_Name
       value: Power Bar

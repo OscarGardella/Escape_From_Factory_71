@@ -7,15 +7,19 @@ TagManager:
   - Enemy
   - Projectile
   - Health
+  - Laser
+  - ScoreDisplay
+  - Hack
+  - Hitbox
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Shield
   - Water
   - UI
-  - 
-  - 
+  - Enemy Laser
+  - Player Hitbox
   - 
   - 
   - 

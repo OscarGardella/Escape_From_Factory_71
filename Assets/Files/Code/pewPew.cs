@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 public class pewPew : MonoBehaviour
 
 {
+    private GameObject hack;
+
     [SerializeField]
     private GameObject projectile;
     [SerializeField]
@@ -21,15 +23,26 @@ public class pewPew : MonoBehaviour
     public float powerDrain = 1.0f;
     [SerializeField]
     private Camera camera;
+    private OpeningAnimHackText hacktext;
+    private bool canPlay = false;
     // Start is called before the first frame update
     void Start()
     {
 
+        hack = GameObject.FindGameObjectWithTag("Hack");
+        hacktext = hack.GetComponent<OpeningAnimHackText>();
     }
 
     // Update is called once per frame
     void Update()
     {   //Unity Forum Go Crazy
+        if (canPlay == true){
+        }
+        else if (hacktext.hasPlayed() == true)
+        {
+            canPlay = true;
+        }
+
         if (coolDown > 0)
         {
             coolDown -= Time.deltaTime;
@@ -49,7 +62,7 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButton(0) && coolDown == 0&& pauseGame.paused==false)
+        if (Input.GetMouseButton(0) && coolDown == 0 && pauseGame.paused == false && canPlay == true)
         {
 
             shoot();
@@ -63,8 +76,12 @@ public class pewPew : MonoBehaviour
         {
             coolDown += fireDelay;
             GameObject laser = Instantiate(projectile, transform.position, transform.rotation);
+
             laser.transform.Rotate(90, 0, 0);
+
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(90, 0, -launchVelocity));
+
+            laser.transform.Translate(0, Time.deltaTime * -200, 0);
             AudioManager.Instance.PlaySFX("Player Shooting");
             Destroy(laser, 3f);
         }

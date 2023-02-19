@@ -19,6 +19,12 @@ public class enemyPewPew : MonoBehaviour
     [SerializeField]
     private double range = 20;
 
+    private GameObject hack;
+    private OpeningAnimHackText hacktext;
+    private bool canPlay = false;
+    RaycastHit hit;
+    private LayerMask hitboxLayer;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,14 +32,28 @@ public class enemyPewPew : MonoBehaviour
         {
             t.gameObject.tag = "Enemy";
         }
+        hack = GameObject.FindGameObjectWithTag("Hack");
+        hacktext = hack.GetComponent<OpeningAnimHackText>();
+
+        GameObject hitbox = GameObject.FindGameObjectWithTag("Hitbox");
+        hitboxLayer = hitbox.layer;
     }
     void Update()
     {
+
+        if (canPlay == true){
+        }
+        else if (hacktext.hasPlayed() == true)
+        {
+            canPlay = true;
+        }
         transform.LookAt(player.transform);
 
-        if (inRange == false){
+        if (inRange == false)
+        {
             float dist = Vector3.Distance(player.transform.position, transform.position);
-            if (dist < range){
+            if (dist < range)
+            {
                 inRange = true;
             }
         }
@@ -45,13 +65,24 @@ public class enemyPewPew : MonoBehaviour
                 coolDown = 0;
             }
         }
-
-
-        if (inRange==true && coolDown == 0)
+        if (Physics.Raycast(transform.position, transform.position-player.transform.position, hitboxLayer))
         {
+            if (inRange == true && coolDown == 0 && canPlay == true) {
+                Shoot();
+            }
+          
+        }
+        if (coolDown > 0)
+        {
+            coolDown -= Time.deltaTime;
+            if (coolDown < 0)
+            {
+                coolDown = 0;
+            }
+        }
 
-            Shoot();
-        }  
+
+
     }
     void Shoot()
     {
