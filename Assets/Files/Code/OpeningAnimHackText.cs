@@ -30,8 +30,8 @@ public class OpeningAnimHackText : MonoBehaviour
     return played;
   }
 
-  async UniTask displayAnim() {
-    played = true; // Note: this stat should not be relied upon after an immediate call to displayAnim, as it is async!!!
+  public async UniTask displayAnim() {
+    played = false; // Note: this stat should not be relied upon after an immediate call to displayAnim, as it is async!!!
 
     RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
     if(! player) {
@@ -79,6 +79,7 @@ public class OpeningAnimHackText : MonoBehaviour
     player.open(); // Turn on the player
 
     await UniTask.Delay(1000);
+    playerCamAnim.SetBool("Start", false);
     playerCamAnim.SetBool("PlayFlyup", true); // Camera flys up above player
     
     await UniTask.Delay(4000);
@@ -93,8 +94,9 @@ public class OpeningAnimHackText : MonoBehaviour
       score.enabled = true;
     }
     player.controls.controlsEnabled = true; // reenable player controls
-        played = true;
+    played = true;
     textMesh.text = ""; // Hide text
+    playerCamAnim.SetBool("PlayFlyup", false);
   }
 
   // Update is called once per frame
