@@ -30,7 +30,7 @@ public class OpeningAnimHackText : MonoBehaviour
     return played;
   }
 
-  async UniTask displayAnim() {
+  public async UniTask displayAnim() {
     played = true; // Note: this stat should not be relied upon after an immediate call to displayAnim, as it is async!!!
 
     RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
