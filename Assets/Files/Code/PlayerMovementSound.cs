@@ -68,10 +68,10 @@ public class PlayerMovementSound : MonoBehaviour
   }*/
 
   public void play_Roll() {
-    if(AudioManager.Instance) AudioManager.Instance.play_Roll();
+    if(AudioManager.Instance) AudioManager.Instance.RepeatRolling();
   }
 
   public void stop_Roll() {
-    if(AudioManager.Instance) AudioManager.Instance.stop_Roll();
+    if(AudioManager.Instance) AudioManager.Instance.StopRolling();
   }
 }
