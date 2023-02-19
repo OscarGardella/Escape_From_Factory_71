@@ -19,17 +19,17 @@ public class PlayerHealth : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+        /*if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             TakeDamage(1);
-        }
+        }*/
     } 
 
     void OnCollisionEnter(Collision collision){ //Check if the item collides with an object tagged as "enemy"
-        if (collision.gameObject.tag == "Enemy")
+        /*if (collision.gameObject.tag == "Enemy")
         {
             TakeDamage(1);
-        }
+        }*/
         if (collision.gameObject.tag == "Projectile")
         {
             TakeDamage(1);

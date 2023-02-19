@@ -15,9 +15,9 @@ public class quitButton : MonoBehaviour
     }
     public void quitGame()
     {
-        if(hackText) {
+        if(hackText)
             hackText.resetAnim();
-        }
+        
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }
