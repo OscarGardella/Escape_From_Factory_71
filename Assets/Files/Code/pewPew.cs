@@ -24,7 +24,6 @@ public class pewPew : MonoBehaviour
     [SerializeField]
     private Camera camera;
     private OpeningAnimHackText hacktext;
-    private bool canPlay = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,13 +35,6 @@ public class pewPew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   //Unity Forum Go Crazy
-        if (canPlay == true){
-        }
-        else if (hacktext.hasPlayed() == true)
-        {
-            canPlay = true;
-        }
-
         if (coolDown > 0)
         {
             coolDown -= Time.deltaTime;
@@ -62,9 +54,8 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButton(0) && coolDown == 0 && pauseGame.paused == false && canPlay == true)
+        if (Input.GetMouseButton(0) && coolDown == 0 && pauseGame.paused == false && hacktext.hasPlayed() == true)
         {
-
             shoot();
         }
     }

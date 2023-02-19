@@ -30,13 +30,17 @@ public class OpeningAnimHackText : MonoBehaviour
     return played;
   }
 
-    public void showAnim(){
-        _ = displayAnim();
-    }
+  public void showAnim(){
+    played = false;
+    pauseGame.paused = false; // Unpause to show animation
+      _ = displayAnim();
+  }
+
+  public void resetAnim() {
+    played = false;
+  }
 
   public async UniTask displayAnim() {
-    played = true; // Note: this stat should not be relied upon after an immediate call to displayAnim, as it is async!!!
-
     RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
     if(! player) {
       Debug.Log("OpeningAnimHackText.cs: Error: unable to find RobotFreeAnim Player object via tag \"Player\"");
