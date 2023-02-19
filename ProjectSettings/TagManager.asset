@@ -11,6 +11,7 @@ TagManager:
   - ScoreDisplay
   - Hack
   - Hitbox
+  - QuitButton
   layers:
   - Default
   - TransparentFX
