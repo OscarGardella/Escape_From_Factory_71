@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class pauseGame : MonoBehaviour
 {
     [HideInInspector]
     public static bool paused = false;
+    private GameObject quitButton;
     // Start is called before the first frame update
     void Start()
     {
         //gameObject.SetActive(false);
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        quitButton = GameObject.FindGameObjectWithTag("QuitButton");
+        quitButton.GetComponent<Button>().interactable = false;
     }
 
     // Update is called once per frame
@@ -22,9 +26,11 @@ public class pauseGame : MonoBehaviour
             {
                 paused = true;
                 PauseGame();
+                quitButton.GetComponent<Button>().interactable = true;
             }
             else
             {
+                quitButton.GetComponent<Button>().interactable = false;
                 paused = false;
                 ResumeGame();
             }
