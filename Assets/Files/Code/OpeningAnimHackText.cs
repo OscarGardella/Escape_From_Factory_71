@@ -30,6 +30,10 @@ public class OpeningAnimHackText : MonoBehaviour
     return played;
   }
 
+    public void showAnim(){
+        displayAnim();
+    }
+
   public async UniTask displayAnim() {
     played = true; // Note: this stat should not be relied upon after an immediate call to displayAnim, as it is async!!!
 
