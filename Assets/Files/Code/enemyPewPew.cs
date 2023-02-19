@@ -19,6 +19,11 @@ public class enemyPewPew : MonoBehaviour
     [SerializeField]
     private double range = 20;
 
+    private GameObject hack;
+    private OpeningAnimHackText hacktext;
+    private bool canPlay = false;
+    RaycastHit hit;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,15 +31,45 @@ public class enemyPewPew : MonoBehaviour
         {
             t.gameObject.tag = "Enemy";
         }
+        hack = GameObject.FindGameObjectWithTag("Hack");
+        hacktext = hack.GetComponent<OpeningAnimHackText>();
     }
     void Update()
     {
+        if (canPlay == true)
+        {
+        }
+        else if (hacktext.hasPlayed() == true)
+        {
+            canPlay = true;
+        }
         transform.LookAt(player.transform);
 
-        if (inRange == false){
+        if (inRange == false)
+        {
             float dist = Vector3.Distance(player.transform.position, transform.position);
-            if (dist < range){
+            if (dist < range)
+            {
                 inRange = true;
+            }
+        }
+        if (coolDown > 0)
+        {
+            coolDown -= Time.deltaTime;
+            if (coolDown < 0)
+            {
+                coolDown = 0;
+            }
+        }
+        if (Physics.Raycast(transform.position, player.transform.position, out hit))
+        {
+            print(hit.collider.name);
+            if (hit.collider == player.GetComponent<Collider>())
+            {
+                if (inRange == true && coolDown == 0 && canPlay == true)
+                {
+                    Shoot();
+                }
             }
         }
         if (coolDown > 0)
@@ -47,11 +82,7 @@ public class enemyPewPew : MonoBehaviour
         }
 
 
-        if (inRange==true && coolDown == 0)
-        {
 
-            Shoot();
-        }  
     }
     void Shoot()
     {
