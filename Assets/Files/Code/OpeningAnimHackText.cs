@@ -18,7 +18,7 @@ public class OpeningAnimHackText : MonoBehaviour
     if(! textMesh) {
       throw new UnassignedReferenceException("Unable to find TextMesh for Hacking TV");
     }
-    _ = displayAnim();
+    //_ = displayAnim();
     played = false;
   }
 
@@ -30,8 +30,12 @@ public class OpeningAnimHackText : MonoBehaviour
     return played;
   }
 
+    public void showAnim(){
+        _ = displayAnim();
+    }
+
   public async UniTask displayAnim() {
-    played = false; // Note: this stat should not be relied upon after an immediate call to displayAnim, as it is async!!!
+    played = true; // Note: this stat should not be relied upon after an immediate call to displayAnim, as it is async!!!
 
     RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
     if(! player) {
