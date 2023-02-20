@@ -20,7 +20,7 @@ public class OpeningAnimHackText : MonoBehaviour
     }
     //_ = displayAnim();
     played = false;
-    showAnim();
+
   }
 
   private async UniTask waitForMouseClick() {
