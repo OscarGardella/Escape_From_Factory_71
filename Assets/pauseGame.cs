@@ -19,7 +19,7 @@ public class pauseGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) // Note: Added P, as most browsers react to Escape
         {
             if (paused == false)
             {

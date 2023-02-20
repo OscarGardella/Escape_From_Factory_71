@@ -117,6 +117,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 19.55
       objectReference: {fileID: 0}
+    - target: {fileID: 8021321435090081411, guid: 0d3ac1842ff44433dbf27ce5cab0b99b, type: 3}
+      propertyPath: max_power
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021321435090081411, guid: 0d3ac1842ff44433dbf27ce5cab0b99b, type: 3}
+      propertyPath: current_power
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8021321435090081420, guid: 0d3ac1842ff44433dbf27ce5cab0b99b, type: 3}
       propertyPath: m_Name
       value: Power Bar
@@ -242,6 +250,10 @@ PrefabInstance:
     - target: {fileID: 6976595115578325067, guid: fd1ae73df5c1a40d2ac165d6ade962ec, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976595115578325067, guid: fd1ae73df5c1a40d2ac165d6ade962ec, type: 3}
+      propertyPath: current_health
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6976595115578325068, guid: fd1ae73df5c1a40d2ac165d6ade962ec, type: 3}
       propertyPath: m_Pivot.x
