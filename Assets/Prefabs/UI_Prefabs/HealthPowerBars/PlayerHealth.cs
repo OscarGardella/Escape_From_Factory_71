@@ -41,8 +41,14 @@ public class PlayerHealth : MonoBehaviour
         current_health -= damage_taken;
         player_health_bar.SetHealth(current_health);
         if (current_health <= 0){
-            game_over.RevealGameOver(); //reveals the game over screen
             Destroy(gameObject);
+            GameObject wrapObj = GameObject.FindGameObjectWithTag("CharacterWrapper");
+            if(! wrapObj)
+                Debug.Log("PlayerHealth.cs: Error: Unable to find object with tag \"CharacterWrapper\". Attempted to destroy player, but unable to destroy wrapper object.");
+            else
+                Destroy(wrapObj);
+            game_over.RevealGameOver(); //reveals the game over screen
+            Debug.Log("Player Destroyed. Game Over!");
         }
     }
 
