@@ -11,7 +11,7 @@ public class pauseGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
         quitButton = GameObject.FindGameObjectWithTag("QuitButton");
         quitButton.GetComponent<Button>().interactable = false;
@@ -24,12 +24,14 @@ public class pauseGame : MonoBehaviour
         {
             if (paused == false)
             {
+                gameObject.SetActive(true);
                 paused = true;
                 PauseGame();
                 quitButton.GetComponent<Button>().interactable = true;
             }
             else
             {
+                gameObject.SetActive(false);
                 quitButton.GetComponent<Button>().interactable = false;
                 paused = false;
                 ResumeGame();
