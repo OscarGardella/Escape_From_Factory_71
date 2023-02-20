@@ -72,7 +72,7 @@ public class pewPew : MonoBehaviour
 
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(90, 0, -launchVelocity));
 
-            laser.transform.Translate(0, Time.deltaTime * -200, 0);
+            laser.transform.Translate(0, (float)(1/60.0)* (float)(1.0/-20*launchVelocity), 0);
             AudioManager.Instance.PlaySFX("Player Shooting");
             Destroy(laser, 3f);
         }
