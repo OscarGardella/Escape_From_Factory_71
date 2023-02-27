@@ -29,12 +29,13 @@ public class enemyPewPew : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         if(! player) Debug.Log("enemyPewPew.cs: error: Failed to find a game object with tag Player");
-        foreach (Transform t in transform)
-        {
+        foreach (Transform t in transform) {
             t.gameObject.tag = "Enemy";
         }
+
         hack = GameObject.FindGameObjectWithTag("Hack");
         if(! hack) Debug.Log("enemyPewPew.cs: Error: Failed to find a game object with tag Hack. This script will probably crash");
+
         hacktext = hack.GetComponent<OpeningAnimHackText>();
         if(! hacktext) Debug.Log("enemyPewPew.cs: Error: Failed to find component OpeningAnimHackText. This script will probably crash");
 
@@ -45,55 +46,36 @@ public class enemyPewPew : MonoBehaviour
     void Update()
     {
         
-        //return;
-
         if (canPlay == true){
-        }
-        else if (hacktext.hasPlayed() == true)
-        {
+        } else if (hacktext.hasPlayed() == true){
             canPlay = true;
         }
         
         transform.LookAt(player.transform);
 
-        if (inRange == false)
-        {
-            
+        if (inRange == false){
             float dist = Vector3.Distance(player.transform.position, transform.position);
-            if (dist < range)
-            {
+            if (dist < range) {
                 inRange = true;
-            }
-            
+            }  
         }
         
-        if (coolDown > 0)
-        {
-            
+        if (coolDown > 0){
             coolDown -= Time.deltaTime;
-            if (coolDown < 0)
-            {
+            if (coolDown < 0)  {
                 coolDown = 0;
             }
-            
         }
         
-        if (Physics.Raycast(transform.position, transform.position-player.transform.position, hitboxLayer))
-        {
-            
+        if (Physics.Raycast(transform.position, transform.position-player.transform.position, hitboxLayer)){
             if (inRange == true && coolDown == 0 && canPlay == true) {
-                
                 Shoot();
-                
             }
-            
         }
         
-        if (coolDown > 0)
-        {
+        if (coolDown > 0) {
             coolDown -= Time.deltaTime;
-            if (coolDown < 0)
-            {
+            if (coolDown < 0) {
                 coolDown = 0;
             }
         }
@@ -112,12 +94,11 @@ public class enemyPewPew : MonoBehaviour
         
         laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, launchVelocity));
         
-        if(AudioManager.Instance) {
-            
-          AudioManager.Instance.PlaySFX("Enemy Shooting");
-         } else {
+        if(AudioManager.Instance) { 
+            AudioManager.Instance.PlaySFX("Enemy Shooting");
+        } else {
             Debug.Log("enemyPewPew.cs: Error: AudioManager.instance is null! Cannot play enemy shooting sound.");
-         }
+        }
         Destroy(laser, 3f);
         
     }
