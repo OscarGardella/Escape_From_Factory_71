@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5948092083925284595}
   - component: {fileID: 1423765974272137912}
   - component: {fileID: 4589476717737634729}
+  - component: {fileID: 2730020171488017715}
   m_Layer: 5
   m_Name: Find an Exit UI
   m_TagString: Untagged
@@ -101,6 +102,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2730020171488017715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796040274881820577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139e5b91494f34c8ba94fa8e2be62844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3110998528559991201
 GameObject:
   m_ObjectHideFlags: 0

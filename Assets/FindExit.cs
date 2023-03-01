@@ -14,6 +14,7 @@ public class FindExit : MonoBehaviour
     // Update is called once per frame
     IEnumerator ShowFindExit()
     {
+        Debug.Log("In ShowFindExit");
         RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
         while (player.controls.controlsEnabled != true)
         {
