@@ -39,6 +39,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8482687235215778682}
     m_Modifications:
+    - target: {fileID: 5071744094170794039, guid: a308b230d8cef432fa78b0160ad139e4, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6800051077773163755, guid: a308b230d8cef432fa78b0160ad139e4, type: 3}
       propertyPath: m_Name
       value: Upgrade1
