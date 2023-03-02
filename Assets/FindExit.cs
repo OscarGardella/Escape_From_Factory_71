@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class FindExit : MonoBehaviour
 {
@@ -12,16 +13,24 @@ public class FindExit : MonoBehaviour
     }
 
     // Update is called once per frame
-    IEnumerator ShowFindExit()
+    public async void ShowFindExit()
+    //IEnumerator ShowFindExit()
     {
+        await Task.Delay(5000);
+        //yield return new WaitForSeconds(5);
         Debug.Log("In ShowFindExit");
         RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
+        Debug.Log(player.controls.controlsEnabled);
         while (player.controls.controlsEnabled != true)
         {
+            Debug.Log("true");
             //do nothing
         }
         gameObject.SetActive(true);
-        yield return new WaitForSeconds(2);
+        Debug.Log("here");
+        //yield return new WaitForSeconds(2);
+        Debug.Log("?");
         gameObject.SetActive(false);
+        Debug.Log("done");
     }
 }

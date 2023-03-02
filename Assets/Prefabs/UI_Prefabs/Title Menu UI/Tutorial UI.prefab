@@ -2425,7 +2425,7 @@ GameObject:
   - component: {fileID: 3930806844233852684}
   - component: {fileID: 3435998625897632100}
   m_Layer: 5
-  m_Name: Credits Back Arrow
+  m_Name: Tutorial Back Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
