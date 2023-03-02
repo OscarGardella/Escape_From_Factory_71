@@ -22,10 +22,6 @@ public class Upgrade_item : MonoBehaviour
     //this fucntion is only used for testing, remove before release
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0)) //roll ability key
-        {
-            upgradePanel1.revealUpgrade();
-            upgradePanel2.revealUpgrade();
-        }
+        transform.Rotate(Time.deltaTime * 0, 15, 0);
     }
 }
