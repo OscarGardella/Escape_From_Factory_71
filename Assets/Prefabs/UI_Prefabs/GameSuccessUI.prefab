@@ -323,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &507845336132639324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8083632366522792055
 MonoBehaviour:
@@ -420,7 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e505301baa94145e19a6f0f5bbd71988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: {fileID: 1692136234251778077}
 --- !u!1 &4089525328018599547
 GameObject:
   m_ObjectHideFlags: 0

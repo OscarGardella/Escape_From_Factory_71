@@ -9,28 +9,15 @@ public class FindExit : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(false);
-        ShowFindExit();
+    }
+    
+    public void ShowFindExit()
+    {
+        gameObject.SetActive(true);
     }
 
-    // Update is called once per frame
-    public async void ShowFindExit()
-    //IEnumerator ShowFindExit()
+    public void HideFindExit()
     {
-        await Task.Delay(5000);
-        //yield return new WaitForSeconds(5);
-        Debug.Log("In ShowFindExit");
-        RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
-        Debug.Log(player.controls.controlsEnabled);
-        while (player.controls.controlsEnabled != true)
-        {
-            Debug.Log("true");
-            //do nothing
-        }
-        gameObject.SetActive(true);
-        Debug.Log("here");
-        //yield return new WaitForSeconds(2);
-        Debug.Log("?");
         gameObject.SetActive(false);
-        Debug.Log("done");
     }
 }
