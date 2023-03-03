@@ -23,11 +23,13 @@ public class pewPew : MonoBehaviour
     public float powerDrain = 1.0f;
     [SerializeField]
     private Camera camera;
+    private OpeningAnimHackText hacktext;
     // Start is called before the first frame update
     void Start()
     {
 
         hack = GameObject.FindGameObjectWithTag("Hack");
+        hacktext = hack.GetComponent<OpeningAnimHackText>();
     }
 
     // Update is called once per frame
@@ -52,9 +54,8 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
-        if (Input.GetMouseButton(0) && coolDown == 0&& pauseGame.paused==false&&hack.isPlaying()==false)
+        if (Input.GetMouseButton(0) && coolDown == 0 && pauseGame.paused == false && hacktext.hasPlayed() == true)
         {
-
             shoot();
         }
     }
@@ -71,7 +72,7 @@ public class pewPew : MonoBehaviour
 
             laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(90, 0, -launchVelocity));
 
-            laser.transform.Translate(0, Time.deltaTime * -200, 0);
+            laser.transform.Translate(0, (float)(1/60.0)* (float)(1.0/-20*launchVelocity), 0);
             AudioManager.Instance.PlaySFX("Player Shooting");
             Destroy(laser, 3f);
         }

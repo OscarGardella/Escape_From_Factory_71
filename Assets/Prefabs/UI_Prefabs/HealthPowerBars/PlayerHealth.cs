@@ -19,17 +19,17 @@ public class PlayerHealth : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+        /*if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             TakeDamage(1);
-        }
+        }*/
     } 
 
     void OnCollisionEnter(Collision collision){ //Check if the item collides with an object tagged as "enemy"
-        if (collision.gameObject.tag == "Enemy")
+        /*if (collision.gameObject.tag == "Enemy")
         {
             TakeDamage(1);
-        }
+        }*/
         if (collision.gameObject.tag == "Projectile")
         {
             TakeDamage(1);
@@ -41,8 +41,14 @@ public class PlayerHealth : MonoBehaviour
         current_health -= damage_taken;
         player_health_bar.SetHealth(current_health);
         if (current_health <= 0){
-            game_over.RevealGameOver(); //reveals the game over screen
             Destroy(gameObject);
+            GameObject wrapObj = GameObject.FindGameObjectWithTag("CharacterWrapper");
+            if(! wrapObj)
+                Debug.Log("PlayerHealth.cs: Error: Unable to find object with tag \"CharacterWrapper\". Attempted to destroy player, but unable to destroy wrapper object.");
+            else
+                Destroy(wrapObj);
+            game_over.RevealGameOver(); //reveals the game over screen
+            Debug.Log("Player Destroyed. Game Over!");
         }
     }
 

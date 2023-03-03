@@ -34,7 +34,8 @@ public class Upgrade_item : MonoBehaviour
     }
 
     //this fucntion is only used for testing, remove before release
-    void Update(){
+    void Update()
+    {
         transform.Rotate(Time.deltaTime * 0, 15, 0);
     }
 }

@@ -98,7 +98,6 @@ public class InputControls //: MonoBehaviour
   // <param name="orientation">a global rotation offset (ex: if up for your character really means 270 degrees instead of 0)</param>
   public static float getNearestAngle(float currAngle, float targetAngle, float orientation) {
     currAngle = currAngle - orientation;
-    Debug.Log(orientation);
     float adjTarget = (targetAngle + orientation) % 360;
     int offset = 1;
     if(currAngle < 0) offset = 0;

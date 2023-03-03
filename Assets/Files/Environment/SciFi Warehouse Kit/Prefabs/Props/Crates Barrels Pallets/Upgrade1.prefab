@@ -84,7 +84,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4282598080
+    rgba: 4280729039
   m_Size: 5
 --- !u!114 &6169825147195782782
 MonoBehaviour:
@@ -98,4 +98,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80fa9f7a997814b32aa504bdd728ec2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityTracker: {fileID: 0}
+  upgradePanel1: {fileID: 0}
+  upgradePanel2: {fileID: 0}

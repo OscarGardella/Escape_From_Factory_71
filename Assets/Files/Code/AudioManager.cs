@@ -56,6 +56,36 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void RepeatRolling()
+    {
+        InvokeRepeating("Rolling", 0.1f, 1.090f);
+        
+    }
+
+    public void Rolling()
+    {
+        PlayRolling("Rolling");
+    }
+
+    public void PlayRolling(string name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Sound not found");
+        }
+        else
+        {
+            sfxSource.PlayOneShot(s.clip);
+        }
+    }
+
+    public void StopRolling()
+    {
+        CancelInvoke("Rolling");
+    }
+    
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;

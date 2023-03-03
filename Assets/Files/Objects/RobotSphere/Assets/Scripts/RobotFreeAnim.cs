@@ -224,13 +224,13 @@ public class RobotFreeAnim : MonoBehaviour {
 
     // Press left control while walking to enter roll mode
     // deprecated
-    if(Input.GetKeyDown(KeyCode.LeftControl) && rollingEnabled) {
+    /*if(Input.GetKeyDown(KeyCode.LeftControl) && rollingEnabled) {
       //rollFor(2.0F);
       if(controls.isMoving()) {
         //walkMom.target = rollMoveSpeed;
         _ = enterRollMode();
       }
-    }
+    }*/
 
     if(controls.stoppedMoving()) { // && !pauseGame.paused
       exitRollMode();

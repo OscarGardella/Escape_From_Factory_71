@@ -8,6 +8,10 @@ TagManager:
   - Projectile
   - Health
   - Laser
+  - ScoreDisplay
+  - Hack
+  - Hitbox
+  - QuitButton
   layers:
   - Default
   - TransparentFX
@@ -16,7 +20,7 @@ TagManager:
   - Water
   - UI
   - Enemy Laser
-  - 
+  - Player Hitbox
   - 
   - 
   - 
