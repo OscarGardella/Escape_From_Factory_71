@@ -59,6 +59,7 @@ public class RobotFreeAnim : MonoBehaviour {
   public float cameraRotation = 0; // Angle the camera looks at the player. Also changes the direction of the controls.
   public float cameraHeight = 10; // How far away you look at the character
   public float cameraVertOffset = 0; // Height offset from character
+  private bool lockCameraHeight = false; // Whether to lock the final camera y-axis
 
   [Range(0.0F, 90.0F)]
   public float cameraAngle = 90;
@@ -118,20 +119,23 @@ public class RobotFreeAnim : MonoBehaviour {
      anim.SetBool("Open_Anim", false);
   }
 
-  // Sets the camera position relative to the player
+  // Sets the camera position relative to the player. Ignores height if lockCameraHeight is enabled
   private void setCameraPos(float angle, float height, float vertOffset, Vector3 offset) {
     if(mainCamera != null) {  
+      float oldCameraHeight = mainCamera.transform.position.y;
       Vector3 cameraPos = transform.position; //- transform.forward * cosDegF(cameraAngle);
-
+      
       // Set camera rotation based on provided parameters and global camera rotation (global camera rotation basically makes angles "transparent" to the orientation of the player).
       Quaternion cameraLook = new Quaternion();
       cameraLook.eulerAngles = new Vector3(angle, cameraRotation, 0); // Apply local angle and global camera rotation
       mainCamera.transform.rotation = cameraLook;
 
       if(angle == 90) { // Optimization - avoid expensive sin/cos calculations for a "normal" top-down camera orientation.
-        cameraPos.y += height + vertOffset;
+        if(cameraLockEnabled) cameraPos.y = oldCameraHeight; // Restore original height if camera lock is enabled
+        else cameraPos.y += height + vertOffset;
+       
         mainCamera.transform.position = cameraPos - offset;
-        return;
+        cameraPos.y = oldCameraHeight;
       }
       // Calculate camera angle and height
       // Any function with Sin/Cos is related to giving a specified amount of tilt to the camera.
@@ -139,7 +143,8 @@ public class RobotFreeAnim : MonoBehaviour {
       float sinAngle = sinDegF(angle);
       float cosAngle = cosDegF(angle);
 
-      cameraPos.y += height * sinAngle + vertOffset;
+      if(cameraLockEnabled) cameraPos.y = oldCameraHeight;
+      else cameraPos.y += height * sinAngle + vertOffset;
       // instance var cameraRotation will always make this relative to the player
       cameraPos.x -= sinDegF(cameraRotation) * height * cosAngle;
       cameraPos.z -= cosDegF(cameraRotation) * height * cosAngle;
@@ -195,6 +200,7 @@ public class RobotFreeAnim : MonoBehaviour {
     if(! isRolling()) return; // Not in roll mode 
     walkMom.target = walkMoveSpeed;
     anim.SetBool("Roll_Anim", false);
+    anim.SetBool("Walk_Anim", controls.isMoving()); // Restore walking animation
     moveSpeed = walkMoveSpeed;
     rotMom.accelSpeed += rollMomentumDrag;
   }
@@ -213,6 +219,7 @@ public class RobotFreeAnim : MonoBehaviour {
   void CheckKey() {
     // Update the state machine only once per applicable keypress - handle WASD controls
     if(controls.startedMoving()) {
+      lockCameraHeight = true; // Lock camera height while moving to prevent annoying camera bob
       if(walkMom.target != rollMoveSpeed) {
         walkMom.target = walkMoveSpeed; // Walk -- TODO: Why doesn't this hold?
         anim.SetBool("Walk_Anim", true);
@@ -223,16 +230,17 @@ public class RobotFreeAnim : MonoBehaviour {
     rotMom.target = controls.getFacing(rot[1]); // Based on where I am currently facing, where do the controls indicate I should face? Let me just slowly face there...
 
     // Press left control while walking to enter roll mode
-    // deprecated
-    /*if(Input.GetKeyDown(KeyCode.LeftControl) && rollingEnabled) {
-      //rollFor(2.0F);
-      if(controls.isMoving()) {
+    // disabled
+    if(Input.GetKeyDown(KeyCode.LeftControl) && rollingEnabled) {
+      rollFor(1.0F);
+      /*if(controls.isMoving()) {
         //walkMom.target = rollMoveSpeed;
         _ = enterRollMode();
-      }
-    }*/
+      }*/
+    }
 
     if(controls.stoppedMoving()) { // && !pauseGame.paused
+      lockCameraHeight = false;
       exitRollMode();
       walkMom.target = 0;
       anim.SetBool("Walk_Anim", false);
