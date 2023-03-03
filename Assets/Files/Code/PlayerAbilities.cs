@@ -27,14 +27,16 @@ public class PlayerAbilities : MonoBehaviour
         } else if(ability == AbilityTracking.AbilityName.Heal){ //gain heal ability
             player_health_bar.UpgradeHealth(5);
         } else if(ability == AbilityTracking.AbilityName.Energy){ //gain energy ability
-            player_power_bar.regen_rate = 2; //doubles power regen
-        } else if(ability == AbilityTracking.AbilityName.Speed){ //gain energy ability
+            player_power_bar.regen_rate = 2.5; //multiplies power regen by 2.5
+        } else if(ability == AbilityTracking.AbilityName.Speed){ //gain speed ability
             player_character.walkMoveSpeed += player_character.walkMoveSpeed * 2.5f;
         }
     }
 
     void ActivateAbility(AbilityTracking.AbilityName ability){ 
-        if(ability == AbilityTracking.AbilityName.Beam){ //use beam ability
+        if (ability == AbilityTracking.AbilityName.Null){
+            abilityTracker.NoAbility();
+        } else if(ability == AbilityTracking.AbilityName.Beam){ //use beam ability
             if(player_power_bar.ReducePower(7) == true){
                 //beam method call
             }

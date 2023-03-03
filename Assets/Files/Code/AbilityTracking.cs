@@ -16,7 +16,7 @@ public class AbilityTracking : MonoBehaviour
 
     public enum AbilityName //names of all abilites
     {
-        Beam, Shield, Roll, Target, Heal, Energy, Speed
+        Beam, Shield, Roll, Target, Heal, Energy, Speed, Null
     }
 
     private List<AbilityName> unlockedAbilityList;
@@ -63,7 +63,7 @@ public class AbilityTracking : MonoBehaviour
         player.PassiveAbility(ability);
     }
 
-    public void Tutorial(Image icon ){ //reveals text explaining what button to click to activate your ability
+    public void Tutorial(Image icon){ //reveals text explaining what button to click to activate your ability
         if(icon == activeIcon1){
             tutorial.text = "Click Q to activate your new ability!"; //may want to add ability name to tutorial in the future
             StartCoroutine(RevealTutorial());
@@ -71,6 +71,11 @@ public class AbilityTracking : MonoBehaviour
             tutorial.text = "Click E to activate your new ability!";
             StartCoroutine(RevealTutorial());
         }
+    }
+
+    public void NoAbility(){ //used to tell the player they haven't unlocked an ability
+        tutorial.text = "You do not have an ability unlocked for that button";
+        StartCoroutine(RevealTutorial());
     }
 
     IEnumerator RevealTutorial(){ //reveals tutorial for a few seconds
@@ -95,6 +100,8 @@ public class AbilityTracking : MonoBehaviour
     void Start(){
         activeIcon1.gameObject.SetActive(false);
         activeIcon2.gameObject.SetActive(false);
+        QAbility = AbilityName.Null;
+        EAbility = AbilityName.Null;
         tutorial.gameObject.SetActive(false);
     }
 }

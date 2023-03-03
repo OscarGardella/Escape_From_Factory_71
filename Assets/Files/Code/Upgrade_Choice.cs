@@ -20,7 +20,6 @@ public class Upgrade_Choice : MonoBehaviour
 
     public class upgradePanel
     {
-        //add enum code at some point?
         string name;
         string description;
         int cost;
