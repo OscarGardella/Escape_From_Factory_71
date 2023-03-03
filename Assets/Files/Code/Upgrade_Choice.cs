@@ -25,9 +25,6 @@ public class Upgrade_Choice : MonoBehaviour
         string description;
         int cost;
         Sprite icon;
-        enum AbilityName{ //names of all abilites
-            Shield, Roll, Target, Heal, Energy, Speed //add beam later
-        }
 
         public upgradePanel(string myName, string myDescription, int myCost, Sprite myIcon){
             name = myName;
@@ -53,17 +50,16 @@ public class Upgrade_Choice : MonoBehaviour
         }
     }
 
-    public void generatePanelChoice(){
+    public void generatePanelChoice(int index){
         upgradePanel[] tempPanelArray = makePanelArray(); //makes an array of all the panels
-        int r = randomNum(0, tempPanelArray.Length); //generates a random index of the panel array
-            abilityIcon.sprite = tempPanelArray[r].getIcon(); //sets ability icon to current panel from the array
-            nameText.text = tempPanelArray[r].getName();
-            costText.text = "Cost: " + tempPanelArray[r].getCost();
-            descriptionText.text = tempPanelArray[r].getDescription();
+        abilityIcon.sprite = tempPanelArray[index].getIcon(); //sets ability icon to current panel from the array
+        nameText.text = tempPanelArray[index].getName();
+        costText.text = "Power Cost: " + tempPanelArray[index].getCost();
+        descriptionText.text = tempPanelArray[index].getDescription();
     }
 
-    public void revealUpgrade(){
-        generatePanelChoice();
+    public void revealUpgrade(int index){
+        generatePanelChoice(index);
         gameObject.SetActive(true); //reveals ability selection screen
         pauseGame();
     }
@@ -102,7 +98,7 @@ public class Upgrade_Choice : MonoBehaviour
         otherUpgrade.spriteArray = spriteArray;
     }
 
-    upgradePanel[] makePanelArray(){ //returns an array of all the upgrade panel data
+    public upgradePanel[] makePanelArray(){ //returns an array of all the upgrade panel data
         upgradePanel[] tempPanelArray = new upgradePanel[spriteArray.Length]; //makes an upgrade panel array of size equal to the num sprites
         for (int i = 0; i < tempPanelArray.Length; i++)
         {
