@@ -19,7 +19,12 @@ public class Shield : MonoBehaviour
         transform.position = objectToFollow.position; //+ offset;
     }
 
+    void OnCollisionEnter(Collision collision){
+        AudioManager.Instance.PlaySFX("Shield Block");
+    }
+
     public void ActivateShield(float time){
+        AudioManager.Instance.PlaySFX("Shield On");
         gameObject.SetActive(true);
         StartCoroutine(ShieldTimer(time));
     }
