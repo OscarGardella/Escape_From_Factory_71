@@ -56,26 +56,23 @@ public class enemyPewPew : MonoBehaviour
         
         transform.LookAt(player.transform);
 
-        if (inRange == false)
+        float dist = Vector3.Distance(player.transform.position, transform.position);
+        if (dist < range)
         {
-            
-            float dist = Vector3.Distance(player.transform.position, transform.position);
-            if (dist < range)
-            {
-                inRange = true;
-            }
-            
+            inRange = true;
+        }
+        else
+        {
+            inRange = false;
         }
         
         if (coolDown > 0)
         {
-            
             coolDown -= Time.deltaTime;
             if (coolDown < 0)
             {
                 coolDown = 0;
             }
-            
         }
         
         if (Physics.Raycast(transform.position, transform.position-player.transform.position, hitboxLayer))
