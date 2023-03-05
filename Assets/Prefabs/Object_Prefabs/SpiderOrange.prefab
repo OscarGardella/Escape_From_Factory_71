@@ -872,6 +872,7 @@ GameObject:
   - component: {fileID: 975031538594301426}
   - component: {fileID: 5261813238303575048}
   - component: {fileID: 3239652281707374337}
+  - component: {fileID: 3544771650532684724}
   m_Layer: 0
   m_Name: SpiderOrange
   m_TagString: Enemy
@@ -966,6 +967,24 @@ MonoBehaviour:
   attackDelayMS: 500
   healthBar: {fileID: 0}
   activationDistance: 50
+--- !u!114 &3544771650532684724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283313700805596524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.11764706, g: 0.53333336, b: 0.8980392, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 1
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1283405590046697806
 GameObject:
   m_ObjectHideFlags: 0
