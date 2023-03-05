@@ -53,7 +53,6 @@ public class enemyPewPew : MonoBehaviour
         
         transform.LookAt(player.transform);
 
-<<<<<<< HEAD
         float dist = Vector3.Distance(player.transform.position, transform.position);
         if (dist < range)
         {
@@ -66,16 +65,6 @@ public class enemyPewPew : MonoBehaviour
         
         if (coolDown > 0)
         {
-=======
-        if (inRange == false){
-            float dist = Vector3.Distance(player.transform.position, transform.position);
-            if (dist < range) {
-                inRange = true;
-            }  
-        }
-        
-        if (coolDown > 0){
->>>>>>> ColorblindFriendliness
             coolDown -= Time.deltaTime;
             if (coolDown < 0)  {
                 coolDown = 0;
