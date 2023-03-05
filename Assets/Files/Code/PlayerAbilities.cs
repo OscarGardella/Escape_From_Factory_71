@@ -46,7 +46,7 @@ public class PlayerAbilities : MonoBehaviour
             }
         } else if(ability == AbilityTracking.AbilityName.Roll){ //use roll ability
             if(player_power_bar.ReducePower(4) == true){
-                player_character.rollFor(2.0f);
+                player_character.rollFor(3f);
             }
         }
     }
