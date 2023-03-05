@@ -318,5 +318,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: be80f8c51853b4563970ab2828afbd23, type: 3}
   - name: Walk Clink3
     clip: {fileID: 8300000, guid: 5a6ca8bcefd2c48ef94444b41d073cb2, type: 3}
+  - name: Stage Complete
+    clip: {fileID: 8300000, guid: a356af9178bfe41a49670e4a63747bce, type: 3}
   musicSource: {fileID: 8937391941393468490}
   sfxSource: {fileID: 8937391940881189414}
