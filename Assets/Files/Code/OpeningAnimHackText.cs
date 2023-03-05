@@ -8,6 +8,8 @@ public class OpeningAnimHackText : MonoBehaviour
 {
   TMP_Text textMesh;
   private bool played; // True when the opening animation is currently playing
+  [SerializeField]
+  private FindExit findUI;
 
   // Start is called before the first frame update
   void Start() {
@@ -106,7 +108,10 @@ public class OpeningAnimHackText : MonoBehaviour
     played = true;
     textMesh.text = ""; // Hide text
     playerCamAnim.SetBool("PlayFlyup", false);
-  }
+    findUI.ShowFindExit();
+    await UniTask.Delay(2000);
+    findUI.HideFindExit();
+    }
 
   // Update is called once per frame
   /*void Update()
