@@ -23,7 +23,7 @@ public class PlayerAbilities : MonoBehaviour
 
     public void PassiveAbility(AbilityTracking.AbilityName ability){
         if(ability == AbilityTracking.AbilityName.Target){ //gain targeting laser ability
-            player_shooter.fireDelay = 0.1;
+            player_shooter.FireDelay = 0.1;
         } else if(ability == AbilityTracking.AbilityName.Heal){ //gain heal ability
             player_health_bar.UpgradeHealth(5);
         } else if(ability == AbilityTracking.AbilityName.Energy){ //gain energy ability
