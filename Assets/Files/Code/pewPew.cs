@@ -29,11 +29,13 @@ public class pewPew : MonoBehaviour
     [HideInInspector]
     public bool Enabled = true;
     public float Duration = 3f;
+    private Quaternion defRot;
     // Start is called before the first frame update
     void Start()
     {
         hack = GameObject.FindGameObjectWithTag("Hack");
         hacktext = hack.GetComponent<OpeningAnimHackText>();
+        defRot = transform.rotation;
     }
 
     // Update is called once per frame
@@ -60,8 +62,56 @@ public class pewPew : MonoBehaviour
             float rotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg - 180;
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
-
-        if (Input.GetMouseButton(0) && enabled==true&&coolDown == 0 && pauseGame.paused == false && canPlay == true) {
+        bool canShoot = (enabled == true && coolDown == 0 && pauseGame.paused == false && canPlay == true);
+        if (Input.GetMouseButton(0) && canShoot) {
+            shoot();
+        }
+        else if (Input.GetKey(KeyCode.UpArrow)&&Input.GetKey(KeyCode.RightArrow)&& canShoot)    //Forward&Right
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, 45);
+            transform.Rotate(-90, 0, 0);
+            shoot();
+        }
+        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow) && canShoot)    //Forward&Left
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, -45);
+            transform.Rotate(-90, 0, 0);
+            shoot();
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow) && canShoot)    //Back and Right
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, 135);
+            transform.Rotate(-90, 0, 0);
+            shoot();
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow) && canShoot)    //Back&Left
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, -135);
+            transform.Rotate(-90, 0, 0);
+            shoot();
+        }
+        else if (Input.GetKey(KeyCode.UpArrow)&&canShoot)   //Shoots Up
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, 0);
+            transform.Rotate(-90, 0, 0);
+            shoot();
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) && canShoot)   //Shoots Down
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, 180);
+            transform.Rotate(-90, 0, 0);
+            shoot();
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) && canShoot)   //Shoots Right
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, 90);
+            transform.Rotate(-90, 0, 0);
+            shoot();
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) && canShoot)   //Shoots Left
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, -90);
+            transform.Rotate(-90, 0, 0);
             shoot();
         }
     }
