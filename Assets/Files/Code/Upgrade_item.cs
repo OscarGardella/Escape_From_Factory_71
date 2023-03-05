@@ -10,6 +10,7 @@ public class Upgrade_item : MonoBehaviour
 
     void OnCollisionEnter(Collision collision){
         //Check if the item collides with an object named "Player"
+        AudioManager.Instance.PlaySFX("Upgrade!");
         if (collision.gameObject.name == "MainCharacter"){
             int arrayLength = upgradePanel1.makePanelArray().Length;
             int upgrade1 = randomNum(0, arrayLength);

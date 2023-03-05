@@ -318,5 +318,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: be80f8c51853b4563970ab2828afbd23, type: 3}
   - name: Walk Clink3
     clip: {fileID: 8300000, guid: 5a6ca8bcefd2c48ef94444b41d073cb2, type: 3}
+  - name: Upgrade!
+    clip: {fileID: 8300000, guid: 75f76d6d5f1214a60b638a345239030b, type: 3}
+  - name: Shield Block
+    clip: {fileID: 8300000, guid: 8729c60772b5242b8b3762e62d0c807c, type: 3}
+  - name: Shield On
+    clip: {fileID: 8300000, guid: d41fd346f9b8b49e59bb63749d13df3d, type: 3}
   musicSource: {fileID: 8937391941393468490}
   sfxSource: {fileID: 8937391940881189414}
