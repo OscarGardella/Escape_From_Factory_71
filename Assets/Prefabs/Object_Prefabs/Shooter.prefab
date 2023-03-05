@@ -100,10 +100,12 @@ MonoBehaviour:
   projectile: {fileID: 2669293004302056413, guid: 0f743a4a96d987c48a8dd7670d0167fe, type: 3}
   launchVelocity: 3000
   sfx: {fileID: 937052024181481451}
-  fireDelay: 0.25
+  FireDelay: 0.5
   powerBar: {fileID: 0}
-  powerDrain: 1
+  PowerDrain: 1
   camera: {fileID: 0}
+  Enabled: 1
+  Duration: 3
 --- !u!82 &937052024181481451
 AudioSource:
   m_ObjectHideFlags: 0

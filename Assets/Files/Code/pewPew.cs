@@ -15,7 +15,7 @@ public class pewPew : MonoBehaviour
     private float launchVelocity = 3000f;
     [SerializeField]
     private AudioSource sfx;
-    public double FireDelay = 1.0;
+    public double FireDelay = 0.5;
     private Vector3 mousePos;
     private double coolDown = 0;
     [SerializeField]
