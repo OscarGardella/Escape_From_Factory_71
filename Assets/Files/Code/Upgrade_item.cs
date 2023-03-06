@@ -16,7 +16,7 @@ public class Upgrade_item : MonoBehaviour
             int upgrade1 = randomNum(0, arrayLength);
             int upgrade2 = randomNum(0, arrayLength);
             if (upgrade1 == upgrade2){ //stops the panels revealing the same upgrade
-                if(upgrade2 < arrayLength){ //will have to be -1
+                if(upgrade2 < arrayLength-1){ //will have to be -1
                     upgrade2++;
                 } else {
                     upgrade2--;
