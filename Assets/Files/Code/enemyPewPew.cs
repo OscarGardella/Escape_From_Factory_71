@@ -103,7 +103,7 @@ public class enemyPewPew : MonoBehaviour
         
         if(AudioManager.Instance) { 
             //AudioManager.Instance.PlaySFX("Enemy Shooting");
-            Debug.Log("This: " + gameObject.transform.position + " --- Laser: " + laser.transform.position + " --- Player: " + player.transform.position);
+            //Debug.Log("This: " + gameObject.transform.position + " --- Laser: " + laser.transform.position + " --- Player: " + player.transform.position);
             AudioManager.Instance.PlaySFXSpatial("Enemy Shooting", laser.transform.position, 1f, 7);
         } else {
             Debug.Log("enemyPewPew.cs: Error: AudioManager.instance is null! Cannot play enemy shooting sound.");

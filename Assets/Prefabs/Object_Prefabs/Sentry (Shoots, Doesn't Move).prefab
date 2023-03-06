@@ -983,6 +983,7 @@ GameObject:
   - component: {fileID: 300206362674632055}
   - component: {fileID: 300206362674632054}
   - component: {fileID: 3230506058740590704}
+  - component: {fileID: 8702429984057496279}
   m_Layer: 0
   m_Name: Sentry (Shoots, Doesn't Move)
   m_TagString: Enemy
@@ -10113,6 +10114,19 @@ MonoBehaviour:
     - {x: 0, y: -0.19135392, z: -0.9815211}
     - {x: -0.07285756, y: -0.17682192, z: -0.9815425}
     - {x: 0, y: 0, z: -1}
+--- !u!114 &8702429984057496279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928204013251368120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8662bdc2087654940a836b5e1935e742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 100012, guid: 903a6d7b6298fa849ad3ccdc8aa071be, type: 3}
 --- !u!1 &3034599465069915268
 GameObject:
   m_ObjectHideFlags: 0
