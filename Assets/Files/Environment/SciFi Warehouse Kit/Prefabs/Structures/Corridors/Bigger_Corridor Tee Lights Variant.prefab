@@ -104,11 +104,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.87, y: 2.325, z: 3.34}
+  m_Extents: {x: 3.425, y: 2.325, z: 3.34}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: -5.7, y: 2.3240001, z: -2.66}
+  m_Center: {x: -8.46, y: 2.3240001, z: -2.66}
   m_TimeToStationary: 0.5
 --- !u!1 &6124444910534186788 stripped
 GameObject:
@@ -167,9 +167,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.68, y: 2.2680001, z: 3.185}
+  m_Extents: {x: 3.305, y: 2.2680001, z: 3.185}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0.3, y: 2.2680001, z: 2.97}
+  m_Center: {x: -2.37, y: 2.2680001, z: 2.97}
   m_TimeToStationary: 0.5
