@@ -233,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8110699375061404734}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -25.92993, y: 3.5399957, z: -154.04997}
+  m_LocalPosition: {x: -25.83, y: 3.5399957, z: -154.05}
   m_LocalScale: {x: 1.2032999, y: 1.2032999, z: 1.2033001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SuccessScreen: {fileID: 0}
+  StageClearUI: {fileID: 0}
 --- !u!1001 &733853123625203051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7299,11 +7300,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 2.955, y: 2.2680001, z: 0.755}
+  m_Extents: {x: 3.315, y: 2.2680001, z: 0.755}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 8.61, y: 2.2680001, z: -0.4}
+  m_Center: {x: -2.68, y: 2.2680001, z: -0.4}
   m_TimeToStationary: 0.5
 --- !u!1 &8416028582764714507 stripped
 GameObject:
@@ -7529,6 +7530,10 @@ PrefabInstance:
     - target: {fileID: 3417307434008769929, guid: cfa7ba2a0368c4d43bad5f3aad1c197c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 128.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524890862257186435, guid: cfa7ba2a0368c4d43bad5f3aad1c197c, type: 3}
+      propertyPath: m_Center.z
+      value: 54.8
       objectReference: {fileID: 0}
     - target: {fileID: 5809413276861393744, guid: cfa7ba2a0368c4d43bad5f3aad1c197c, type: 3}
       propertyPath: m_Name

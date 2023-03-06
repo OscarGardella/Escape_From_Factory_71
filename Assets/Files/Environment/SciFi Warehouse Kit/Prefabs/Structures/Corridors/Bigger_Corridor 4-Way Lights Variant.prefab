@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: m_Carve
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5147653184644116019, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
+      propertyPath: m_Center.x
+      value: 8.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147653184644116019, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
+      propertyPath: m_Center.y
+      value: 2.13
+      objectReference: {fileID: 0}
     - target: {fileID: 5638674767522565381, guid: dcbf59da08760fb4b9531995a6691a6f, type: 3}
       propertyPath: m_Carve
       value: 1
