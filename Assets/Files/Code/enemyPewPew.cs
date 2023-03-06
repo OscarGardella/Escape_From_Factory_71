@@ -70,10 +70,13 @@ public class enemyPewPew : MonoBehaviour
                 coolDown = 0;
             }
         }
-        
-        if (Physics.Raycast(transform.position, transform.position-player.transform.position, hitboxLayer)){
-            if (inRange == true && coolDown == 0 && canPlay == true) {
-                Shoot();
+        if (inRange&&(Physics.Raycast(transform.position, -(transform.position-player.transform.position), out hit))){
+            if (hit.transform.tag == "Player")
+            {
+                if (inRange == true && coolDown == 0 && canPlay == true)
+                {
+                    Shoot();
+                }
             }
         }
         

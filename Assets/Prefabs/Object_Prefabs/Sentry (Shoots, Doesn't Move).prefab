@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5093992660891827875}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RIg_Body_Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +615,7 @@ GameObject:
   - component: {fileID: 3648356069362193414}
   - component: {fileID: 5921363949611798880}
   - component: {fileID: 8244037715398670506}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11854,7 +11854,7 @@ GameObject:
   - component: {fileID: 3166365846768031064}
   - component: {fileID: 8392907150695596425}
   - component: {fileID: 2940385935661365844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: UpperBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
