@@ -63,52 +63,53 @@ public class pewPew : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
         bool canShoot = (enabled == true && coolDown == 0 && pauseGame.paused == false && canPlay == true);
-        if (Input.GetMouseButton(0) && canShoot) {
+        if (!canShoot) { }
+        else if (Input.GetMouseButton(0)) {
             shoot();
         }
-        else if (Input.GetKey(KeyCode.UpArrow)&&Input.GetKey(KeyCode.RightArrow)&& canShoot)    //Forward&Right
+        else if (Input.GetKey(KeyCode.UpArrow)&&Input.GetKey(KeyCode.RightArrow))    //Forward&Right
         {
             transform.rotation = Quaternion.Euler(-90, 0, 45);
             transform.Rotate(-90, 0, 0);
             shoot();
         }
-        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow) && canShoot)    //Forward&Left
+        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))    //Forward&Left
         {
             transform.rotation = Quaternion.Euler(-90, 0, -45);
             transform.Rotate(-90, 0, 0);
             shoot();
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow) && canShoot)    //Back and Right
+        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))    //Back and Right
         {
             transform.rotation = Quaternion.Euler(-90, 0, 135);
             transform.Rotate(-90, 0, 0);
             shoot();
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow) && canShoot)    //Back&Left
+        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))    //Back&Left
         {
             transform.rotation = Quaternion.Euler(-90, 0, -135);
             transform.Rotate(-90, 0, 0);
             shoot();
         }
-        else if (Input.GetKey(KeyCode.UpArrow)&&canShoot)   //Shoots Up
+        else if (Input.GetKey(KeyCode.UpArrow))   //Shoots Up
         {
             transform.rotation = Quaternion.Euler(-90, 0, 0);
             transform.Rotate(-90, 0, 0);
             shoot();
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && canShoot)   //Shoots Down
+        else if (Input.GetKey(KeyCode.DownArrow))   //Shoots Down
         {
             transform.rotation = Quaternion.Euler(-90, 0, 180);
             transform.Rotate(-90, 0, 0);
             shoot();
         }
-        else if (Input.GetKey(KeyCode.RightArrow) && canShoot)   //Shoots Right
+        else if (Input.GetKey(KeyCode.RightArrow))   //Shoots Right
         {
             transform.rotation = Quaternion.Euler(-90, 0, 90);
             transform.Rotate(-90, 0, 0);
             shoot();
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && canShoot)   //Shoots Left
+        else if (Input.GetKey(KeyCode.LeftArrow))   //Shoots Left
         {
             transform.rotation = Quaternion.Euler(-90, 0, -90);
             transform.Rotate(-90, 0, 0);
