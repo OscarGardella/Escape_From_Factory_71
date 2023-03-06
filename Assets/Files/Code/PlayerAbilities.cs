@@ -25,7 +25,7 @@ public class PlayerAbilities : MonoBehaviour
         if(ability == AbilityTracking.AbilityName.Target){ //gain targeting laser ability
             player_shooter.FireDelay = 0.1;
         } else if(ability == AbilityTracking.AbilityName.Heal){ //gain heal ability
-            player_health_bar.UpgradeHealth(5);
+            player_health_bar.UpgradeHealth(6);
         } else if(ability == AbilityTracking.AbilityName.Energy){ //gain energy ability
             player_power_bar.regen_rate = 3f; //multiplies power regen by 3
         } else if(ability == AbilityTracking.AbilityName.Speed){ //gain speed ability
