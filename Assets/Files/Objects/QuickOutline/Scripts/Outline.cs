@@ -151,9 +151,9 @@ public class Outline : MonoBehaviour {
   }
 
   void OnDestroy() {
-
-    // Destroy material instances
-    Destroy(outlineMaskMaterial);
+        AudioManager.Instance.PlaySFXSpatial("Enemy Explosion", transform.position, 1f, 10);
+        // Destroy material instances
+        Destroy(outlineMaskMaterial);
     Destroy(outlineFillMaterial);
   }
 
