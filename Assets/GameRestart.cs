@@ -14,6 +14,10 @@ public class GameRestart : MonoBehaviour
     // Update is called once per frame
     public void restart()
     {
+        GameObject[] loaders = GameObject.FindGameObjectsWithTag("DynamicLoader");
+        foreach (GameObject loader in loaders) {
+            loader.GetComponent<DynamicLoader>().unloadAssets();
+         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("a");
     }

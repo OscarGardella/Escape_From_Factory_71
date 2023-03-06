@@ -37,7 +37,7 @@ public class DynamicLoader : MonoBehaviour
   }
 
   
-  void loadAssets() {
+  public void loadAssets() {
     if(bundle) return;
     Vector3 pos = getPosition();
     Debug.Log("DynamicLoader.cs \"" + this + "\": Loading assetbundle at position " + pos + ", from path " + bundlePath);
@@ -54,7 +54,7 @@ public class DynamicLoader : MonoBehaviour
     }
   }  
 
-  void unloadAssets() {
+  public void unloadAssets() {
     if(! bundle) return;
     Debug.Log("DynamicLoader.cs \"" + this + "\": Unloading asset bundle...");
     bundle.Unload(true);
