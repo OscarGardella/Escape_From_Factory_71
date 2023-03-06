@@ -15,6 +15,6 @@ public class playerTracking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player.transform);
+        if(player) transform.LookAt(player.transform);
     }
 }

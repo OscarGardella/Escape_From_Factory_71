@@ -50,7 +50,7 @@ public class enemyPewPew : MonoBehaviour
         } else if (hacktext.hasPlayed() == true){
             canPlay = true;
         }
-        
+        if(! player) return;
         transform.LookAt(player.transform);
 
         float dist = Vector3.Distance(player.transform.position, transform.position);
@@ -102,7 +102,9 @@ public class enemyPewPew : MonoBehaviour
         laser.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, launchVelocity));
         
         if(AudioManager.Instance) { 
-            AudioManager.Instance.PlaySFX("Enemy Shooting");
+            //AudioManager.Instance.PlaySFX("Enemy Shooting");
+            Debug.Log("This: " + gameObject.transform.position + " --- Laser: " + laser.transform.position + " --- Player: " + player.transform.position);
+            AudioManager.Instance.PlaySFXSpatial("Enemy Shooting", laser.transform.position, 1f, 7);
         } else {
             Debug.Log("enemyPewPew.cs: Error: AudioManager.instance is null! Cannot play enemy shooting sound.");
         }
