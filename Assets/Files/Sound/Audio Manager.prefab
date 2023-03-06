@@ -305,6 +305,8 @@ MonoBehaviour:
   musicSounds:
   - name: Background
     clip: {fileID: 8300000, guid: 876621d5dec0643f28607e7397178361, type: 3}
+  - name: Credits
+    clip: {fileID: 8300000, guid: dfb8e870dd536444aab9ce7f0ec22509, type: 3}
   sfxSounds:
   - name: Player Shooting
     clip: {fileID: 8300000, guid: c6857422f4cbf48b8b489c03aad73d37, type: 3}
@@ -324,5 +326,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8729c60772b5242b8b3762e62d0c807c, type: 3}
   - name: Shield On
     clip: {fileID: 8300000, guid: d41fd346f9b8b49e59bb63749d13df3d, type: 3}
+  - name: Enemy Explosion
+    clip: {fileID: 8300000, guid: 0497242cfd523ff43a1e38444e27f05a, type: 3}
   musicSource: {fileID: 8937391941393468490}
   sfxSource: {fileID: 8937391940881189414}
+  playerCam: {fileID: 0}
