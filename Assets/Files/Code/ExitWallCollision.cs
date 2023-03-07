@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 public class ExitWallCollision : MonoBehaviour
 {
-    public GameSuccessCanvas SuccessScreen;
     public GameObject StageClearUI;
     private int count = 0;
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Player" && SuccessScreen)
+        GameObject parentObject = GameObject.Find("UI");
+        Transform childTransform = parentObject.transform.Find("GameSuccessUI");
+        GameObject successScreen1 = childTransform.gameObject;
+        GameSuccessCanvas successScreen = successScreen1.GetComponent<GameSuccessCanvas>();
+
+        if (other.gameObject.tag == "Player" && gameObject.tag == "ExitWall")
         {
-            SuccessScreen.ShowUI();
+            successScreen.ShowUI();
         }
 
         else if (other.gameObject.tag == "Player" && StageClearUI && count == 0)
