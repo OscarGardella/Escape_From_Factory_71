@@ -10,6 +10,7 @@ public class OpeningAnimHackText : MonoBehaviour
   private bool played; // True when the opening animation is currently playing
   [SerializeField]
   private FindExit findUI;
+  public bool isLoading; // Note that this is basically a last minute hack... Something (the dynamicLoader) will set this to false the first time and then it will continue...
 
   // Start is called before the first frame update
   void Start() {
@@ -22,15 +23,20 @@ public class OpeningAnimHackText : MonoBehaviour
     }
     //_ = displayAnim();
     played = false;
-
+    isLoading = true;
+    setText("Loading...");
   }
 
   private async UniTask waitForMouseClick() {
     await UniTask.WaitUntil( () => Input.GetMouseButtonDown(0) == true);
   }
-  
+
   public bool hasPlayed() {
     return played;
+  }
+
+  public void setText(string text) {
+    textMesh.text = text;
   }
 
   public void showAnim(){
@@ -44,6 +50,8 @@ public class OpeningAnimHackText : MonoBehaviour
   }
 
   public async UniTask displayAnim() {
+    await UniTask.WaitUntil( () => isLoading == false);
+
     RobotFreeAnim player = GameObject.FindGameObjectWithTag("Player").GetComponent<RobotFreeAnim>();
     if(! player) {
       Debug.Log("OpeningAnimHackText.cs: Error: unable to find RobotFreeAnim Player object via tag \"Player\"");

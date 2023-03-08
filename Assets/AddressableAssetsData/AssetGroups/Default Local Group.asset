@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 495c7c65435ea41d190c17c728a61105
   m_SerializeEntries:
-  - m_GUID: bc97fbb4ac597496cac94d80a1cf75e0
-    m_Address: Stage_1
+  - m_GUID: d506d7a409a9045d5afc30aecec0892d
+    m_Address: Assets/Prefabs/Scene_Prefabs/Enemies_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 4531090d040a14658a52b3b5bd0ffa7f
@@ -27,6 +27,14 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: ef39eba8cd5be4dcfbeabd5079701eef
     m_Address: Stage_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8512ca69ca18f490b87daaa03bc6dcf1
+    m_Address: Assets/Prefabs/Object_Prefabs/SpiderContainer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec284900b6df84976960380e3b74a077
+    m_Address: Assets/Prefabs/Scene_Prefabs/Stage_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

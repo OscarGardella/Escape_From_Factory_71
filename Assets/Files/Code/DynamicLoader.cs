@@ -43,6 +43,15 @@ public class DynamicLoader : MonoBehaviour
     return gameObject.transform.position;
   }
 
+  // Note that this function is a last minute hack for my specific implementation...
+  private void markDoneLoading() {
+    GameObject hack = GameObject.FindGameObjectWithTag("Hack");
+    if(!hack) { Debug.Log("PlayButton: Unable to find hack text"); return; }
+    OpeningAnimHackText hackAnim = hack.GetComponent<OpeningAnimHackText>();
+    if(!hackAnim) { Debug.Log("PlayButton: Unable to find hack text component"); return; }
+    hackAnim.isLoading = false;
+  }
+
   private void OnLoadDone(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj) {
     Debug.Log("Load done. Attempting to set managed object...");
      
@@ -51,6 +60,7 @@ public class DynamicLoader : MonoBehaviour
     //managedObj.transform.position = new Vector3(0,0,0);
     if(managedObj == null) Debug.Log("DynamicLoader.cs: OnLoadDone: obj.Result is null. Will not be able to destroy object later");
     Debug.Log("Load done. Set managed object");
+    markDoneLoading();
   }
 
   public void loadAssets() {

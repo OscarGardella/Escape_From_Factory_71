@@ -102,7 +102,7 @@ public class RobotFreeAnim : MonoBehaviour {
     if(! anim) Debug.Log("RobotFreeAnim.cs: Error: failed to get animator component of player");
     //anim.SetFloat("Roll_Anim", 2.0F); // Increase roll start/end animation speed
     m_Rigidbody = gameObject.GetComponent<Rigidbody>();
-    if(! m_Rigidbody) Debug.Log("RobotFreeAnim.cs: Error: failed to get RigitBody component of player");
+    if(! m_Rigidbody) Debug.Log("RobotFreeAnim.cs: Error: failed to get RigidBody component of player");
     walkMom = new Momentum(walkMomentum);
     rot = new Vector3(0, cameraRotation, 0);
     rotMom = new Momentum(rotationMomentum, cameraRotation); // High (lower number) asymptotic Momentum in roll mode gives a starkingly fluid effect.
@@ -235,13 +235,13 @@ public class RobotFreeAnim : MonoBehaviour {
 
     // Press left control while walking to enter roll mode
     // disabled
-    if(Input.GetKeyDown(KeyCode.LeftControl) && rollingEnabled) {
-      rollFor(1.0F);
+    //if(Input.GetKeyDown(KeyCode.LeftControl) && rollingEnabled) {
+      //rollFor(1.0F);
       /*if(controls.isMoving()) {
         //walkMom.target = rollMoveSpeed;
         _ = enterRollMode();
       }*/
-    }
+    //}
 
     if(controls.stoppedMoving()) { // && !pauseGame.paused
       lockCameraHeight = false;
