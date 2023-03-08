@@ -64,6 +64,7 @@ public class RobotFreeAnim : MonoBehaviour {
   [Range(0.0F, 90.0F)]
   public float cameraAngle = 90;
   public float cameraFollowLag = 1;
+  private Vector3 startingPos; // Position to hold in place while closed
 
   public InputControls controls;
   
@@ -108,6 +109,7 @@ public class RobotFreeAnim : MonoBehaviour {
     moveSpeed = walkMoveSpeed;
     controls = new InputControls();
     if(! mainCamera) Debug.Log("RobotFreeAnim.cs: Error: No camera specified. This script requires a connection target to the main camera in the scene.");
+    startingPos = transform.position; // Will hold its positon from its starting position until opened.
   }
 
   // Activates this character from its normally closed and idle state
@@ -117,6 +119,7 @@ public class RobotFreeAnim : MonoBehaviour {
 
   public void close() {
      anim.SetBool("Open_Anim", false);
+     startingPos = transform.position;
   }
 
   // Sets the camera position relative to the player. Ignores height if lockCameraHeight is enabled
@@ -162,7 +165,8 @@ public class RobotFreeAnim : MonoBehaviour {
   // Update is called once per frame
   void FixedUpdate() {
     if(anim.GetBool("Open_Anim") == false) {
-      m_Rigidbody.AddForce(new Vector3(0,-0.05f,0), ForceMode.VelocityChange); // Keeps it from floating off the ground
+      transform.position = startingPos;
+      //m_Rigidbody.AddForce(new Vector3(0,-0.05f,0), ForceMode.VelocityChange); // Keeps it from floating off the ground
       return;
     }
     controls.globalOrientation = cameraRotation;
